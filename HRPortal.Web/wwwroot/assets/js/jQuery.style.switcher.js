@@ -30,7 +30,7 @@ SOFTWARE.
 		_defaultOptions = {
 			hasPreview: true,
 			defaultThemeId: 'jssDefault',
-			fullPath: 'assets/dist/css/',
+			fullPath: 'assets/css/',
 			cookie: {
 				expires: 30,
 				isManagingLoad: true
@@ -221,7 +221,7 @@ SOFTWARE.
 					self.defaultTheme = newStyle;
 					// try to store cookie
 					if (self.config.cookie) {
-						_docCookies.setItem(_cookieKey, asset, self.config.cookie.expires, 'https://themezhub.net/');
+						_docCookies.setItem(_cookieKey, asset, self.config.cookie.expires, '/');
 					}
 				}
 			);

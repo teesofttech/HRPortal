@@ -6,21 +6,21 @@
     }
 
     function mainMap() {
-        function locationData(jobimgURL, employerImage, jobURL, jobName, employerName) {
-            return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-job-box"><div class="sider-list-wrap"><div class="sider-list-thumb"><a href="' + jobimgURL + '"><img src="' + employerImage + '" alt="" /></a></div><div class="fl-caption"><h5><a href="' + jobURL + '">' + jobName + '</a></h5><span>' + employerName + '</span></div></div></div></div></div>')
+        function locationData(locationURL, locationImg, companylocationURL, jobname, companyname, sallery, joblocation, jobtypeclass, jobtype, joblocationURL) {
+            return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-job-box"><div class="job-title"><img src="' + locationImg + '" alt=""/><a href="' + locationURL + '">' + jobname + '</a></div><div class="job-company"><i class="ti-briefcase"></i><a href="' + companylocationURL + '">' + companyname + '</a></div><div class="job-package"><i class="ti-wallet"></i><span>' + sallery + '</span></div><div class="job-location"><i class="ti-location-pin"></i><a href="' + joblocationURL + '">' + joblocation + '</a></div><div class="job-status"><div class="job-map-status"><a href="#" class="jb-name ' + jobtypeclass + '">' + jobtype + '</a></div><a href="#" class="jb-like"><i class="ti-heart"></i></a></div></div></div></div>')
         }
         var locations = [
-            [locationData('job-detail-2.html', 'assets/img/asana.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.72956781, -73.99726866, 0, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/adwords.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.76221766, -73.96511769, 1, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/google.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.88496706, -73.88191222, 2, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/bing.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.72228267, -73.99246214, 3, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/drive.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.94982541, -73.84357452, 4, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/paypal.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.90261483, -74.15737152, 5, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/photos.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.79145927, -74.08252716, 6, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/safari.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.58423508, -73.96099091, 7, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/leaf.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.58110616, -73.97678375, 8, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/Atlassian.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.73112881, -74.07897948, 9, markerIcon],
-            [locationData('job-detail-2.html', 'assets/img/asana.png', 'job-detail-2.html', '02 Web Designer', 'Themezhub Info'), 40.67386831, -74.10438536, 10, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.72956781, -73.99726866, 0, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.76221766, -73.96511769, 1, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.88496706, -73.88191222, 2, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.72228267, -73.99246214, 3, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.94982541, -73.84357452, 4, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.90261483, -74.15737152, 5, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.79145927, -74.08252716, 6, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.58423508, -73.96099091, 7, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.58110616, -73.97678375, 8, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.73112881, -74.07897948, 9, markerIcon],
+            [locationData('job-detail-1.html', 'assets/img/com-2.jpg', 'company-detail.html', '02 Web Designer', 'Themezhub Info', '$2000 - $3500', '302 Blue Market, CA', 'full-time', 'Full Time', '#'), 40.67386831, -74.10438536, 10, markerIcon],
         ];
 
         var map = new google.maps.Map(document.getElementById('map-main'), {
