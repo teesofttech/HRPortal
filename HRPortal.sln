@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRPortal.Web", "HRPortal.Web\HRPortal.Web.csproj", "{316C9F4F-861F-4034-9944-1AE510ECB65C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRPortal.Domain", "HRPortal.Domain\HRPortal.Domain.csproj", "{B8BD7234-FF3D-4F3E-8C59-4F05F103BF8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRPortal.Domain", "HRPortal.Domain\HRPortal.Domain.csproj", "{B8BD7234-FF3D-4F3E-8C59-4F05F103BF8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentParser", "Parser\DocumentParser.csproj", "{D0384399-D71F-41CE-BC53-0E975B24EFA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B8BD7234-FF3D-4F3E-8C59-4F05F103BF8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8BD7234-FF3D-4F3E-8C59-4F05F103BF8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8BD7234-FF3D-4F3E-8C59-4F05F103BF8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0384399-D71F-41CE-BC53-0E975B24EFA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0384399-D71F-41CE-BC53-0E975B24EFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0384399-D71F-41CE-BC53-0E975B24EFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0384399-D71F-41CE-BC53-0E975B24EFA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
