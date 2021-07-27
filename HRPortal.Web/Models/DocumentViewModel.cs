@@ -15,6 +15,8 @@ namespace HRPortal.Web.Models
         /// The objective.
         /// </value>
         public IList<string> Objective { get; set; }
+        //public IList<string> Objectives { get; set; }
+        //public IList<string> Objectives { get; set; }
         /// <summary>
         /// Gets or sets the experience summary.
         /// </summary>

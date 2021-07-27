@@ -78,9 +78,7 @@ namespace HRPortal.Web.Controllers
                         //file.SaveAs(path);
 
                         var dictionaryPath = Path.Combine(_hostingEnvironment.WebRootPath, "KeywordDictionary.xml");
-
                         var modelData = Engine.Parse(pathfile, dictionaryPath);
-
                         return View(JsonConvert.DeserializeObject<DocumentViewModel>(modelData));
                     }
                     else
