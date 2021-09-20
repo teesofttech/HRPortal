@@ -106,6 +106,10 @@ namespace HRPortal.Web.Areas.Identity.Pages.Account
                     {
                         return RedirectToAction("Index", "SupportDashboard");
                     }
+                    else if (getRole.Name.Equals("Customer"))
+                    {
+                        return RedirectToAction("Index", "Dashboard");
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {

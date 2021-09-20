@@ -34,7 +34,7 @@ namespace HRPortal.Web
             services.AddDbContext<db_a54634_portalContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDatabaseDeveloperPageExceptionFilter();
+           // services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSession(options =>
             {
@@ -77,7 +77,7 @@ namespace HRPortal.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
+               // app.UseMigrationsEndPoint();
             }
             else
             {

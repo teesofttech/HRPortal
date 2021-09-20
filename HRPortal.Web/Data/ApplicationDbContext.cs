@@ -11,6 +11,7 @@ namespace HRPortal.Web.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+           
         }
     }
 }
