@@ -9,7 +9,7 @@
 
 <head>
     <!-- Basic Page Needs==================================================-->
-    <title>Job Stock - Responsive Job Portal Bootstrap Template | ThemezHub</title>
+    <title>@ViewData["Title"] -  Recruitment Portal</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- CSS==================================================-->
@@ -29,21 +29,19 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="left-br"><a href="/Identity/Account/Login" class="signin">Sign In Now</a></li>
+                        <li class="left-br"><a href="/Identity/Account/Login" class="signin">Sign In</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                         <li>
-                            <a href="login.html">Home</a>
+                            <a href="#">Home</a>
 
                         </li>
                         <li>
-                            <a href="#">Jobs</a>
+                            <a href="@Url.Action("Index", "Jobs")">Jobs</a>
                         </li>
-
                         <li>
-                            <a href="#">Brows</a>
+                            <a href="@Url.Action("Contact", "Home")">Contact</a>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -148,150 +146,6 @@
                             </article>
                         </div>
 
-                        <!-- Single Job List -->
-                        <div class="item-click">
-                            <article>
-                                <div class="brows-job-list">
-                                    <div class="brows-job-half">
-                                        <div class="item-fl-box">
-                                            <div class="brows-job-company-img">
-                                                <a href="job-detail-2.html"><img src="~/assets/img/com-2.jpg" class="img-responsive" alt="" /></a>
-                                            </div>
-                                            <div class="brows-job-position">
-                                                <h3 class="jb-approved"><a href="job-detail-1.html">Gas station attendant</a></h3>
-                                                <p>
-                                                    <a class="theme-cl nlsb-link" href="company-detail.html">Apple LTD</a>
-                                                    <span class="job-type bg-trans-primary cl-primary">Freelancer</span>
-                                                </p>
-                                                <div class="njsb-location"><i class="ti-location-pin"></i>QBL Park, C40</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="njsb-link">
-                                        <div class="brows-job-link">
-                                            <a href="job-detail-1.html" class="btn btn-default">Apply Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <!-- Single Job List -->
-                        <div class="item-click">
-                            <article>
-                                <div class="brows-job-list">
-                                    <div class="brows-job-half">
-                                        <div class="item-fl-box">
-                                            <div class="brows-job-company-img">
-                                                <a href="job-detail-2.html"><img src="~/assets/img/com-3.jpg" class="img-responsive" alt="" /></a>
-                                            </div>
-                                            <div class="brows-job-position">
-                                                <h3 class="jb-approved"><a href="job-detail-1.html">Customs officer</a></h3>
-                                                <p>
-                                                    <a class="theme-cl nlsb-link" href="company-detail.html">Twitter Talk</a>
-                                                    <span class="job-type bg-trans-warning cl-warning">Part Time</span>
-                                                </p>
-                                                <div class="njsb-location"><i class="ti-location-pin"></i>1579  Stanley Avenue</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="njsb-link">
-                                        <div class="brows-job-link">
-                                            <a href="job-detail-1.html" class="btn btn-default">Apply Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="tg-themetag tg-featuretag">Premium</span>
-                            </article>
-                        </div>
-
-                        <!-- Single Job List -->
-                        <div class="item-click">
-                            <article>
-                                <div class="brows-job-list">
-                                    <div class="brows-job-half">
-                                        <div class="item-fl-box">
-                                            <div class="brows-job-company-img">
-                                                <a href="job-detail-2.html"><img src="~/assets/img/com-4.jpg" class="img-responsive" alt="" /></a>
-                                            </div>
-                                            <div class="brows-job-position">
-                                                <h3 class="jb-approved"><a href="job-detail-1.html">Tailor/ Seamstress</a></h3>
-                                                <p>
-                                                    <a class="theme-cl nlsb-link" href="company-detail.html">Sliver City</a>
-                                                    <span class="job-type cl-success bg-trans-success">Full Time</span>
-                                                </p>
-                                                <div class="njsb-location"><i class="ti-location-pin"></i>2881  Sharon Lane</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="njsb-link">
-                                        <div class="brows-job-link">
-                                            <a href="job-detail-1.html" class="btn btn-default">Apply Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <!-- Single Job List -->
-                        <div class="item-click">
-                            <article>
-                                <div class="brows-job-list">
-                                    <div class="brows-job-half">
-                                        <div class="item-fl-box">
-                                            <div class="brows-job-company-img">
-                                                <a href="job-detail-2.html"><img src="~/assets/img/com-5.jpg" class="img-responsive" alt="" /></a>
-                                            </div>
-                                            <div class="brows-job-position">
-                                                <h3 class="jb-approved"><a href="job-detail-1.html">Computer programmer</a></h3>
-                                                <p>
-                                                    <a class="theme-cl nlsb-link" href="company-detail.html">Autodesk</a>
-                                                    <span class="job-type bg-trans-primary cl-primary">Freelancer</span>
-                                                </p>
-                                                <div class="njsb-location"><i class="ti-location-pin"></i>1992 Buick Century</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="njsb-link">
-                                        <div class="brows-job-link">
-                                            <a href="job-detail-1.html" class="btn btn-default">Apply Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <span class="tg-themetag tg-featuretag">Premium</span>
-                            </article>
-                        </div>
-
-                        <!-- Single Job List -->
-                        <div class="item-click">
-                            <article>
-                                <div class="brows-job-list">
-                                    <div class="brows-job-half">
-                                        <div class="item-fl-box">
-                                            <div class="brows-job-company-img">
-                                                <a href="job-detail-2.html"><img src="~/assets/img/com-6.jpg" class="img-responsive" alt="" /></a>
-                                            </div>
-                                            <div class="brows-job-position">
-                                                <h3 class="jb-approved"><a href="job-detail-1.html">Real estate agent</a></h3>
-                                                <p>
-                                                    <a class="theme-cl nlsb-link" href="company-detail.html">Facebook</a>
-                                                    <span class="job-type cl-success bg-trans-success">Full Time</span>
-                                                </p>
-                                                <div class="njsb-location"><i class="ti-location-pin"></i>1746  Viking Drive</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="njsb-link">
-                                        <div class="brows-job-link">
-                                            <a href="job-detail-1.html" class="btn btn-default">Apply Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-
-
                     </div>
                 </div>
 
@@ -310,7 +164,7 @@
         </section>
         <!-- ========== Begin: Brows job Category End ===============  -->
         <div class="clearfix"></div>
-      
+
         <footer class="dark-footer skin-dark-footer">
             <div>
                 <div class="container">
