@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewData["Title"] = "PostJob";
+    Layout = "~/Views/Shared/_HRLayout.cshtml";
+    <link rel="stylesheet" href="~/assets/plugins/css/plugins.css">
+    <link href="~/assets/css/style.css" rel="stylesheet">
+
+}
+
+
+            <!-- Content Wrap -->
+            <div class="col-lg-9 col-md-8">
+                <div class="dashboard-body">
+                    <div class="dashboard-caption">
+
+                        <div class="dashboard-caption-header">
+                            <h4><i class="ti-ruler-pencil"></i>Post New Page</h4>
+                        </div>
+
+                        <div class="dashboard-caption-wrap">
+                            <form class="post-form">
+
+                                <!-- row -->
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job Title*</label>
+                                            <input type="text" class="form-control" placeholder="Enter Title" name="jobTitle">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job Code</label>
+                                            <input type="text" class="form-control" name="jobCode" placeholder="Enter Job Code">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Location</label>
+                                            <input type="text" class="form-control" name="Location" placeholder="Enter Location">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Travel Requirements</label>
+                                            <select id="jb-level" name="travelRequirement" class="form-control">
+                                                <option>Select One</option>
+                                                <option>Yes</option>
+                                                <option>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Company Summary</label>
+                                            <textarea class="form-control about height-120" placeholder="About Company" name="companySummary"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!-- row -->
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job Objectives</label>
+                                            <textarea class="form-control about height-120" placeholder="About Company" name="jobObjectives"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Equality Statement</label>
+                                            <textarea class="form-control about height-120" placeholder="About Company" name="equalityStatement"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- row -->
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job Category*</label>
+                                            <select id="jb-category" name="jobCategory" class="form-control">
+                                                <option>Choose Category</option>
+                                                <option>Accounting Assistant</option>
+                                                <option>Arts, Design, Media</option>
+                                                <option>Charity & Voluntary</option>
+                                                <option>Education & Coachs</option>
+                                                <option>Finance And Business</option>
+                                                <option>IT & Computer</option>
+                                                <option>Banking</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job Type*</label>
+                                            <select id="jb-type" name="jobType" class="form-control">
+                                                <option>Job Type</option>
+                                                <option>Contract</option>
+                                                <option>Full-Time</option>
+                                                <option>Part-time</option>
+                                                <option>Temporary</option>
+                                                <option>Freelancer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Job Level*</label>
+                                            <select id="jb-level" name="jobLevel" class="form-control">
+                                                <option>Job Level</option>
+                                                <option>Junior</option>
+                                                <option>Manager</option>
+                                                <option>Senior</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <!-- row -->
+                                <div class="row mrg-top-30">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Application Settings</h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- row -->
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Custom Job URL</label>
+                                            <input type="text" class="form-control" placeholder="https://site.com/custom-url/">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Email For Applications</label>
+                                            <input type="text" class="form-control" placeholder="Ex.myapplicat@gmail.com">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Deadline Submission</label>
+                                            <input type="text" id="expirejob" data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- row -->
+                                <div class="row mrg-top-30">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <h4>Relevant Requirements</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <select class="multiple-skill form-control" name="skills[]" multiple="multiple">
+                                                <option>HTML5</option>
+                                                <option>Css3</option>
+                                                <option>Photoshop</option>
+                                                <option>Php</option>
+                                                <option>Wordpress</option>
+                                                <option>Bootstrap</option>
+                                                <option>Magento</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- row -->
+                                <div class="row mrg-top-30">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group text-center">
+                                            <button type="submit" class="btn-savepreview"><i class="ti-angle-double-right"></i>Publish & Preview</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        
+<script type="text/javascript" src="~/assets/plugins/js/jquery.min.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/viewportchecker.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/bootsnav.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/select2.min.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/wysihtml5-0.3.0.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/bootstrap-wysihtml5.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/datedropper.min.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/dropzone.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/loader.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/slick.min.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/jquery.easy-autocomplete.min.js"></script>
+<!-- Custom Js -->
+<script src="~/assets/js/custom.js"></script>
+<script type="text/javascript" src="~/assets/plugins/js/counterup.min.js"></script>
+
+<script type="text/javascript" src="~/assets/plugins/js/sweetalert.html"></script>
+
+
+<!-- Map -->
+<script src="http://maps.google.com/maps/api/js?key="></script>
+<script src="~/assets/js/map_infobox.js"></script>
+<script src="~/assets/js/markerclusterer.js"></script>
+<script src="~/assets/js/map.js"></script>
+
+<script src="~/assets/js/dashboard-custom.js"></script>
+
+<script>
+    $('#expirejob').dateDropper();
+</script>

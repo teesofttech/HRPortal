@@ -14,5 +14,9 @@ namespace HRPortal.Web.Controllers
         {
             return View();
         }
+        public IActionResult PostJob()
+        {
+            return View();
+        }
     }
 }
