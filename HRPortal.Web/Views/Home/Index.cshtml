@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<HRPortal.Domain.Entities.TblVacancyAdvert>
+
+@{
     ViewData["Title"] = "Home Page";
     Layout = null;
 }
@@ -6,8 +8,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from finder.createx.studio/job-board-home-v1.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Sep 2021 07:43:22 GMT -->
-<!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
@@ -287,26 +287,26 @@
                 <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
 
-                        <li class="nav-item dropdown active">
+                        <li class="nav-item active">
                             <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
 
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
+                        <li class="nav-item">
+                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button" >Catalog</a>
 
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/Identity/Account/Login" role="button">Account</a>
 
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                        <li class="nav-item">
+                            <a class="nav-link " href="#" role="button" >Blog</a>
                             @*<ul class="dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="job-board-blog.html">Blog List</a></li>
                                     <li><a class="dropdown-item" href="job-board-blog-single.html">Single Post</a></li>
                                 </ul>*@
                         </li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login" ><i class="fi-user me-2"></i>Sign in</a></li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
                     </ul>
                 </div>
             </div>
@@ -378,74 +378,36 @@
                     </div>
                     <!-- Accordion-->
                     <div id="accordionJobs">
-                        <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse1">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <div class="d-flex align-items-center"><img class="me-2" src="~/img/job-board/company/it-pro.png" width="24" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 ps-1">IT Pro TV</span></div><span class="badge bg-faded-danger rounded-pill fs-sm">Hot</span>
-                                </div>
-                                <h3 class="h6 card-title pt-1 mb-0">Business Analyst</h3>
-                            </div>
-                            <div class="collapse" id="jobCollapse1" data-bs-parent="#accordionJobs">
-                                <div class="card-body mt-n1 pt-0">
-                                    <p class="fs-sm">Euismod nec sagittis sit arcu libero, metus. Aliquam nisl rhoncus porttitor volutpat, ante cras tincidunt. Nec sit nunc, ornare tincidunt enim, neque. Ornare pulvinar enim fames orci enim in libero. <a href='#'>Read more...</a></p>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>Chicago</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>$7,500</span></div>
-                                        <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
+                        @if (Model == null)
+                        {
+
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse1">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex align-items-center"><img class="me-2" src="~/assets/logo.png" width="50" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 ps-1">@item.CompanySummary</span></div><span class="badge bg-faded-danger rounded-pill fs-sm">Hot</span>
+                                        </div>
+                                        <h3 class="h6 card-title pt-1 mb-0">@item.JobTitle</h3>
+                                    </div>
+                                    <div class="collapse" id="jobCollapse1" data-bs-parent="#accordionJobs">
+                                        <div class="card-body mt-n1 pt-0">
+                                            <p class="fs-sm">
+                                                @item.JobObjectives <br /><a href='#'>Read more...</a>
+                                            </p>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()</span></div>
+                                                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card bg-secondary mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse2">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <div class="d-flex align-items-center"><img class="me-2" src="~/img/job-board/company/xbox.png" width="24" alt="Xbox Logo"><span class="fs-sm text-dark opacity-80 ps-1">Xbox Company</span></div><span class="badge bg-faded-accent rounded-pill fs-sm">Featured</span>
-                                </div>
-                                <h3 class="h6 card-title pt-1 mb-0">Full-Stack Developer</h3>
-                            </div>
-                            <div class="collapse show" id="jobCollapse2" data-bs-parent="#accordionJobs">
-                                <div class="card-body mt-n1 pt-0">
-                                    <p class="fs-sm">Euismod nec sagittis sit arcu libero, metus. Aliquam nisl rhoncus porttitor volutpat, ante cras tincidunt. Nec sit nunc, ornare tincidunt enim, neque. Ornare pulvinar enim fames orci enim in libero. <a href='#'>Read more...</a></p>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>Washington</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>$13,000</span></div>
-                                        <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse3">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <div class="d-flex align-items-center"><img class="me-2" src="~/img/job-board/company/xampp.png" width="24" alt="XAMPP Logo"><span class="fs-sm text-dark opacity-80 ps-1">XAMPP Company</span></div><span class="badge bg-faded-danger rounded-pill fs-sm">Hot</span>
-                                </div>
-                                <h3 class="h6 card-title pt-1 mb-0">Sales Manager</h3>
-                            </div>
-                            <div class="collapse" id="jobCollapse3" data-bs-parent="#accordionJobs">
-                                <div class="card-body mt-n1 pt-0">
-                                    <p class="fs-sm">Euismod nec sagittis sit arcu libero, metus. Aliquam nisl rhoncus porttitor volutpat, ante cras tincidunt. Nec sit nunc, ornare tincidunt enim, neque. Ornare pulvinar enim fames orci enim in libero. <a href='#'>Read more...</a></p>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>New Jersey</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>$6,500</span></div>
-                                        <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse4">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between mb-2">
-                                    <div class="d-flex align-items-center"><img class="me-2" src="~/img/job-board/company/elastic.png" width="24" alt="Elastic Logo"><span class="fs-sm text-dark opacity-80 ps-1">Elastic Inc.</span></div><span class="badge bg-faded-accent rounded-pill fs-sm">Featured</span>
-                                </div>
-                                <h3 class="h6 card-title pt-1 mb-0">Senior Credit Analyst</h3>
-                            </div>
-                            <div class="collapse" id="jobCollapse4" data-bs-parent="#accordionJobs">
-                                <div class="card-body mt-n1 pt-0">
-                                    <p class="fs-sm">Euismod nec sagittis sit arcu libero, metus. Aliquam nisl rhoncus porttitor volutpat, ante cras tincidunt. Nec sit nunc, ornare tincidunt enim, neque. Ornare pulvinar enim fames orci enim in libero. <a href='#'>Read more...</a></p>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>Dallas</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>$8,000</span></div>
-                                        <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            }
+                        }
+
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -485,418 +447,5 @@
     <script src="~/js/theme.min.js"></script>
 </body>
 
-<!-- Mirrored from finder.createx.studio/job-board-home-v1.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Sep 2021 07:43:35 GMT -->
 </html>
 
-@*<!doctype html>
-    <html lang="en">
-
-
-    <head>*@
-<!-- Basic Page Needs==================================================-->
-<!--<title>@@ViewData["Title"] -  Recruitment Portal</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
-<!-- CSS==================================================-->
-<!--<link rel="stylesheet" href="~/assets/plugins/css/plugins.css">
-    <link href="~/assets/css/style.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" id="jssDefault" href="~/assets/css/colors/green-style.css">
-</head>
-
-<body>
-    <div class="Loader"></div>
-    <div class="wrapper">
-        <nav class="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-            <div class="container">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu"><i class="fa fa-bars"></i></button>
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#"><img src="~/assets/logo2.png" class="logo logo-display" alt=""><img src="~/assets/logo2.png" class="logo logo-scrolled" alt=""></a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="left-br"><a href="/Identity/Account/Login" class="signin">Sign In</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li>
-                            <a href="#">Home</a>
-
-                        </li>
-                        <li>
-                            <a href="@@Url.Action("Index", "Jobs")">Jobs</a>
-                        </li>
-                        <li>
-                            <a href="@@Url.Action("Contact", "Home")">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="clearfix"></div>
-        <section class="slide-banner scroll-con-sec hero-section" data-scrollax-parent="true" id="sec1">
-            <div class="slideshow-container">
-                <div class="slideshow-item">
-                    <div class="bg" data-bg="../assets/img/slider-4.jpg"></div>
-                </div>
-                <div class="slideshow-item">
-                    <div class="bg" data-bg="../assets/img/banner-6.jpg"></div>
-                </div>
-                <div class="slideshow-item">
-                    <div class="bg" data-bg="../assets/img/banner-5.jpg"></div>
-                </div>
-                <div class="slideshow-item">
-                    <div class="bg" data-bg="../assets/img/banner-2.jpg"></div>
-                </div>
-            </div>
-            <div class="overlay"></div>
-            <div class="hero-section-wrap fl-wrap">
-                <div class="container">
-                    <div class="intro-item fl-wrap">
-                        <div class="caption text-center cl-white">
-                            <h2>Discover 7412+ Jobs Here</h2>
-                            <p>Expolore top rated tours, hotels and restaurants around the world</p>
-                        </div>
-                        <form class="form-horizontal p0-m">
-                            <div class="col-md-4 no-padd">
-                                <div class="input-group">
-                                    <input type="text" class="form-control br-1" id="joblist" placeholder="Skills, Designations, Companies">
-                                </div>
-                            </div>
-                            <div class="col-md-3 no-padd">
-                                <div class="input-group">
-                                    <input type="text" class="form-control br-1" id="location" placeholder="Search By Location..">
-                                </div>
-                            </div>
-                            <div class="col-md-3 no-padd">
-                                <div class="input-group">
-                                    <select id="choose-city" class="form-control">
-                                        <option>Choose City</option>
-                                        <option>Chandigarh</option>
-                                        <option>London</option>
-                                        <option>England</option>
-                                        <option>Pratapcity</option>
-                                        <option>Ukrain</option>
-                                        <option>Wilangana</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-2 no-padd">
-                                <div class="input-group">
-                                    <button type="submit" class="btn btn-primary full-width">Search Job</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="clearfix"></div>
-        <section class="brows-job-category">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>We found 477 matches jobs, you are watching 7 to 27</h2>
-                    </div>
-                </div>-->
-<!--/.row-->
-<!--<div class="row">
-    <div class="col-md-12">-->
-<!-- Single Job List -->
-<!--<div class="item-click">
-                    <article>
-                        <div class="brows-job-list">
-                            <div class="brows-job-half">
-                                <div class="item-fl-box">
-                                    <div class="brows-job-company-img">
-                                        <a href="job-detail-2.html"><img src="~/assets/img/com-1.jpg" class="img-responsive" alt="" /></a>
-                                    </div>
-                                    <div class="brows-job-position">
-                                        <h3 class="jb-approved"><a href="job-detail-1.html">Digital Marketing Manager</a></h3>
-                                        <p>
-                                            <a class="theme-cl nlsb-link" href="company-detail.html">Autodesk</a>
-                                            <span class="job-type cl-success bg-trans-success">Full Time</span>
-                                        </p>
-                                        <div class="njsb-location"><i class="ti-location-pin"></i>4565  Gandy Street</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="njsb-link">
-                                <div class="brows-job-link">
-                                    <a href="job-detail-1.html" class="btn btn-default">Apply Now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <span class="tg-themetag tg-featuretag">Premium</span>
-                    </article>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <ul class="pagination">
-                <li><a href="#"><i class="ti-arrow-left"></i></a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#"><i class="ti-arrow-right"></i></a></li>
-            </ul>
-        </div>
-
-    </div>
-</section>-->
-<!-- ========== Begin: Brows job Category End ===============  -->
-<!--<div class="clearfix"></div>
-
-<footer class="dark-footer skin-dark-footer">
-    <div>
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-3 col-md-3">
-                    <div class="footer-widget">
-                        <img src="~/assets/img/logo-white.png" class="img-footer" alt="" />
-                        <div class="footer-add">
-                            <p>Collins Street West, Victoria,</br> Australia (AU4578).</p>
-                            <p><strong>Email:</strong></br>hello@jobstock.com</p>
-                            <p><strong>Call:</strong></br>91 855 742 62548</p>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-2">
-                    <div class="footer-widget">
-                        <h4 class="widget-title">Navigations</h4>
-                        <ul class="footer-menu">
-                            <li><a href="home-6.html">New Home Design</a></li>
-                            <li><a href="browse-candidate-list.html">Browse Candidates</a></li>
-                            <li><a href="browse-employer-list.html">Browse Employers</a></li>
-                            <li><a href="advance-search-2.html">Advance Search</a></li>
-                            <li><a href="checkout.html">Job With Map</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-2">
-                    <div class="footer-widget">
-                        <h4 class="widget-title">The Highlights</h4>
-                        <ul class="footer-menu">
-                            <li><a href="index-2.html">Home Page 2</a></li>
-                            <li><a href="index-3.html">Home Page 3</a></li>
-                            <li><a href="index-4.html">Home Page 4</a></li>
-                            <li><a href="index-5.html">Home Page 5</a></li>
-                            <li><a href="login.html">LogIn</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-2">
-                    <div class="footer-widget">
-                        <h4 class="widget-title">My Account</h4>
-                        <ul class="footer-menu">
-                            <li><a href="candidate-dashboard.html">Dashboard</a></li>
-                            <li><a href="applications.html">Applications</a></li>
-                            <li><a href="packages.html">Packages</a></li>
-                            <li><a href="candidate-resume.html">resume.html</a></li>
-                            <li><a href="register.html">SignUp Page</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-3">
-                    <div class="footer-widget">
-                        <h4 class="widget-title">Download Apps</h4>
-                        <a href="#" class="other-store-link">
-                            <div class="other-store-app">
-                                <div class="os-app-icon">
-                                    <i class="ti-android theme-cl"></i>
-                                </div>
-                                <div class="os-app-caps">
-                                    Google Play
-                                    <span>Get It Now</span>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="other-store-link">
-                            <div class="other-store-app">
-                                <div class="os-app-icon">
-                                    <i class="ti-apple theme-cl"></i>
-                                </div>
-                                <div class="os-app-caps">
-                                    App Store
-                                    <span>Now it Available</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row align-items-center">
-
-                <div class="col-lg-6 col-md-6">
-                    <p class="mb-0">© 2020 Job Stock. Designd By <a href="https://themezhub.com/">Themez Hub</a> All Rights Reserved</p>
-                </div>
-
-                <div class="col-lg-6 col-md-6 text-right">
-                    <ul class="footer-bottom-social">
-                        <li><a href="#"><i class="ti-facebook"></i></a></li>
-                        <li><a href="#"><i class="ti-twitter"></i></a></li>
-                        <li><a href="#"><i class="ti-instagram"></i></a></li>
-                        <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</footer>-->
-<!-- ============================ Footer End ================================== -->
-<!-- Signin Window Code -->
-<!--<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-
-                <div class="new-logwrap">
-
-                    <div class="form-group">
-                        <label>Username</label>
-                        <div class="input-with-icon">
-                            <input type="text" class="form-control" placeholder="Enter Your Username">
-                            <i class="theme-cl ti-user"></i>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email</label>
-                        <div class="input-with-icon">
-                            <input type="email" class="form-control" placeholder="Enter Your Email">
-                            <i class="theme-cl ti-email"></i>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Password</label>
-                        <div class="input-with-icon">
-                            <input type="password" class="form-control" placeholder="Enter Your Password">
-                            <i class="theme-cl ti-lock"></i>
-                        </div>
-                    </div>
-
-                    <div class="form-groups">
-                        <button type="submit" class="btn btn-primary theme-bg full-width">Register</button>
-                    </div>
-
-                    <div class="forget-account text-center">
-                        <a class="theme-cl" href="#">Forget Password?</a>
-                    </div>
-
-                    <div class="social-devider">
-                        <span class="line"></span>
-                        <span class="circle">Or</span>
-                    </div>
-
-                    <div class="social-login row">
-
-                        <div class="col-md-6">
-                            <a href="#" class="jb-btn-icon social-login-facebook"><i class="fa fa-facebook"></i>Facebook</a>
-                        </div>
-
-                        <div class="col-md-6">
-                            <a href="#" class="jb-btn-icon social-login-google"><i class="fa fa-google-plus"></i>Google</a>
-                        </div>
-
-                        <div class="col-md-6">
-                            <a href="#" class="jb-btn-icon social-login-twitter"><i class="fa fa-twitter"></i>Twitter</a>
-                        </div>
-
-                        <div class="col-md-6">
-                            <a href="#" class="jb-btn-icon social-login-linkedin"><i class="fa fa-linkedin"></i>Linkedin</a>
-                        </div>
-
-                    </div>
-
-                    <div class="register-account text-center">
-                        Don't have an account? <a class="theme-cl" href="register.html">Register</a>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>-->
-<!-- End Signin Window -->
-<!--<button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()"><i class="spin fa fa-cog" aria-hidden="true"></i></button>
-<div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-right" style="display:none;right:0;" id="rightMenu">
-    <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
-    <ul id="styleOptions" title="switch styling">
-        <li>
-            <a href="javascript: void(0)" class="cl-box blue" data-theme="colors/blue-style"></a>
-        </li>
-        <li>
-            <a href="javascript: void(0)" class="cl-box red" data-theme="colors/red-style"></a>
-        </li>
-        <li>
-            <a href="javascript: void(0)" class="cl-box purple" data-theme="colors/purple-style"></a>
-        </li>
-        <li>
-            <a href="javascript: void(0)" class="cl-box green" data-theme="colors/green-style"></a>
-        </li>
-        <li>
-            <a href="javascript: void(0)" class="cl-box dark-red" data-theme="colors/dark-red-style"></a>
-        </li>
-        <li>
-            <a href="javascript: void(0)" class="cl-box orange" data-theme="colors/orange-style"></a>
-        </li>
-        <li>
-            <a href="javascript: void(0)" class="cl-box sea-blue" data-theme="colors/sea-blue-style "></a>
-        </li>
-        <li>
-            <a href="javascript: void(0)" class="cl-box pink" data-theme="colors/pink-style"></a>
-        </li>
-    </ul>
-</div>-->
-<!-- Scripts
-================================================== -->
-<!--<script type="text/javascript" src="~/assets/plugins/js/jquery.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/viewportchecker.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootsnav.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/select2.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/wysihtml5-0.3.0.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootstrap-wysihtml5.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/datedropper.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/dropzone.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/loader.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/slick.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/gmap3.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/jquery.easy-autocomplete.min.js"></script>-->
-<!-- Custom Js -->
-<!--<script src="~/assets/js/custom.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/counterup.min.js"></script>
-        <script src="~/assets/js/jQuery.style.switcher.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#styleOptions').styleSwitcher();
-            });
-        </script>
-        <script>
-            function openRightMenu() {
-                document.getElementById("rightMenu").style.display = "block";
-            }
-
-            function closeRightMenu() {
-                document.getElementById("rightMenu").style.display = "none";
-            }
-        </script>
-    </div>
-</body>
-</html>-->

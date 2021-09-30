@@ -1,4 +1,5 @@
-﻿using HRPortal.Web.Models;
+﻿using HRPortal.Domain.Entities;
+using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +13,16 @@ namespace HRPortal.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private db_a54634_portalContext db;
+        public HomeController(ILogger<HomeController> logger, db_a54634_portalContext db)
         {
             _logger = logger;
+            this.db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(db.TblVacancyAdverts.OrderByDescending(c => c.Datecreated).Take(4).ToList());
         }
 
         public IActionResult Privacy()
