@@ -5,354 +5,254 @@
     ViewData["Title"] = "Log in";
     Layout = null;
 }
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <!-- Basic Page Needs
-    ================================================== -->
-    <title>Login - Recruitment Portal</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="~/assets/plugins/css/plugins.css">
-    <link href="~/assets/css/style.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" id="jssDefault" href="~/assets/css/colors/green-style.css">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <title>NSIA Recruitment Portal</title>
+    <!-- SEO Meta Tags-->
+    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
+    <meta name="author" content="Createx Studio">
+    <!-- Viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon and Touch Icons-->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
+    <meta name="msapplication-TileColor" content="#766df4">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Page loading styles-->
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+            .page-loading.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active > .page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner > span {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #666276;
+            ;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            border: .15em solid #bbb7c5;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        @@-webkit-keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+        (function () {
+            window.onload = function () {
+                var preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 2000);
+            };
+        })();
+
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="~/vendor/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" media="screen" href="~/vendor/flatpickr/dist/flatpickr.min.css" />
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="~/css/theme.min.css">
 
 </head>
+<!-- Body-->
+<body class="bg-secondary">
 
-<body>
-    <div class="Loader"></div>
-    <div class="wrapper">
-
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-default navbar-fixed navbar-light white bootsnav">
-
+    <div class="page-loading active">
+        <div class="page-loading-inner">
+            <div class="page-spinner"></div><span>Loading...</span>
+        </div>
+    </div>
+    <main class="page-wrapper">
+        <!-- Navbar-->
+        <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
             <div class="container">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="~/assets/logo3.png" class="logo logo-scrolled" alt="" style="height:55px;">
-                    </a>
-                </div>
+                <a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="~/assets/logo2.png" width="120" alt="Finder"></a>
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="active"><input type="text" class="form-control" placeholder="Find Freelancer"></li>
-                        <li class="dropdown">
-                            <a href="login.html" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+                    <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
+
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
 
                         </li>
-                       
+                        <li class="nav-item dropdown">
+                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                            @*<ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="job-board-blog.html">Blog List</a></li>
+                                <li><a class="dropdown-item" href="job-board-blog-single.html">Single Post</a></li>
+                            </ul>*@
+                        </li>
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
                     </ul>
-
-                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li><a href="register.html"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign Up</a></li>
-                        <li class="left-br"><a href="javascript:void(0)" data-toggle="modal" data-target="#signup" class="signin">Sign In Now</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div>
-        </nav>
-        <!-- End Navigation -->
-        <div class="clearfix"></div>
-
-        <!-- Title Header Start -->
-        <section class="inner-header-title" style="background-image:url(../../assets/img/bn2.jpg);">
-            <div class="container">
-                <h1>Login</h1>
-            </div>
-        </section>
-        <div class="clearfix"></div>
-        <!-- Title Header End -->
-        <!-- Tab Section Start -->
-        <section class="tab-sec gray">
-            <div class="container">
-                <div class="col-lg-8 col-md-8 col-sm-12 col-lg-offset-2 col-md-offset-2">
-                    <div class="new-logwrap">
-                        <form id="account" method="post">
-                            <div class="form-group">
-                                @*<label>Email</label>*@
-                                <div class="input-with-icon">
-                                    <input type="email" class="form-control" asp-for="Input.Email" placeholder="Enter Your Email" required>
-                                    <i class="theme-cl ti-email"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @*<label>Password</label>*@
-                                <div class="input-with-icon">
-                                    <input type="password" class="form-control" asp-for="Input.Password" placeholder="Enter Your Password" required>
-                                    <i class="theme-cl ti-lock"></i>
-                                </div>
-                            </div>
-
-                            @*<div class="register-account text-center">
-                                    By hitting the <span class="theme-cl">"Register"</span> button, you agree to the <a class="theme-cl" href="/Identity/Account/Register">Terms conditions</a> and <a class="theme-cl" href="#">Privacy Policy</a>
-                                </div>*@
-
-                            <div class="form-groups">
-                                <button type="submit" class="btn btn-primary theme-bg full-width">Sign In</button>
-                            </div>
-                        </form>
-
-                    </div>
                 </div>
             </div>
-        </section>
-        <!-- Tab section End -->
-        <!-- ============================ Call To Action ================================== -->
-        <section class="theme-bg call-to-act-wrap">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
+        </header>
+        <!-- Page content-->
+        <!-- Page container-->
+        <div class="container mt-5 mb-md-4 py-5">
+            <!-- Breadcrumb-->
+            <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Account</li>
+                </ol>
+            </nav>
+            <!-- Page content-->
+            <div class="row justify-content-center pb-sm-2">
+                <div class="col-lg-11 col-xl-10">
+                    <!-- Page title-->
+                    <div class="text-center pb-4 mb-3">
+                        <h1 class="h2 mb-4">Login to your account </h1>
+                        <p class="mb-4">Login to your account on NSIA Human Recruitment portal.</p>
 
-                        <div class="call-to-act">
-                            <div class="call-to-act-head">
-                                <h3>Want to Become a Success Employers?</h3>
-                                <span>We'll help you to grow your career and growth.</span>
+                    </div>
+                    <!-- Steps-->
+                    <!-- Step 1: Basic Info-->
+                    <form id="account" method="post" class="form-horizontal">
+                        <div class="bg-light rounded-3 p-4 p-md-5 mb-3">
+
+                            <div class="row">
+                                <div class="col-sm-12 mb-4">
+                                    <label class="form-label" for="pr-fn">Email <span class='text-danger'>*</span></label>
+                                    <input class="form-control form-control-lg" asp-for="Input.Email" type="text" id="pr-fn" placeholder="Enter your email" required>
+                                </div>
+                                <div class="col-sm-12 mb-4">
+                                    <label class="form-label" for="pr-sn">Password <span class='text-danger'>*</span></label>
+                                    <input class="form-control form-control-lg" asp-for="Input.Password" type="password" id="pr-sn" placeholder="Enter your password" required>
+                                </div>
+
+
                             </div>
-                            <a href="#" class="btn btn-call-to-act">SignUp Today</a>
+
+                        </div>
+                        <!-- Navigation-->
+                        <div class="d-flex flex-column flex-sm-row bg-light rounded-3 p-4 px-md-5">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill ms-sm-auto">Login<i class="fi-chevron-right fs-sm ms-2"></i></button>
                         </div>
 
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- ============================ Call To Action End ================================== -->
-        <!-- ============================ Before Footer ================================== -->
-        <div class="before-footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-6 col-sm-6">
-                        <div class="jb4-form-fields">
-                            <div class="input-group">
-                                <input type="email" class="form-control" placeholder="Enter your email address">
-                                <span class="input-group-btn">
-                                    <button class="btn theme-bg" type="submit"><span class="fa fa-paper-plane-o"></span></button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-sm-6 hill">
-                        <ul class="job stock-facts">
-                            <li><span>2744</span></br>Jobs Posted</li>
-                            <li><span>2365</span></br>Jobs Posted</li>
-                            <li><span>2021</span></br>Freelancer</li>
-                            <li><span>7542</span></br>Companies</li>
-                        </ul>
-                    </div>
-
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- ============================ Before Footer ================================== -->
-        <!-- ============================ Footer Start ================================== -->
-        <footer class="dark-footer skin-dark-footer">
-            <div>
-                <div class="container">
-                    <div class="row">
+    </main>
+    <!-- Footer-->
+    <footer class="footer bg-dark pt-5">
+        <div class="container pb-2">
 
-                        <div class="col-lg-3 col-md-3">
-                            <div class="footer-widget">
-                                <img src="~/assets/img/logo-white.png" class="img-footer" alt="" />
-                                <div class="footer-add">
-                                    <p>Collins Street West, Victoria,</br> Australia (AU4578).</p>
-                                    <p><strong>Email:</strong></br>hello@jobstock.com</p>
-                                    <p><strong>Call:</strong></br>91 855 742 62548</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Navigations</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="home-6.html">New Home Design</a></li>
-                                    <li><a href="browse-candidate-list.html">Browse Candidates</a></li>
-                                    <li><a href="browse-employer-list.html">Browse Employers</a></li>
-                                    <li><a href="advance-search-2.html">Advance Search</a></li>
-                                    <li><a href="checkout.html">Job With Map</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-md-2">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">The Highlights</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="index-2.html">Home Page 2</a></li>
-                                    <li><a href="index-3.html">Home Page 3</a></li>
-                                    <li><a href="index-4.html">Home Page 4</a></li>
-                                    <li><a href="index-5.html">Home Page 5</a></li>
-                                    <li><a href="login.html">LogIn</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-2 col-md-2">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">My Account</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="candidate-dashboard.html">Dashboard</a></li>
-                                    <li><a href="applications.html">Applications</a></li>
-                                    <li><a href="packages.html">Packages</a></li>
-                                    <li><a href="candidate-resume.html">resume.html</a></li>
-                                    <li><a href="register.html">SignUp Page</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-3">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Download Apps</h4>
-                                <a href="#" class="other-store-link">
-                                    <div class="other-store-app">
-                                        <div class="os-app-icon">
-                                            <i class="ti-android theme-cl"></i>
-                                        </div>
-                                        <div class="os-app-caps">
-                                            Google Play
-                                            <span>Get It Now</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="#" class="other-store-link">
-                                    <div class="other-store-app">
-                                        <div class="os-app-icon">
-                                            <i class="ti-apple theme-cl"></i>
-                                        </div>
-                                        <div class="os-app-caps">
-                                            App Store
-                                            <span>Now it Available</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="row align-items-center">
-
-                        <div class="col-lg-6 col-md-6">
-                            <p class="mb-0">© 2020 Job Stock. Designd By <a href="https://themezhub.com/">Themez Hub</a> All Rights Reserved</p>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6 text-right">
-                            <ul class="footer-bottom-social">
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter"></i></a></li>
-                                <li><a href="#"><i class="ti-instagram"></i></a></li>
-                                <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- ============================ Footer End ================================== -->
-        <!-- Signin Window Code -->
-        <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-
-                        <div class="new-logwrap">
-
-                            <div class="form-group">
-                                @*<label>Username</label>*@
-                                <div class="input-with-icon">
-                                    <input type="text" class="form-control" placeholder="Enter Your Username">
-                                    <i class="theme-cl ti-user"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @*<label>Email</label>*@
-                                <div class="input-with-icon">
-                                    <input type="email" class="form-control" placeholder="Enter Your Email">
-                                    <i class="theme-cl ti-email"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                @*<label>Password</label>*@
-                                <div class="input-with-icon">
-                                    <input type="password" class="form-control" placeholder="Enter Your Password">
-                                    <i class="theme-cl ti-lock"></i>
-                                </div>
-                            </div>
-
-                            <div class="form-groups">
-                                <button type="submit" class="btn btn-primary theme-bg full-width">Register</button>
-                            </div>
-
-                            <div class="forget-account text-center">
-                                <a class="theme-cl" href="#">Forget Password?</a>
-                            </div>
-                            <div class="register-account text-center">
-                                Don't have an account? <a class="theme-cl" href="/Identity/Account/Register">Register</a>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
         </div>
-        <!-- End Signin Window -->
-        <!-- Scripts
-        ================================================== -->
-        <script type="text/javascript" src="~/assets/plugins/js/jquery.min.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/viewportchecker.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/bootsnav.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/select2.min.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/wysihtml5-0.3.0.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/bootstrap-wysihtml5.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/datedropper.min.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/dropzone.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/loader.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/owl.carousel.min.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/slick.min.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/gmap3.min.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/jquery.easy-autocomplete.min.js"></script>
-        <!-- Custom Js -->
-        <script src="~/assets/js/custom.js"></script>
-        <script type="text/javascript" src="~/assets/plugins/js/counterup.min.js"></script>
-
-        <script src="~/assets/js/jQuery.style.switcher.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#styleOptions').styleSwitcher();
-            });
-        </script>
-        <script>
-            function openRightMenu() {
-                document.getElementById("rightMenu").style.display = "block";
-            }
-
-            function closeRightMenu() {
-                document.getElementById("rightMenu").style.display = "none";
-            }
-        </script>
-
-    </div>
+    </footer>
+    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Vendor scrits: js libraries and plugins-->
+    <script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
+    <script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="~/vendor/flatpickr/dist/flatpickr.min.js"></script>
+    <!-- Main theme script-->
+    <script src="~/js/theme.min.js"></script>
 </body>
 
-<!-- Mirrored from codeminifier.com/job-stock-5.4.1/job-stock/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 26 Jul 2021 13:32:24 GMT -->
+<!-- Mirrored from finder.createx.studio/job-board-post-resume-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Sep 2021 07:43:59 GMT -->
 </html>
+
+
+<!--<form id="account" method="post">
+    <div class="form-group">-->
+@*<label>Email</label>*@
+<!--<div class="input-with-icon">
+        <input type="email" class="form-control" asp-for="Input.Email" placeholder="Enter Your Email" required>
+        <i class="theme-cl ti-email"></i>
+    </div>
+</div>
+
+<div class="form-group">-->
+@*<label>Password</label>*@
+<!--<div class="input-with-icon">
+            <input type="password" class="form-control" asp-for="Input.Password" placeholder="Enter Your Password" required>
+            <i class="theme-cl ti-lock"></i>
+        </div>
+    </div>
+
+
+
+    <div class="form-groups">
+        <button type="submit" class="btn btn-primary theme-bg full-width">Sign In</button>
+    </div>
+</form>-->

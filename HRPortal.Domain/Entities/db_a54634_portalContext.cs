@@ -8,9 +8,9 @@ namespace HRPortal.Domain.Entities
 {
     public partial class db_a54634_portalContext : DbContext
     {
-        //public db_a54634_portalContext()
-        //{
-        //}
+        public db_a54634_portalContext()
+        {
+        }
 
         public db_a54634_portalContext(DbContextOptions<db_a54634_portalContext> options)
             : base(options)
@@ -26,16 +26,18 @@ namespace HRPortal.Domain.Entities
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
         public virtual DbSet<TblCandidateApplication> TblCandidateApplications { get; set; }
         public virtual DbSet<TblCompetency> TblCompetencies { get; set; }
+        public virtual DbSet<TblSkill> TblSkills { get; set; }
+        public virtual DbSet<TblSummary> TblSummaries { get; set; }
         public virtual DbSet<TblVacancyAdvert> TblVacancyAdverts { get; set; }
 
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Server=SQL6010.site4now.net;Database=db_a54634_portal; User Id=db_a54634_portal_admin; password=Florence@40391");
-//            }
-//        }
+        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //        {
+        //            if (!optionsBuilder.IsConfigured)
+        //            {
+        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        //                optionsBuilder.UseSqlServer("Server=SQL6010.site4now.net;Database=db_a54634_portal; User Id=db_a54634_portal_admin; password=Florence@40391");
+        //            }
+        //        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -206,6 +208,30 @@ namespace HRPortal.Domain.Entities
                     .WithMany(p => p.TblCompetencies)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_tbl_competency_AspNetUsers");
+            });
+
+            modelBuilder.Entity<TblSkill>(entity =>
+            {
+                entity.ToTable("tbl_skills");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Skills).HasColumnName("skills");
+            });
+
+            modelBuilder.Entity<TblSummary>(entity =>
+            {
+                entity.ToTable("tbl_summary");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CompanySummary)
+                    .HasColumnType("text")
+                    .HasColumnName("company_summary");
+
+                entity.Property(e => e.EqualityStatement)
+                    .HasColumnType("text")
+                    .HasColumnName("equality_statement");
             });
 
             modelBuilder.Entity<TblVacancyAdvert>(entity =>

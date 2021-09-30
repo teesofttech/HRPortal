@@ -1,0 +1,110 @@
+﻿@model HRPortal.Domain.Entities.TblSummary
+@{
+    ViewData["Title"] = "ViewSummary";
+    Layout = "~/Views/Shared/_HRLayout.cshtml";
+}
+
+
+<div class="container content-overlay mt-5 mb-md-4 py-5">
+    <!-- Breadcrumb-->
+    <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-light">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile settings</li>
+        </ol>
+    </nav>
+    <!-- Page card like wrapper-->
+    <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
+        <!-- Account header-->
+        <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
+            <div class="d-flex align-items-start">
+                <div class="position-relative flex-shrink-0">
+                    <img class="rounded-circle" src="~/img/avatars/37.png" width="100" alt="Annette Black">
+                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
+                </div>
+                <div class="ps-3 ps-sm-4">
+                    <h3 class="h5">Annette Black</h3>
+                    <ul class="list-unstyled fs-sm mb-0">
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>annette_black@email.com</span></li>
+                        <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>(302) 555-0107</span></li>
+                    </ul>
+                </div>
+            </div><a class="nav-link p-0 d-none d-md-block" href="#"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
+        </div>
+        <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
+        <div class="collapse d-md-block" id="account-nav">
+            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="#" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("PostJob","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Post Job</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Jobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Summary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Summary</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
+
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Resume", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Resumes</a></li>
+
+                <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+            </ul>
+        </div>
+
+        <br />
+
+        <div class="col-lg-12 col-md-7 mb-5">
+            <h1 class="h2 text-dark">Company Summary & Equality Statement</h1>
+
+            <form asp-controller="HRDashboard" asp-action="ViewSummary" method="post">
+                <div class="row pt-2">
+                    <div class="col-lg-12 col-md-12 col-sm-8 mb-2 mb-m-4">
+                        <div class="border border-dark rounded-3 p-3 mb-4" id="personal-info">
+                            <!-- Name-->
+                            <div class="border-bottom border-dark pb-3 mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="pe-2 opacity-70">
+                                        <label class="form-label fw-bold text-dark">Company Summary</label>
+                                        <div class="text-dark" id="name-value">@Model.CompanySummary</div>
+                                    </div>
+                                    <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-dark py-0" href="#name-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                                </div>
+                                <div class="collapse" id="name-collapse" data-bs-parent="#personal-info">
+                                    @*<input class="form-control form-control-dark mt-3" type="text"  data-bs-unset-value="Not specified" value="@Model.CompanySummary">*@
+                                    <textarea class="form-control" rows="5" placeholder="About Company"  data-bs-binded-element="#name-value" name="companySummary">@Model.CompanySummary</textarea>
+                                </div>
+                            </div>
+                            <div class="border-bottom border-light pb-3 mb-3">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="pe-2 opacity-70">
+                                        <label class="form-label fw-bold text-dark">Equality Statement</label>
+                                        <div class="text-dark" id="email-value">@Model.EqualityStatement</div>
+                                    </div>
+                                    <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link nav-link-dark py-0" href="#email-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                                </div>
+                                <div class="collapse" id="email-collapse" data-bs-parent="#personal-info">
+                                    @*<input class="form-control form-control-dark mt-3" type="email" data-bs-binded-element="#email-value" data-bs-unset-value="Not specified" value="robert_fox@email.com">*@
+                                    <textarea class="form-control" rows="5" placeholder="About Company" name="equalityStatement">@Model.EqualityStatement</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Action buttons-->
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="d-flex align-items-center justify-content-between pb-1">
+                            <button class="btn btn-primary" type="button">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+</div>
+

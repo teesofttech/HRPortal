@@ -1,244 +1,158 @@
-﻿
+﻿@model HRPortal.Domain.Entities.TblVacancyAdvert
 @{
-    ViewData["Title"] = "PostJob";
+    ViewData["Title"] = "Post Job";
     Layout = "~/Views/Shared/_HRLayout.cshtml";
-    <link rel="stylesheet" href="~/assets/plugins/css/plugins.css">
-    <link href="~/assets/css/style.css" rel="stylesheet">
+    @*<link rel="stylesheet" href="~/assets/plugins/css/plugins.css">
+        <link href="~/assets/css/style.css" rel="stylesheet">*@
 
 }
 
 
-            <!-- Content Wrap -->
-            <div class="col-lg-9 col-md-8">
-                <div class="dashboard-body">
-                    <div class="dashboard-caption">
 
-                        <div class="dashboard-caption-header">
-                            <h4><i class="ti-ruler-pencil"></i>Post New Page</h4>
+<div class="container content-overlay mt-5 mb-md-4 py-5">
+    <!-- Breadcrumb-->
+    <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-light">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile settings</li>
+        </ol>
+    </nav>
+    <!-- Page card like wrapper-->
+    <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
+        <!-- Account header-->
+        <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
+            <div class="d-flex align-items-start">
+                <div class="position-relative flex-shrink-0">
+                    <img class="rounded-circle" src="~/img/avatars/37.png" width="100" alt="Annette Black">
+                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
+                </div>
+                <div class="ps-3 ps-sm-4">
+                    <h3 class="h5">Annette Black</h3>
+                    <ul class="list-unstyled fs-sm mb-0">
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>annette_black@email.com</span></li>
+                        <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>(302) 555-0107</span></li>
+                    </ul>
+                </div>
+            </div><a class="nav-link p-0 d-none d-md-block" href="#"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
+        </div>
+        <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
+        <div class="collapse d-md-block" id="account-nav">
+            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="#" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("PostJob","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Post Job</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Jobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Summary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Summary</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
+
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Resume", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Resumes</a></li>
+
+                <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+            </ul>
+        </div>
+        <!-- Basic info-->
+        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
+            <form asp-controller="HRDashboard" asp-action="PostJob" method="post">
+                <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
+                <div class="row mb-2">
+                    <div class="col-sm-6 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Job Title <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="sc-title" placeholder="Job Title" asp-for="JobTitle" required>
                         </div>
+                    </div>
 
-                        <div class="dashboard-caption-wrap">
-                            <form class="post-form">
+                    <div class="col-sm-6 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Job Code <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="sc-title" placeholder="Job Code" asp-for="JobCode" value="" required>
 
-                                <!-- row -->
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Job Title*</label>
-                                            <input type="text" class="form-control" placeholder="Enter Title" name="jobTitle">
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>
 
-                                <div class="row">
+                <div class="row mb-2">
+                    <div class="col-sm-6 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Location <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="sc-title" placeholder="Location" asp-for="Location" value="" required>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Job Code</label>
-                                            <input type="text" class="form-control" name="jobCode" placeholder="Enter Job Code">
-                                        </div>
-                                    </div>
+                        </div>
+                    </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Location</label>
-                                            <input type="text" class="form-control" name="Location" placeholder="Enter Location">
-                                        </div>
-                                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Job Type <span class="text-danger">*</span></label>
+                            <select class="form-control" asp-for="ContractType">
+                                <option>Please select one</option>
+                                <option>Contract</option>
+                                <option>Full-Time</option>
+                                <option>Part-time</option>
+                                <option>Temporary</option>
+                                <option>Freelancer</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Travel Requirements</label>
-                                            <select id="jb-level" name="travelRequirement" class="form-control">
-                                                <option>Select One</option>
-                                                <option>Yes</option>
-                                                <option>No</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="mb-2">
+                            <label class="form-label" for="sc-title">Travel Requirements <span class="text-danger">*</span></label>
+                            <select class="form-control" asp-for="TravelRequirements">
+                                <option>Please select one</option>
+                                <option>Yes</option>
+                                <option>No</option>
 
-                                </div>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="mb-2">
+                            <label class="form-label" for="sc-title">End Date<span class="text-danger">*</span></label>
+                            <input class="form-control" type="date" asp-for="EndDate" id="sc-title" placeholder="EndDate" value="" required>
 
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Company Summary</label>
-                                            <textarea class="form-control about height-120" placeholder="About Company" name="companySummary"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row mb-2">
 
-                                <!-- row -->
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Job Objectives</label>
-                                            <textarea class="form-control about height-120" placeholder="About Company" name="jobObjectives"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Equality Statement</label>
-                                            <textarea class="form-control about height-120" placeholder="About Company" name="equalityStatement"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- row -->
-                                <div class="row">
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Job Category*</label>
-                                            <select id="jb-category" name="jobCategory" class="form-control">
-                                                <option>Choose Category</option>
-                                                <option>Accounting Assistant</option>
-                                                <option>Arts, Design, Media</option>
-                                                <option>Charity & Voluntary</option>
-                                                <option>Education & Coachs</option>
-                                                <option>Finance And Business</option>
-                                                <option>IT & Computer</option>
-                                                <option>Banking</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Job Type*</label>
-                                            <select id="jb-type" name="jobType" class="form-control">
-                                                <option>Job Type</option>
-                                                <option>Contract</option>
-                                                <option>Full-Time</option>
-                                                <option>Part-time</option>
-                                                <option>Temporary</option>
-                                                <option>Freelancer</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Job Level*</label>
-                                            <select id="jb-level" name="jobLevel" class="form-control">
-                                                <option>Job Level</option>
-                                                <option>Junior</option>
-                                                <option>Manager</option>
-                                                <option>Senior</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Job Objectives <span class="text-danger">*</span></label>
+                            <textarea class="form-control" rows="5" asp-for="JobObjectives" placeholder="Objectives" name="equalityStatement"></textarea>
+                        </div>
+                    </div>
 
 
-                                <!-- row -->
-                                <div class="row mrg-top-30">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <h4>Application Settings</h4>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- row -->
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Custom Job URL</label>
-                                            <input type="text" class="form-control" placeholder="https://site.com/custom-url/">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Email For Applications</label>
-                                            <input type="text" class="form-control" placeholder="Ex.myapplicat@gmail.com">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Deadline Submission</label>
-                                            <input type="text" id="expirejob" data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <!-- row -->
-                                <div class="row mrg-top-30">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <h4>Relevant Requirements</h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <select class="multiple-skill form-control" name="skills[]" multiple="multiple">
-                                                <option>HTML5</option>
-                                                <option>Css3</option>
-                                                <option>Photoshop</option>
-                                                <option>Php</option>
-                                                <option>Wordpress</option>
-                                                <option>Bootstrap</option>
-                                                <option>Magento</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- row -->
-                                <div class="row mrg-top-30">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="form-group text-center">
-                                            <button type="submit" class="btn-savepreview"><i class="ti-angle-double-right"></i>Publish & Preview</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </form>
+                    <div class="col-sm-6 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Relevant Requirements <span class="text-danger">*</span></label>
+                            <textarea class="form-control" rows="5" asp-for="RelevantRequirement" placeholder="Job relevant requirements" name="equalityStatement"></textarea>
                         </div>
 
                     </div>
                 </div>
+            </form>
+        </section>
+        <!-- Price-->
+
+        <div class="row pt-4 mt-2">
+            <div class="col-lg-9 offset-lg-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <button class="btn btn-primary btn-lg rounded-pill px-3 px-sm-4" type="button">Submit</button>
+
+
+                </div>
             </div>
-
-        
-<script type="text/javascript" src="~/assets/plugins/js/jquery.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/viewportchecker.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootsnav.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/select2.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/wysihtml5-0.3.0.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootstrap-wysihtml5.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/datedropper.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/dropzone.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/loader.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/slick.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/jquery.easy-autocomplete.min.js"></script>
-<!-- Custom Js -->
-<script src="~/assets/js/custom.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/counterup.min.js"></script>
-
-<script type="text/javascript" src="~/assets/plugins/js/sweetalert.html"></script>
+        </div>
+    </div>
+</div>
 
 
-<!-- Map -->
-<script src="http://maps.google.com/maps/api/js?key="></script>
-<script src="~/assets/js/map_infobox.js"></script>
-<script src="~/assets/js/markerclusterer.js"></script>
-<script src="~/assets/js/map.js"></script>
 
-<script src="~/assets/js/dashboard-custom.js"></script>
-
-<script>
-    $('#expirejob').dateDropper();
-</script>
