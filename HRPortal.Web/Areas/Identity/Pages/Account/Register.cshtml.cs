@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -61,6 +62,8 @@ namespace HRPortal.Web.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
             public string PhoneNumber { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)

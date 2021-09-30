@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using HRPortal.Web.Data;
 using HRPortal.Domain.Entities;
+using HRPortal.Web.Models;
 
 namespace HRPortal.Web.Areas.Identity.Pages.Account
 {

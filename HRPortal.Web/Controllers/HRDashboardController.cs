@@ -51,6 +51,7 @@ namespace HRPortal.Web.Controllers
                 advert.RelevantRequirement = model.RelevantRequirement;
                 advert.StartDate = DateTime.UtcNow;
                 advert.Status = "Open";
+                advert.CompanySummary = model.CompanySummary;
                 advert.TravelRequirements = model.TravelRequirements;
                 db.TblVacancyAdverts.Add(advert);
                 var success = await db.SaveChangesAsync() > 0;
@@ -86,12 +87,12 @@ namespace HRPortal.Web.Controllers
             if (success)
             {
                 TempData["success"] = "Company summary and Equality statement has been saved successfully";
-                return View();
+                return RedirectToAction("PostJob", "HRDashboard");
             }
             else
             {
                 TempData["error"] = "Opps! We encounter an error while creating the summary. Kindly try again in few minutes";
-                return View();
+                return RedirectToAction("PostJob", "HRDashboard");
             }
         }
 
@@ -100,7 +101,11 @@ namespace HRPortal.Web.Controllers
             return View(await db.TblSummaries.FirstOrDefaultAsync());
         }
 
-
+        public async Task<IActionResult> AllPostedJobs()
+        {
+            var result = db.TblVacancyAdverts.ToList().OrderByDescending(c => c.Datecreated);//(c => c.Datecreated).ToList();
+            return View(result);
+        }
 
     }
 }

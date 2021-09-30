@@ -26,8 +26,8 @@
                 <div class="ps-3 ps-sm-4">
                     <h3 class="h5">Annette Black</h3>
                     <ul class="list-unstyled fs-sm mb-0">
-                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>annette_black@email.com</span></li>
-                        <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>(302) 555-0107</span></li>
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
+                        @*<li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>(302) 555-0107</span></li>*@
                     </ul>
                 </div>
             </div><a class="nav-link p-0 d-none d-md-block" href="#"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
@@ -36,10 +36,10 @@
         <div class="collapse d-md-block" id="account-nav">
             <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="#" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","HRDashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("PostJob","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Post Job</a></li>
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Jobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("AllPostedJobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Summary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Summary</a></li>
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>

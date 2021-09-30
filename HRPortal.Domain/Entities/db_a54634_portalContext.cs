@@ -29,6 +29,7 @@ namespace HRPortal.Domain.Entities
         public virtual DbSet<TblSkill> TblSkills { get; set; }
         public virtual DbSet<TblSummary> TblSummaries { get; set; }
         public virtual DbSet<TblVacancyAdvert> TblVacancyAdverts { get; set; }
+       // public virtual DbSet<AppUser> Users { get; set; }
 
         //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //        {
