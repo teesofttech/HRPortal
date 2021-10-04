@@ -1,4 +1,5 @@
 ﻿using HRPortal.Domain.Entities;
+using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -105,6 +106,22 @@ namespace HRPortal.Web.Controllers
         {
             var result = db.TblVacancyAdverts.ToList().OrderByDescending(c => c.Datecreated);//(c => c.Datecreated).ToList();
             return View(result);
+        }
+
+        public async Task<IActionResult> GetSingle(int id)
+        {
+            var result = db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefault();
+
+            return View(result);
+        }
+
+        public async Task<IActionResult> JobDetail(int id)
+        {
+            JobDetailViewModel jobDetailViewModel = new JobDetailViewModel();
+            var result = db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefault();
+            jobDetailViewModel.Summary = db.TblSummaries.FirstOrDefault();
+            jobDetailViewModel.Vacancy = result;
+            return View(jobDetailViewModel);
         }
 
     }

@@ -1,0 +1,142 @@
+﻿@model HRPortal.Domain.Entities.TblVacancyAdvert
+@{
+    ViewData["Title"] = "Get Single";
+    Layout = "~/Views/Shared/_HRLayout.cshtml";
+}
+
+<div class="container content-overlay mt-5 mb-md-4 py-5">
+    <!-- Breadcrumb-->
+    <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-light">
+            <li class="breadcrumb-item"><a href="job-board-home-v1.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="job-board-account-profile.html">Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Saved jobs</li>
+        </ol>
+    </nav>
+    <!-- Page card like wrapper-->
+    <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
+        <!-- Account header-->
+        <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
+            <div class="d-flex align-items-start">
+                <div class="position-relative flex-shrink-0">
+                    <img class="rounded-circle" src="~/img/avatars/37.png" width="100" alt="Annette Black">
+                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
+                </div>
+                <div class="ps-3 ps-sm-4">
+                    <h3 class="h5">Annette Black</h3>
+                    <ul class="list-unstyled fs-sm mb-0">
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
+
+                    </ul>
+                </div>
+            </div><a class="nav-link p-0 d-none d-md-block" href="#"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
+        </div>
+        <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
+        <div class="collapse d-md-block" id="account-nav">
+            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","HRDashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("PostJob","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Post Job</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("AllPostedJobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Summary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Summary</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
+
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Resume", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Resumes</a></li>
+
+                <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+            </ul>
+        </div>
+        <!-- Page title-->
+        <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
+            <h1 class="h3 mb-0"></h1>
+        </div>
+        <!-- Grid-->
+        <div class="row g-2 g-md-4">
+            <!-- Item-->
+            <!-- Signle job content-->
+            <div class="col-lg-7 position-relative pe-lg-5 mb-5 mb-lg-0" style="z-index: 1025;">
+                <div class="d-flex justify-content-between mb-2">
+                    <h2 class="h3 mb-0">@Model.JobTitle</h2>
+                    <div class="text-end">
+                        <span class="badge bg-faded-accent rounded-pill fs-sm mb-2">Featured</span>
+                        <div class="fs-sm text-muted">2 hours ago</div>
+                    </div>
+                </div>
+                <ul class="list-unstyled fs-sm mb-4">
+                    <li class="mb-2"><a class="d-flex align-items-center text-decoration-none" href="job-board-employer-single.html"><i class="fi-external-link me-2"></i><span class="text-decoration-underline"></span></a></li>
+                    <li class="d-flex align-items-center mb-2"><i class="fi-map-pin text-muted me-2"></i><span>@Model.Location</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="fi-cash fs-base text-muted me-2"></i><span>To Be Discuss</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="fi-phone text-muted me-2"></i><span class="me-2">Bessie Cooper, HR Manager</span><a href="#">Show phone</a></li>
+                    <li class="d-flex align-items-center mb-2"><i class="fi-clock text-muted me-2"></i><span class="me-2">@Model.ContractType</span></li>
+                </ul>
+                <hr class="mb-4">
+                <h3 class="h6">Description:</h3>
+                <p>@Model.JobObjectives</p>
+                <h3 class="h6 pt-2">Requirements:</h3>
+                <ul class="list-unstyled">
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Placerat id mauris, ac ipsum nulla mi netus vestibulum fringilla.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Turpis venenatis sapien etiam in orci, euismod.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Elit tempor, integer augue aliquam justo.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Ultricies accumsan, malesuada pellentesque malesuada massa sed viverra eget.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Varius mauris netus placerat neque, orci amet odio orci.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Fermentum ut mi sit vel sit dictum mollis turpis.</li>
+                </ul>
+                <h3 class="h6 pt-2">Company offers:</h3>
+                <ul class="list-unstyled">
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Et mattis sit imperdiet risus, fermentum ultrices non.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Sed phasellus consequat nunc enim interdum tristique ultrices egestas.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Molestie mus ultrices tellus enim.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Vitae pulvinar massa id lorem aliquam fermentum egestas.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Dictumst blandit sit mauris in consectetur.</li>
+                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Sem purus lorem odio donec faucibus ipsum ultricies.</li>
+                </ul>
+                <p class="pt-2 mb-1">Please, send your CV marked “Partnership Manager” in the subject via e-mail:</p><a class="nav-link-muted fw-bold" href="mailto:contact@example.com">contact@example.com</a>
+                <hr class="my-4">
+                <div class="btn-group btn-group-lg">
+                    <button class="btn btn-primary rounded-pill rounded-end-0 ps-4 pe-3" type="button">Apply for this position</button>
+                    <button class="btn btn-primary border-end-0 border-top-0 border-bottom-0 border-light rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart me-1"></i></button>
+                </div>
+            </div>
+
+            <aside class="col-lg-5" style="margin-top: -6rem;">
+                <div class="sticky-top" style="padding-top: 6rem;">
+                    <div class="card shadow-sm mb-3 mb-lg-0">
+                        <div class="card-body">
+                            <h2 class="h3">Subscribe to our newsletter</h2>
+                            <p>Don’t miss any job updates and relevant vacancies info!</p>
+                            <form class="form-group rounded-pill mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text text-muted"><i class="fi-mail text-muted"></i></span>
+                                    <input class="form-control" type="text" placeholder="Your email">
+                                </div>
+                                <button class="btn btn-primary rounded-pill" type="button">Subscribe</button>
+                            </form>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="agree">
+                                <label class="form-check-label" for="agree">I agree to receive communications from Finder.</label>
+                            </div>
+                            <hr class="my-4">
+                            <div class="d-flex align-items-end">
+                                <div class="fs-lg fw-bold me-3">Like our jobs?<br>Receive vacancies in Telegram</div><a class="btn btn-icon btn-translucent-primary btn-xs rounded-circle" href="#"><i class="fi-telegram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 pt-lg-5 ps-4">
+                        <h2 class="h3">My last search queries:</h2>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Accountant</a></li>
+                            <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Manager</a></li>
+                            <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Administrator</a></li>
+                            <li class="mb-0"><a class="nav-link-muted d-inline-block fw-bold py-1" href="#">Clear all<i class="fi-x fs-xs ms-2"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+</div>
