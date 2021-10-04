@@ -8,6 +8,7 @@ namespace HRPortal.Web.Models
 {
     public class JobDetailViewModel
     {
+        public List<TblVacancyAdvert> Vacancies { get; set; }
         public TblVacancyAdvert Vacancy { get; set; }
         public TblSummary Summary { get; set; }
     }
