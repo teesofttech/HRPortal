@@ -29,16 +29,15 @@ namespace HRPortal.Domain.Entities
         public virtual DbSet<TblSkill> TblSkills { get; set; }
         public virtual DbSet<TblSummary> TblSummaries { get; set; }
         public virtual DbSet<TblVacancyAdvert> TblVacancyAdverts { get; set; }
-       // public virtual DbSet<AppUser> Users { get; set; }
 
-        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //        {
-        //            if (!optionsBuilder.IsConfigured)
-        //            {
-        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        //                optionsBuilder.UseSqlServer("Server=SQL6010.site4now.net;Database=db_a54634_portal; User Id=db_a54634_portal_admin; password=Florence@40391");
-        //            }
-        //        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//                optionsBuilder.UseSqlServer("Server=SQL6010.site4now.net;Database=db_a54634_portal; User Id=db_a54634_portal_admin; password=Florence@40391");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -241,10 +240,6 @@ namespace HRPortal.Domain.Entities
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.CompanySummary)
-                    .HasColumnType("text")
-                    .HasColumnName("company_summary");
-
                 entity.Property(e => e.ContractType).HasColumnName("contract_type");
 
                 entity.Property(e => e.DateOfAdvert)
@@ -255,13 +250,11 @@ namespace HRPortal.Domain.Entities
                     .HasColumnType("datetime")
                     .HasColumnName("datecreated");
 
+                entity.Property(e => e.Department).HasColumnName("department");
+
                 entity.Property(e => e.EndDate)
                     .HasColumnType("date")
                     .HasColumnName("endDate");
-
-                entity.Property(e => e.EqualityStatement)
-                    .HasColumnType("text")
-                    .HasColumnName("equality_statement");
 
                 entity.Property(e => e.JobCode).HasColumnName("job_code");
 

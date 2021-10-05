@@ -52,14 +52,15 @@ namespace HRPortal.Web.Controllers
                 advert.RelevantRequirement = model.RelevantRequirement;
                 advert.StartDate = DateTime.UtcNow;
                 advert.Status = "Open";
-                advert.CompanySummary = model.CompanySummary;
+                advert.Department = model.Department;
+                //  advert.CompanySummary = model.CompanySummary;
                 advert.TravelRequirements = model.TravelRequirements;
                 db.TblVacancyAdverts.Add(advert);
                 var success = await db.SaveChangesAsync() > 0;
                 if (success)
                 {
                     TempData["success"] = "Job posted successfully";
-                    return View();
+                    return RedirectToAction("PostJob", "HRDashboard");
                 }
                 else
                 {

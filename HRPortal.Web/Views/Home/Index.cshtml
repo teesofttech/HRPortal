@@ -292,7 +292,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button" >Catalog</a>
+                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Catalog</a>
 
                         </li>
                         <li class="nav-item">
@@ -300,7 +300,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="#" role="button" >Blog</a>
+                            <a class="nav-link " href="#" role="button">Blog</a>
                             @*<ul class="dropdown-menu dropdown-menu-dark">
                                     <li><a class="dropdown-item" href="job-board-blog.html">Blog List</a></li>
                                     <li><a class="dropdown-item" href="job-board-blog-single.html">Single Post</a></li>
@@ -374,7 +374,7 @@
             <div class="row">
                 <div class="col-md-6 mb-3 mb-md-0">
                     <div class="d-sm-flex align-items-center justify-content-between pb-4 mb-sm-2">
-                        <h2 class="h3 mb-sm-0">Jobs of the day</h2><a class="btn btn-link fw-normal p-0" href="job-board-catalog.html">View all<i class="fi-arrow-long-right ms-2"></i></a>
+                        <h2 class="h3 mb-sm-0">Jobs of the day</h2><a class="btn btn-link fw-normal p-0" href="@Url.Action("Index","Catalog")">View all<i class="fi-arrow-long-right ms-2"></i></a>
                     </div>
                     <!-- Accordion-->
                     <div id="accordionJobs">
@@ -386,17 +386,17 @@
                         {
                             foreach (var item in Model)
                             {
-                                <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse1">
+                                <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse1-@item.Id">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center"><img class="me-2" src="~/assets/logo.png" width="50" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 ps-1">@item.CompanySummary</span></div><span class="badge bg-faded-danger rounded-pill fs-sm">Hot</span>
+                                            <div class="d-flex align-items-center"><img class="me-2" src="~/assets/logo.png" width="50" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 ps-1">@item.JobCode</span></div><span class="badge bg-faded-danger rounded-pill fs-sm">Hot</span>
                                         </div>
                                         <h3 class="h6 card-title pt-1 mb-0">@item.JobTitle</h3>
                                     </div>
-                                    <div class="collapse" id="jobCollapse1" data-bs-parent="#accordionJobs">
+                                    <div class="collapse" id="jobCollapse1-@item.Id" data-bs-parent="#accordionJobs">
                                         <div class="card-body mt-n1 pt-0">
                                             <p class="fs-sm">
-                                                @item.JobObjectives <br /><a href='#'>Read more...</a>
+                                                @item.JobObjectives <br /><br /><a href="@Url.Action("JobDetail","Catalog")/@item.Id">Read more...</a>
                                             </p>
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()</span></div>
@@ -405,6 +405,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             }
                         }
 
