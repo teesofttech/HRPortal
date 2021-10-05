@@ -5,10 +5,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
-    <title>Finder | Job Board | Catalog (List of Jobs)</title>
+    <title>NSIA Recruitment Portal</title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
@@ -108,15 +108,17 @@
                     preloader.remove();
                 }, 2000);
             };
-        })();</script>
+        })();
+
+    </script>
     <!-- Vendor Styles-->
     <link rel="stylesheet" media="screen" href="~/vendor/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" media="screen" href="~/vendor/tiny-slider/dist/tiny-slider.css" />
+    <link rel="stylesheet" media="screen" href="~/vendor/nouislider/dist/nouislider.min.css" />
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="~/css/theme.min.css">
-    <!-- Google Tag Manager-->
 
 </head>
-<!-- Body-->
 <body>
     <!-- Google Tag Manager (noscript)-->
     <noscript>
@@ -318,109 +320,12 @@
             <div class="container py-5">
                 <h1 class="text-light pt-1 pt-md-3 mb-4">Find jobs</h1>
                 <!-- Search form-->
-                <form class="form-group form-group-light d-block rounded-lg-pill mb-4">
-                    <div class="row align-items-center g-0 ms-n2">
-                        <div class="col-lg-3 col-xl-4">
-                            <div class="input-group input-group-lg border-end-lg border-light">
-                                <span class="input-group-text text-light rounded-pill opacity-50 ps-3"><i class="fi-search"></i></span>
-                                <input class="form-control" type="text" placeholder="Search site...">
-                            </div>
+                @*<form class="form-group form-group-light d-block rounded-lg-pill mb-4">
+                        <div class="row align-items-center g-0 ms-n2">
+
                         </div>
-                        <hr class="hr-light d-lg-none my-2">
-                        <div class="col-lg-5 d-sm-flex">
-                            <div class="dropdown w-sm-50 border-end-sm border-light" data-bs-toggle="select">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span class="dropdown-toggle-label">Category</span></button>
-                                <input type="hidden">
-                                <ul class="dropdown-menu dropdown-menu-dark my-3">
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Accounting</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Marketing &amp; PR</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Medicine</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Internet technology</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">HoReCa</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Design, creativity</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Fitness &amp; sports</span></a></li>
-                                </ul>
-                            </div>
-                            <hr class="hr-light d-sm-none my-2">
-                            <div class="dropdown w-sm-50 border-end-lg border-light" data-bs-toggle="select">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">Location</span></button>
-                                <input type="hidden">
-                                <ul class="dropdown-menu dropdown-menu-dark my-3">
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Dallas</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Chicago</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Houston</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Las Vegas</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Los Angeles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">New York</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">San Francisco</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <hr class="hr-light d-lg-none my-2">
-                        <div class="col-lg-4 col-xl-3 d-flex align-items-center">
-                            <div class="dropdown w-50 w-lg-100" data-bs-toggle="select">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-geo me-2"></i><span class="dropdown-toggle-label">Distance</span></button>
-                                <input type="hidden">
-                                <ul class="dropdown-menu dropdown-menu-dark my-3">
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">10 miles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">20 miles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">30 miles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">40 miles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">50 miles</span></a></li>
-                                </ul>
-                            </div>
-                            <button class="btn btn-primary btn-lg w-50 w-lg-auto rounded-pill" type="button">Find jobs</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- Search params (dropdowns)-->
-                <div class="d-sm-flex justify-content-between pt-2 pb-1 pb-md-3 pb-lg-4">
-                    <div class="d-flex flex-column flex-sm-row flex-wrap">
-                        <div class="dropdown me-sm-3 mb-2 mb-sm-3" data-bs-toggle="select">
-                            <button class="btn btn-translucent-light btn-sm dropdown-toggle fs-base fw-normal w-100 text-start" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Publication date</span></button>
-                            <ul class="dropdown-menu my-1">
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Most recent</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">5 days</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">15 days</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">1 week</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">1 month</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown me-sm-3 mb-2 mb-sm-3" data-bs-toggle="select">
-                            <button class="btn btn-translucent-light btn-sm dropdown-toggle fs-base fw-normal w-100 text-start" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Job type</span></button>
-                            <ul class="dropdown-menu my-1">
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Full-time</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Part-time</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Remote</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Temporary</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Contract</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Internship</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown me-sm-3 mb-2 mb-sm-3" data-bs-toggle="select">
-                            <button class="btn btn-translucent-light btn-sm dropdown-toggle fs-base fw-normal w-100 text-start" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Company</span></button>
-                            <ul class="dropdown-menu my-1">
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">IT Pro TV</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Zalo Tech Company</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Elastic Inc.</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Lift Web</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Xbox Company</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Zapier</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown me-sm-3 mb-2 mb-sm-3" data-bs-toggle="select">
-                            <button class="btn btn-translucent-light btn-sm dropdown-toggle fs-base fw-normal w-100 text-start" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Salary range</span></button>
-                            <ul class="dropdown-menu my-1">
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$500 - $1,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$1,000 - $2,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$2,000 - $5,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$5,000 - $10,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$10,000 - $20,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$20,000 - $50,000</span></a></li>
-                            </ul>
-                        </div>
-                    </div><a class="d-inline-block text-light text-nowrap py-3" href="#">Advanced search</a>
-                </div>
+                    </form>*@
+
             </div>
         </section>
         <!-- Page content-->
@@ -429,7 +334,7 @@
                 <!-- Breadcrumb-->
                 <nav class="pb-4 my-2" aria-label="Breadcrumb">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="job-board-home-v1.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Find jobs</li>
                     </ol>
                 </nav>
@@ -446,7 +351,7 @@
                                     <option>Highest Salary</option>
                                 </select>
                             </div>
-                            <div class="text-muted fs-sm text-nowrap"><i class="fi-briefcase fs-base mt-n1 me-2"></i>2948 jobs</div>
+                            <div class="text-muted fs-sm text-nowrap"><i class="fi-briefcase fs-base mt-n1 me-2"></i>@Model.Vacancies.Count jobs</div>
                         </div>
 
                         @if (Model.Vacancies == null) { }
@@ -457,7 +362,7 @@
                                 <div class="card bg-secondary card-hover mb-2">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-start mb-2">
-                                            <div class="d-flex align-items-center"><img class="me-2" src="~/img/job-board/company/it-pro.png" width="24" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 px-1">@item.JobCode</span></div>
+                                            <div class="d-flex align-items-center"><img class="me-2" src="~/assets/logo2.png" width="24" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 px-1">@item.JobCode</span></div>
                                             <div class="dropdown content-overlay">
                                                 <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
                                                 <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
@@ -475,7 +380,7 @@
                                             <span class="text-nowrap me-3">
                                                 <i class="fi-map-pin text-muted me-1"> </i>@item.Location
                                             </span><span class="text-nowrap me-3">
-                                                <i class="fi-cash fs-base text-muted me-1"></i>$7,500
+                                                <i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()
                                             </span>
                                         </div>
                                     </div>
@@ -487,13 +392,13 @@
 
                         <nav class="pt-4 pb-2" aria-label="Blog pagination">
                             <ul class="pagination mb-0">
-                                <li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 8</span></li>
+                                @*<li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 8</span></li>
                                 <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
                                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item d-none d-sm-block">...</li>
                                 <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
-                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>
+                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>*@
                             </ul>
                         </nav>
                     </div>
