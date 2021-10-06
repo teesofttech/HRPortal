@@ -27,10 +27,20 @@ namespace HRPortal.Web.Controllers
         public IActionResult JobDetail(int id)
         {
             JobDetailViewModel jobDetailViewModel = new JobDetailViewModel();
-            var result = db.TblVacancyAdverts.Where(c => c.Id== id).FirstOrDefault();
+            var result = db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefault();
             jobDetailViewModel.Summary = db.TblSummaries.FirstOrDefault();
             jobDetailViewModel.Vacancy = result;
             return View(jobDetailViewModel);
+        }
+
+        public IActionResult Category(string id)
+        {
+            JobDetailViewModel jobDetailViewModel = new JobDetailViewModel();
+            var result = db.TblVacancyAdverts.Where(c => c.Department == id).ToList();
+            jobDetailViewModel.Summary = db.TblSummaries.FirstOrDefault();
+            jobDetailViewModel.Vacancies = result;
+            return View(jobDetailViewModel);
+
         }
     }
 }

@@ -1,13 +1,10 @@
-﻿@model IEnumerable<HRPortal.Domain.Entities.TblVacancyAdvert>
-
+﻿@model HRPortal.Web.Models.JobDetailViewModel
 @{
-    ViewData["Title"] = "Home Page";
     Layout = null;
 }
 
 <!DOCTYPE html>
 <html lang="en">
-
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
@@ -122,16 +119,20 @@
     <link rel="stylesheet" media="screen" href="~/css/theme.min.css">
 
 </head>
-<!-- Body-->
 <body>
-
-
+    <!-- Google Tag Manager (noscript)-->
+    <noscript>
+        <iframe src="http://www.googletagmanager.com/ns.html?id=GTM-WKV3GT5" height="0" width="0" style="display: none; visibility: hidden;"></iframe>
+    </noscript>
+    <!-- Demo switcher (offcanvas)-->
+    <!-- Page loading spinner-->
     <div class="page-loading active">
         <div class="page-loading-inner">
             <div class="page-spinner"></div><span>Loading...</span>
         </div>
     </div>
     <main class="page-wrapper">
+
         <!-- Sign In Modal-->
         <div class="modal fade" id="signin-modal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 950px;">
@@ -281,7 +282,7 @@
         <!-- Navbar-->
         <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
             <div class="container">
-                <a class="navbar-brand me-0 me-xl-4" href="@Url.Action("Index","Home")"><img class="d-block" src="~/assets/logo2.png" width="120" alt="HRPortal"></a>
+                <a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="~/assets/logo2.png" width="120" alt="Finder"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
 
                 <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
@@ -299,7 +300,13 @@
                             <a class="nav-link " href="/Identity/Account/Login" role="button">Account</a>
 
                         </li>
-                       
+                        <li class="nav-item">
+                            <a class="nav-link " href="#" role="button">Blog</a>
+                            @*<ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="job-board-blog.html">Blog List</a></li>
+                                    <li><a class="dropdown-item" href="job-board-blog-single.html">Single Post</a></li>
+                                </ul>*@
+                        </li>
                         <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
                     </ul>
                 </div>
@@ -307,116 +314,132 @@
         </header>
         <!-- Page content-->
         <!-- Hero-->
-        <section class="bg-dark pb-4 pt-5">
+
+
+        <section class="bg-dark pt-5">
             <div class="container py-5">
-                <div class="row align-items-center mt-2 mt-md-0 pt-md-4 pt-lg-5 pb-5">
-                    <div class="col-md-5 order-md-2 mb-5 mb-md-0">
-                        <div class="parallax mx-auto" style="max-width: 526px;">
-                            <div class="parallax-layer position-relative" data-depth="0.1"><img src="~/img/job-board/hero-banner-1/layer01.svg" alt="Layer"></div>
-                            <div class="parallax-layer" data-depth="0.16"><img src="~/img/job-board/hero-banner-1/layer02.svg" alt="Layer"></div>
-                            <div class="parallax-layer" data-depth="0.38"><img src="~/img/job-board/hero-banner-1/layer03.svg" alt="Layer"></div>
-                            <div class="parallax-layer" data-depth="0.16"><img src="~/img/job-board/hero-banner-1/layer04.svg" alt="Layer"></div>
-                            <div class="parallax-layer" data-depth="0.16"><img src="~/img/job-board/hero-banner-1/layer05.svg" alt="Layer"></div>
-                            <div class="parallax-layer" data-depth="0.45"><img src="~/img/job-board/hero-banner-1/layer06.svg" alt="Layer"></div>
-                            <div class="parallax-layer" data-depth="0.3"><img src="~/img/job-board/hero-banner-1/layer07.svg" alt="Layer"></div>
-                            <div class="parallax-layer" data-depth="0.2"><img src="~/img/job-board/hero-banner-1/layer08.svg" alt="Layer"></div>
+                <h1 class="text-light pt-1 pt-md-3 mb-4">Find jobs</h1>
+                <!-- Search form-->
+                @*<form class="form-group form-group-light d-block rounded-lg-pill mb-4">
+                        <div class="row align-items-center g-0 ms-n2">
+
                         </div>
-                    </div>
-                    <div class="col-md-7 order-md-1">
-                        <h1 class="display-4 text-light pb-2 mb-4 mb-lg-5" style="max-width: 29.5rem;">Hack your way to the <span class='text-primary'>dream job</span></h1>
-                       
-                    </div>
-                </div>
+                    </form>*@
 
             </div>
         </section>
-        <!-- Categories-->
-        <section class="position-relative bg-white rounded-xxl-4 pt-md-3 zindex-5" style="margin-top: -30px;">
-            <div class="container pt-5 pb-2 mb-4 mb-md-5">
-                <h2 class="h3 pb-2 pb-sm-3">Jobs by category</h2>
-                <div class="d-flex flex-wrap flex-column flex-sm-row">
-                    <a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 bg-secondary rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="@Url.Action("Category", "Catalog")/Finance">
-                        <div class="icon-box-media bg-light text-primary rounded-circle me-2"><i class="fi-accounting"></i></div>
-                        <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">Finance</h3>
-                    </a><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 bg-secondary rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="@Url.Action("Category", "Catalog")/Marketing">
-                        <div class="icon-box-media bg-light text-primary rounded-circle me-2"><i class="fi-pie-chart"></i></div>
-                        <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">Marketing</h3>
-                    </a><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 bg-secondary rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="@Url.Action("Category", "Catalog")/Brands">
-                        <div class="icon-box-media bg-light text-primary rounded-circle me-2"><i class="fi-meds"></i></div>
-                        <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">Brand & Communication</h3>
-                    </a><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 bg-secondary rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="@Url.Action("Category", "Catalog")/HR">
-                        <div class="icon-box-media bg-light text-primary rounded-circle me-2"><i class="fi-plant"></i></div>
-                        <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">Human Resources</h3>
-                    </a><a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 bg-secondary rounded-pill py-2 ps-2 pe-4 mb-2 mb-sm-3 me-sm-3 me-xxl-4" href="@Url.Action("Category", "Catalog")/IT">
-                        <div class="icon-box-media bg-light text-primary rounded-circle me-2"><i class="fi-computer"></i></div>
-                        <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">IT</h3>
-                    </a>
-                    <div class="dropdown mb-2 mb-sm-3">
-                        <a class="icon-box card flex-row align-items-center flex-shrink-0 card-hover border-0 bg-secondary rounded-pill py-2 ps-2 pe-4" href="@Url.Action("Category", "Catalog")/Technical" data-bs-toggle="dropdown">
-                            <div class="icon-box-media bg-light text-primary rounded-circle me-2"><i class="fi-dots-horisontal"></i></div>
-                            <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">Technical</h3>
-                        </a>
-                        
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- Page content-->
+        <section class="position-relative bg-white rounded-xxl-4 zindex-5" style="margin-top: -30px;">
+            <div class="container pt-4 pb-5 mb-md-4">
+                <!-- Breadcrumb-->
+                <nav class="pb-4 my-2" aria-label="Breadcrumb">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Find jobs</li>
+                    </ol>
+                </nav>
+                <div class="row">
+                    <!-- List of jobs-->
+                    <div class="col-lg-5 col-md-6 position-relative mb-4 mb-md-0" style="z-index: 1025;">
+                        <!-- Sorting-->
+                        <div class="d-sm-flex align-items-center justify-content-between pb-4 mb-sm-2">
+                            <div class="d-flex align-items-center">
+                                <label class="fs-sm me-2 pe-1 text-nowrap" for="sorting"><i class="fi-arrows-sort mt-n1 me-2"></i>Sort by:</label>
+                                <select class="form-select form-select-sm" id="sorting">
+                                    <option>Newest</option>
+                                    <option>Popular</option>
+                                    <option>Highest Salary</option>
+                                </select>
+                            </div>
+                            <div class="text-muted fs-sm text-nowrap"><i class="fi-briefcase fs-base mt-n1 me-2"></i>@Model.Vacancies.Count jobs</div>
+                        </div>
 
-        <!-- Jobs list + Post resume CTA-->
-        <section class="container pb-5 mb-md-4">
-            <div class="row">
-                <div class="col-md-6 mb-3 mb-md-0">
-                    <div class="d-sm-flex align-items-center justify-content-between pb-4 mb-sm-2">
-                        <h2 class="h3 mb-sm-0">Jobs of the day</h2><a class="btn btn-link fw-normal p-0" href="@Url.Action("Index","Catalog")">View all<i class="fi-arrow-long-right ms-2"></i></a>
-                    </div>
-                    <!-- Accordion-->
-                    <div id="accordionJobs">
-                        @if (Model == null)
-                        {
-
-                        }
+                        @if (Model.Vacancies == null) { }
                         else
                         {
-                            foreach (var item in Model)
+                            foreach (var item in Model.Vacancies)
                             {
-                                <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse1-@item.Id">
+                                <div class="card bg-secondary card-hover mb-2">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center"><img class="me-2" src="~/assets/logo.png" width="50" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 ps-1">@item.JobCode</span></div><span class="badge bg-faded-danger rounded-pill fs-sm">Hot</span>
-                                        </div>
-                                        <h3 class="h6 card-title pt-1 mb-0">@item.JobTitle</h3>
-                                    </div>
-                                    <div class="collapse" id="jobCollapse1-@item.Id" data-bs-parent="#accordionJobs">
-                                        <div class="card-body mt-n1 pt-0">
-                                            <p class="fs-sm">
-                                                @item.JobObjectives <br /><br /><a href="@Url.Action("JobDetail","Catalog")/@item.Id">Read more...</a>
-                                            </p>
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()</span></div>
-                                                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <div class="d-flex align-items-center"><img class="me-2" src="~/assets/logo2.png" width="24" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 px-1">@item.JobCode</span></div>
+                                            <div class="dropdown content-overlay">
+                                                <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
+                                                <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
+                                                    <li>
+                                                        <button class="dropdown-item" type="button"><i class="fi-heart opacity-60 me-2"></i>Add to Saved Jobs</button>
+                                                    </li>
+                                                    <li>
+                                                        <button class="dropdown-item" type="button"><i class="fi-x-circle opacity-60 me-2"></i>Not interested</button>
+                                                    </li>
+                                                </ul>
                                             </div>
+                                        </div>
+                                        <h3 class="h6 card-title pt-1 mb-3"><a class="text-nav stretched-link text-decoration-none" href="@Url.Action("JobDetail","Catalog")/@item.Id">@item.JobTitle</a></h3>
+                                        <div class="fs-sm">
+                                            <span class="text-nowrap me-3">
+                                                <i class="fi-map-pin text-muted me-1"> </i>@item.Location
+                                            </span><span class="text-nowrap me-3">
+                                                <i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-
                             }
+
+
                         }
 
+                        <nav class="pt-4 pb-2" aria-label="Blog pagination">
+                            <ul class="pagination mb-0">
+                                @*<li class="page-item d-sm-none"><span class="page-link page-link-static">1 / 8</span></li>
+                                    <li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span></li>
+                                    <li class="page-item d-none d-sm-block"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item d-none d-sm-block"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item d-none d-sm-block">...</li>
+                                    <li class="page-item d-none d-sm-block"><a class="page-link" href="#">8</a></li>
+                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><i class="fi-chevron-right"></i></a></li>*@
+                            </ul>
+                        </nav>
                     </div>
-                </div>
-                <div class="col-md-1">
-                    <hr class="hr-vertical mx-auto">
-                </div>
-                <div class="col-md-5 text-center text-md-start">
-                    <img class="d-block mx-auto mb-4" src="~/img/job-board/illustrations/post-resume-cta2.svg" width="416" alt="Illustration">
-                    <h2 class="h3 pt-2 mb-4">Professional CV is your ticket to the dream job</h2>
-                    <p class="pb-md-3">Create a great resume on Finder and take a step toward finding your dream job!</p><a class="btn btn-primary btn-lg rounded-pill ms-sm-auto" href="job-board-post-resume-1.html">Post resume<i class="fi-chevron-right fs-sm ms-2"></i></a>
+                    <!-- Sticky sidebar-->
+                    <aside class="col-lg-7 col-md-6" style="margin-top: -6rem;">
+                        <div class="sticky-top" style="padding-top: 6rem;">
+                            <div class="card shadow-sm p-lg-3 mb-3 mb-lg-0">
+                                <div class="card-body p-lg-4">
+                                    <h2 class="h3">Subscribe to our newsletter</h2>
+                                    <p>Don’t miss any job updates and relevant vacancies info!</p>
+                                    <form class="form-group rounded-pill mb-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text text-muted"><i class="fi-mail text-muted"></i></span>
+                                            <input class="form-control" type="text" placeholder="Your email">
+                                        </div>
+                                        <button class="btn btn-primary rounded-pill" type="button">Subscribe</button>
+                                    </form>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="agree">
+                                        <label class="form-check-label" for="agree">I agree to receive communications from Finder.</label>
+                                    </div>
+                                    <hr class="my-4">
+                                    <div class="d-flex align-items-end">
+                                        <div class="fs-lg fw-bold me-3">Like our jobs?<br>Receive vacancies in Telegram</div><a class="btn btn-icon btn-translucent-primary btn-xs rounded-circle" href="#"><i class="fi-telegram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pt-4 pt-lg-5 ps-4 ps-lg-5">
+                                <h2 class="h3">My last search queries:</h2>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Accountant</a></li>
+                                    <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Manager</a></li>
+                                    <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Administrator</a></li>
+                                    <li class="mb-0"><a class="nav-link-muted d-inline-block fw-bold py-1" href="#">Clear all<i class="fi-x fs-xs ms-2"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </section>
-
-
-
     </main>
     <!-- Footer-->
     <footer class="footer bg-dark pt-5">
@@ -425,8 +448,7 @@
 
 
             </div>
-            <!-- Copyright-->
-            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com/" target="_blank" rel="noopener">NSIA IT</a></p>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
         </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
@@ -434,12 +456,8 @@
     <script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
     <script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-    <script src="~/vendor/tiny-slider/dist/min/tiny-slider.js"></script>
-    <script src="~/vendor/parallax-js/dist/parallax.min.js"></script>
-    <script src="~/vendor/nouislider/dist/nouislider.min.js"></script>
     <!-- Main theme script-->
     <script src="~/js/theme.min.js"></script>
 </body>
 
 </html>
-

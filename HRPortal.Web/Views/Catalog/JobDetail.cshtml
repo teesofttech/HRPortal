@@ -1,4 +1,4 @@
-﻿
+﻿@model HRPortal.Web.Models.JobDetailViewModel
 @{
     Layout = null;
 }
@@ -6,12 +6,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from finder.createx.studio/job-board-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 28 Sep 2021 07:44:12 GMT -->
-<!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
-    <title>Finder | Job Board | Single Job Page</title>
+    <title>NSIA Recruitment Portal</title>
     <!-- SEO Meta Tags-->
     <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
@@ -103,7 +101,7 @@
     </style>
     <!-- Page loading scripts-->
     <script>
-    (function () {
+        (function () {
             window.onload = function () {
                 var preloader = document.querySelector('.page-loading');
                 preloader.classList.remove('active');
@@ -111,22 +109,16 @@
                     preloader.remove();
                 }, 2000);
             };
-        })();</script>
+        })();
+
+    </script>
     <!-- Vendor Styles-->
     <link rel="stylesheet" media="screen" href="~/vendor/simplebar/dist/simplebar.min.css" />
     <link rel="stylesheet" media="screen" href="~/vendor/tiny-slider/dist/tiny-slider.css" />
+    <link rel="stylesheet" media="screen" href="~/vendor/nouislider/dist/nouislider.min.css" />
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="~/css/theme.min.css">
-    <!-- Google Tag Manager-->
-    <script>
-    (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    '../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-WKV3GT5');</script>
+
 </head>
 <!-- Body-->
 <body>
@@ -141,7 +133,7 @@
         </div>
     </div>
     <main class="page-wrapper">
-        <!-- Sign In Modal-->
+
         <div class="modal fade" id="signin-modal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 950px;">
                 <div class="modal-content">
@@ -183,7 +175,7 @@
                 </div>
             </div>
         </div>
-        <!-- Sign Up Modal-->
+
         <div class="modal fade" id="signup-modal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 734px;">
                 <div class="modal-content">
@@ -295,192 +287,45 @@
                 </div>
             </div>
         </div>
-        <!-- Navbar-->
+
         <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
             <div class="container">
-                <a class="navbar-brand me-0 me-xl-4" href="job-board-home-v1.html"><img class="d-block" src="~/img/logo/logo-light.svg" width="116" alt="Finder"></a>
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="#signin-modal" data-bs-toggle="modal"><i class="fi-user me-2"></i>Sign in</a><a class="btn btn-primary btn-sm rounded-pill ms-2 order-lg-3" href="job-board-post-resume-1.html"><i class="fi-plus me-2"></i>Post resume</a><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3 pe-0 ms-2" href="job-board-home-v2.html">For employers<i class="fi-arrow-long-right ms-2"></i></a>
+                <a class="navbar-brand me-0 me-xl-4" href="@Url.Action("Index","Home")"><img class="d-block" src="~/assets/logo2.png" width="120" alt="HRPortal"></a>
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
+
                 <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
-                        <!-- Demos switcher-->
-                        <li class="nav-item dropdown py-2 me-lg-2">
-                            <a class="nav-link dropdown-toggle align-items-center border-end-lg border-light py-1 pe-lg-4" href="#" data-bs-toggle="dropdown" role="button" aria-expanded="false"><i class="fi-layers me-2"></i>Demos</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="real-estate-home.html"><i class="fi-building fs-base me-2"></i>Real Estate Demo</a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="car-finder-home.html"><i class="fi-car fs-base me-2"></i>Car Finder Demo</a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="job-board-home-v1.html"><i class="fi-briefcase fs-base me-2"></i>Job Board Demo</a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="city-guide-home-v1.html"><i class="fi-map-pin fs-base me-2"></i>City Guide Demo</a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="index.html"><i class="fi-home fs-base me-2"></i>Main Page</a></li>
-                                <li><a class="dropdown-item" href="components/typography.html"><i class="fi-list fs-base me-2"></i>Components</a></li>
-                                <li><a class="dropdown-item" href="docs/dev-setup.html"><i class="fi-file fs-base me-2"></i>Documentation</a></li>
-                            </ul>
+
+                        <li class="nav-item ">
+                            <a class="nav-link " href="@Url.Action("Index","Home")">Home</a>
+
                         </li>
-                        <!-- Menu items-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="job-board-home-v1.html">For Job Seekers</a></li>
-                                <li><a class="dropdown-item" href="job-board-home-v2.html">For Employers</a></li>
-                            </ul>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Catalog</a>
+
                         </li>
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="job-board-catalog.html">List of Jobs</a></li>
-                                <li><a class="dropdown-item" href="job-board-single.html">Single Job Page</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/Identity/Account/Login" role="button">Account</a>
+
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Account Pages</a>
-                                    <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item" href="job-board-account-profile.html">Profile Settings</a></li>
-                                        <li><a class="dropdown-item" href="job-board-account-my-resumes.html">My Resumes</a></li>
-                                        <li><a class="dropdown-item" href="job-board-account-saved-jobs.html">Saved Jobs</a></li>
-                                        <li><a class="dropdown-item" href="job-board-account-notifications.html">Notifications</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#">Post Resume</a>
-                                    <ul class="dropdown-menu dropdown-menu-dark">
-                                        <li><a class="dropdown-item" href="job-board-post-resume-1.html">Step 1: Basic Info</a></li>
-                                        <li><a class="dropdown-item" href="job-board-post-resume-2.html">Step 2: Education</a></li>
-                                        <li><a class="dropdown-item" href="job-board-post-resume-3.html">Step 3: Work Experience</a></li>
-                                        <li><a class="dropdown-item" href="job-board-post-resume-4.html">Step 4: Skills</a></li>
-                                        <li><a class="dropdown-item" href="job-board-post-resume-5.html">Step 5: Review</a></li>
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="job-board-promotion.html">Ad Promotion Page</a></li>
-                                <li><a class="dropdown-item" href="job-board-employer-single.html">Employer / Company Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="job-board-blog.html">Blog List</a></li>
-                                <li><a class="dropdown-item" href="job-board-blog-single.html">Single Post</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="#signin-modal" data-bs-toggle="modal"><i class="fi-user me-2"></i>Sign in</a></li>
+
+                        <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
                     </ul>
                 </div>
             </div>
         </header>
-        <!-- Page content-->
-        <!-- Page header-->
+
+
         <section class="bg-dark pt-5">
             <div class="container py-5">
                 <h1 class="text-light pt-1 pt-md-3 mb-4">Find jobs</h1>
                 <!-- Search form-->
-                <form class="form-group form-group-light d-block rounded-lg-pill mb-4">
-                    <div class="row align-items-center g-0 ms-n2">
-                        <div class="col-lg-3 col-xl-4">
-                            <div class="input-group input-group-lg border-end-lg border-light">
-                                <span class="input-group-text text-light rounded-pill opacity-50 ps-3"><i class="fi-search"></i></span>
-                                <input class="form-control" type="text" placeholder="Search site...">
-                            </div>
+                @*<form class="form-group form-group-light d-block rounded-lg-pill mb-4">
+                        <div class="row align-items-center g-0 ms-n2">
+
                         </div>
-                        <hr class="hr-light d-lg-none my-2">
-                        <div class="col-lg-5 d-sm-flex">
-                            <div class="dropdown w-sm-50 border-end-sm border-light" data-bs-toggle="select">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-list me-2"></i><span class="dropdown-toggle-label">Category</span></button>
-                                <input type="hidden">
-                                <ul class="dropdown-menu dropdown-menu-dark my-3">
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Accounting</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Marketing &amp; PR</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Medicine</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Internet technology</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">HoReCa</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Design, creativity</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Fitness &amp; sports</span></a></li>
-                                </ul>
-                            </div>
-                            <hr class="hr-light d-sm-none my-2">
-                            <div class="dropdown w-sm-50 border-end-lg border-light" data-bs-toggle="select">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-map-pin me-2"></i><span class="dropdown-toggle-label">Location</span></button>
-                                <input type="hidden">
-                                <ul class="dropdown-menu dropdown-menu-dark my-3">
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Dallas</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Chicago</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Houston</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Las Vegas</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Los Angeles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">New York</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">San Francisco</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <hr class="hr-light d-lg-none my-2">
-                        <div class="col-lg-4 col-xl-3 d-flex align-items-center">
-                            <div class="dropdown w-50 w-lg-100" data-bs-toggle="select">
-                                <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-geo me-2"></i><span class="dropdown-toggle-label">Distance</span></button>
-                                <input type="hidden">
-                                <ul class="dropdown-menu dropdown-menu-dark my-3">
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">10 miles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">20 miles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">30 miles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">40 miles</span></a></li>
-                                    <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">50 miles</span></a></li>
-                                </ul>
-                            </div>
-                            <button class="btn btn-primary btn-lg w-50 w-lg-auto rounded-pill" type="button">Find jobs</button>
-                        </div>
-                    </div>
-                </form>
-                <!-- Search params (dropdowns)-->
-                <div class="d-sm-flex justify-content-between pt-2 pb-1 pb-md-3 pb-lg-4">
-                    <div class="d-flex flex-column flex-sm-row flex-wrap">
-                        <div class="dropdown me-sm-3 mb-2 mb-sm-3" data-bs-toggle="select">
-                            <button class="btn btn-translucent-light btn-sm dropdown-toggle fs-base fw-normal w-100 text-start" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Publication date</span></button>
-                            <ul class="dropdown-menu my-1">
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Most recent</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">5 days</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">15 days</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">1 week</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">1 month</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown me-sm-3 mb-2 mb-sm-3" data-bs-toggle="select">
-                            <button class="btn btn-translucent-light btn-sm dropdown-toggle fs-base fw-normal w-100 text-start" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Job type</span></button>
-                            <ul class="dropdown-menu my-1">
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Full-time</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Part-time</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Remote</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Temporary</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Contract</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Internship</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown me-sm-3 mb-2 mb-sm-3" data-bs-toggle="select">
-                            <button class="btn btn-translucent-light btn-sm dropdown-toggle fs-base fw-normal w-100 text-start" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Company</span></button>
-                            <ul class="dropdown-menu my-1">
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">IT Pro TV</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Zalo Tech Company</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Elastic Inc.</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Lift Web</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Xbox Company</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">Zapier</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown me-sm-3 mb-2 mb-sm-3" data-bs-toggle="select">
-                            <button class="btn btn-translucent-light btn-sm dropdown-toggle fs-base fw-normal w-100 text-start" type="button" data-bs-toggle="dropdown"><span class="dropdown-toggle-label">Salary range</span></button>
-                            <ul class="dropdown-menu my-1">
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$500 - $1,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$1,000 - $2,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$2,000 - $5,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$5,000 - $10,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$10,000 - $20,000</span></a></li>
-                                <li><a class="dropdown-item" href="#"><span class="dropdown-item-label">$20,000 - $50,000</span></a></li>
-                            </ul>
-                        </div>
-                    </div><a class="d-inline-block text-light text-nowrap py-3" href="#">Advanced search</a>
-                </div>
+                    </form>*@
+
             </div>
         </section>
         <!-- Page content-->
@@ -489,57 +334,63 @@
                 <!-- Breadcrumb-->
                 <nav class="pb-4 my-2" aria-label="Breadcrumb">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="job-board-home-v1.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="job-board-catalog.html">Find jobs</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Partnership Manager</li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Catalog", "Index")">Find jobs</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Job Category</li>
                     </ol>
                 </nav>
                 <div class="row">
-                    <!-- Signle job content-->
-                    <div class="col-lg-7 position-relative pe-lg-5 mb-5 mb-lg-0" style="z-index: 1025;">
-                        <div class="d-flex justify-content-between mb-2">
-                            <h2 class="h3 mb-0">Partnership Manager</h2>
-                            <div class="text-end">
-                                <span class="badge bg-faded-accent rounded-pill fs-sm mb-2">Featured</span>
-                                <div class="fs-sm text-muted">2 hours ago</div>
+                    @if (Model == null)
+                    {
+
+                    }
+                    else
+                    {
+                        <div class="col-lg-7 position-relative pe-lg-5 mb-5 mb-lg-0" style="z-index: 1025;">
+                            <div class="d-flex justify-content-between mb-2">
+                                <h2 class="h3 mb-0">@Model.Vacancy.JobTitle</h2>
+                                <div class="text-end">
+                                    <span class="badge bg-faded-accent rounded-pill fs-sm mb-2">@Model.Vacancy.JobCode</span>
+                                    <div class="fs-sm text-muted">@Model.Vacancy.Datecreated.Value.ToLongDateString()</div>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled fs-sm mb-4">
+                                <li class="mb-2"><a class="d-flex align-items-center text-decoration-none" href="job-board-employer-single.html"><i class="fi-external-link me-2"></i><span class="text-decoration-underline">NSIA INSURANCE</span></a></li>
+                                <li class="d-flex align-items-center mb-2"><i class="fi-map-pin text-muted me-2"></i><span>New York</span></li>
+                                <li class="d-flex align-items-center mb-2"><i class="fi-cash fs-base text-muted me-2"></i><span>$10,000</span></li>
+                                <li class="d-flex align-items-center mb-2"><i class="fi-phone text-muted me-2"></i><span class="me-2">Bessie Cooper, HR Manager</span><a href="#">Show phone</a></li>
+                                <li class="d-flex align-items-center mb-2"><i class="fi-clock text-muted me-2"></i><span class="me-2">Full-time</span></li>
+                            </ul>
+                            <hr class="mb-4">
+                            <h3 class="h6">Company Summary:</h3>
+                            <p>@Model.Summary.CompanySummary</p>
+
+                            <h3 class="h6 pt-2">Requirements:</h3>
+                            <ul class="list-unstyled">
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Placerat id mauris, ac ipsum nulla mi netus vestibulum fringilla.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Turpis venenatis sapien etiam in orci, euismod.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Elit tempor, integer augue aliquam justo.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Ultricies accumsan, malesuada pellentesque malesuada massa sed viverra eget.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Varius mauris netus placerat neque, orci amet odio orci.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Fermentum ut mi sit vel sit dictum mollis turpis.</li>
+                            </ul>
+                            <h3 class="h6 pt-2">Company offers:</h3>
+                            <ul class="list-unstyled">
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Et mattis sit imperdiet risus, fermentum ultrices non.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Sed phasellus consequat nunc enim interdum tristique ultrices egestas.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Molestie mus ultrices tellus enim.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Vitae pulvinar massa id lorem aliquam fermentum egestas.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Dictumst blandit sit mauris in consectetur.</li>
+                                <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Sem purus lorem odio donec faucibus ipsum ultricies.</li>
+                            </ul>
+                            <p class="pt-2 mb-1">Please, send your CV marked “Partnership Manager” in the subject via e-mail:</p><a class="nav-link-muted fw-bold" href="mailto:contact@example.com">contact@example.com</a>
+                            <hr class="my-4">
+                            <div class="btn-group btn-group-lg">
+                                <button class="btn btn-primary rounded-pill rounded-end-0 ps-4 pe-3" type="button">Apply for this position</button>
+                                <button class="btn btn-primary border-end-0 border-top-0 border-bottom-0 border-light rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart me-1"></i></button>
                             </div>
                         </div>
-                        <ul class="list-unstyled fs-sm mb-4">
-                            <li class="mb-2"><a class="d-flex align-items-center text-decoration-none" href="job-board-employer-single.html"><i class="fi-external-link me-2"></i><span class="text-decoration-underline">Zalo Tech Company</span></a></li>
-                            <li class="d-flex align-items-center mb-2"><i class="fi-map-pin text-muted me-2"></i><span>New York</span></li>
-                            <li class="d-flex align-items-center mb-2"><i class="fi-cash fs-base text-muted me-2"></i><span>$10,000</span></li>
-                            <li class="d-flex align-items-center mb-2"><i class="fi-phone text-muted me-2"></i><span class="me-2">Bessie Cooper, HR Manager</span><a href="#">Show phone</a></li>
-                            <li class="d-flex align-items-center mb-2"><i class="fi-clock text-muted me-2"></i><span class="me-2">Full-time</span></li>
-                        </ul>
-                        <hr class="mb-4">
-                        <h3 class="h6">Description:</h3>
-                        <p>Sit sit viverra aenean nunc. Vestibulum nulla tellus, praesent mi. Eget eu sapien posuere varius nisl. Arcu scelerisque ut venenatis, nec. Sed id etiam nisl nisl, elementum ac odio morbi dolor. Sem mauris turpis ultrices sed porttitor orci, erat. Ultrices ut a mi sem mauris, vitae egestas. Eget suscipit a, consectetur quam sed morbi. Metus, tortor egestas phasellus urna. Lorem eu dictum egestas vitae faucibus congue urna. Sed dolor sed risus duis volutpat ullamcorper.</p>
-                        <h3 class="h6 pt-2">Requirements:</h3>
-                        <ul class="list-unstyled">
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Placerat id mauris, ac ipsum nulla mi netus vestibulum fringilla.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Turpis venenatis sapien etiam in orci, euismod.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Elit tempor, integer augue aliquam justo.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Ultricies accumsan, malesuada pellentesque malesuada massa sed viverra eget.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Varius mauris netus placerat neque, orci amet odio orci.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Fermentum ut mi sit vel sit dictum mollis turpis.</li>
-                        </ul>
-                        <h3 class="h6 pt-2">Company offers:</h3>
-                        <ul class="list-unstyled">
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Et mattis sit imperdiet risus, fermentum ultrices non.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Sed phasellus consequat nunc enim interdum tristique ultrices egestas.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Molestie mus ultrices tellus enim.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Vitae pulvinar massa id lorem aliquam fermentum egestas.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Dictumst blandit sit mauris in consectetur.</li>
-                            <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Sem purus lorem odio donec faucibus ipsum ultricies.</li>
-                        </ul>
-                        <p class="pt-2 mb-1">Please, send your CV marked “Partnership Manager” in the subject via e-mail:</p><a class="nav-link-muted fw-bold" href="mailto:contact@example.com">contact@example.com</a>
-                        <hr class="my-4">
-                        <div class="btn-group btn-group-lg">
-                            <button class="btn btn-primary rounded-pill rounded-end-0 ps-4 pe-3" type="button">Apply for this position</button>
-                            <button class="btn btn-primary border-end-0 border-top-0 border-bottom-0 border-light rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart me-1"></i></button>
-                        </div>
-                    </div>
-                    <!-- Sticky sidebar-->
+                    }
                     <aside class="col-lg-5" style="margin-top: -6rem;">
                         <div class="sticky-top" style="padding-top: 6rem;">
                             <div class="card shadow-sm mb-3 mb-lg-0">
