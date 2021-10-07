@@ -11,7 +11,7 @@
     <meta charset="utf-8">
     <title>NSIA Recruitment Portal</title>
     <!-- SEO Meta Tags-->
-    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="description" content="NSIA - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
     <meta name="author" content="Createx Studio">
     <!-- Viewport-->
@@ -199,25 +199,25 @@
                                     <div class="row gx-2 gx-md-4">
                                         <div class="col-sm-6 mb-4">
                                             <label class="form-label" for="~/js-fn">Full name</label>
-                                            <input class="form-control" type="text" id="~/js-fn" placeholder="Enter your full name" required>
+                                            <input class="form-control" type="text" id="js-fn" placeholder="Enter your full name" required>
                                         </div>
                                         <div class="col-sm-6 mb-4">
                                             <label class="form-label" for="~/js-email">Emaill address</label>
-                                            <input class="form-control" type="email" id="~/js-email" placeholder="Enter your email" required>
+                                            <input class="form-control" type="email" id="js-email" placeholder="Enter your email" required>
                                         </div>
                                         <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="~/js-password">Password <span class='text-muted'>(min. 8 char)</span></label>
+                                            <label class="form-label" for="js-password">Password <span class='text-muted'>(min. 8 char)</span></label>
                                             <div class="password-toggle">
-                                                <input class="form-control" type="password" id="~/js-password" minlength="8" required>
+                                                <input class="form-control" type="password" id="js-password" minlength="8" required>
                                                 <label class="password-toggle-btn" aria-label="Show/hide password">
                                                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="~/js-password-confirm">Confirm password</label>
+                                            <label class="form-label" for="js-password-confirm">Confirm password</label>
                                             <div class="password-toggle">
-                                                <input class="form-control" type="password" id="~/js-password-confirm" minlength="8" required>
+                                                <input class="form-control" type="password" id="js-password-confirm" minlength="8" required>
                                                 <label class="password-toggle-btn" aria-label="Show/hide password">
                                                     <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
                                                 </label>
@@ -233,7 +233,7 @@
                             </div>
                             <div class="tab-pane fade" id="employer" role="tabpanel">
                                 <h3>Register to post a vacancy</h3>
-                                <p class="pb-3">Get access to all special services for employers on Finder.</p>
+                                <p class="pb-3">Get access to all special services for employers on NSIA.</p>
                                 <form class="needs-validation" novalidate>
                                     <div class="row gx-2 gx-md-4">
                                         <div class="col-sm-6 mb-4">
@@ -365,10 +365,10 @@
                             <ul class="list-unstyled">
                                 @Model.Summary.EqualityStatement
                             </ul>
-                            <p class="pt-2 mb-1">Please, send your CV marked “Partnership Manager” in the subject via e-mail:</p><a class="nav-link-muted fw-bold" href="mailto:contact@example.com">contact@example.com</a>
+                            <p class="pt-2 mb-1">Please, send your CV marked “@Model.Vacancy.JobTitle” in the subject via e-mail:</p><a class="nav-link-muted fw-bold" href="mailto:humancapitalmgt@nsiainsurance.com">humancapitalmgt@nsianinsurance.com</a>
                             <hr class="my-4">
                             <div class="btn-group btn-group-lg">
-                                <button class="btn btn-primary rounded-pill rounded-end-0 ps-4 pe-3" type="button">Apply for this position</button>
+                                <a class="btn btn-primary rounded-pill rounded-end-0 ps-4 pe-3" href="/Identity/Account/Login">Apply for this position</a>
                                 <button class="btn btn-primary border-end-0 border-top-0 border-bottom-0 border-light rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart me-1"></i></button>
                             </div>
                         </div>
@@ -388,12 +388,12 @@
                                     </form>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="agree">
-                                        <label class="form-check-label" for="agree">I agree to receive communications from Finder.</label>
+                                        <label class="form-check-label" for="agree">I agree to receive communications from NSIA.</label>
                                     </div>
-                                    
+
                                 </div>
                             </div>
-                            
+
                         </div>
                     </aside>
                 </div>
@@ -406,62 +406,28 @@
             </div>
             <div class="tns-carousel-wrapper tns-controls-outside-xxl tns-nav-outside tns-nav-outside-flush">
                 <div class="tns-carousel-inner" data-carousel-options="{&quot;responsive&quot;: {&quot;0&quot;:{&quot;items&quot;:1, &quot;gutter&quot;: 16},&quot;600&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 16},&quot;768&quot;:{&quot;items&quot;:2, &quot;gutter&quot;: 24},&quot;992&quot;:{&quot;items&quot;:3, &quot;gutter&quot;: 24}}}">
-                    <!-- Item-->
-                    <div class="pb-4">
-                        <div class="card bg-secondary card-hover h-100">
-                            <div class="card-body pb-3">
-                                <div class="d-flex align-items-center mb-2"><img class="me-2" src="~/img/job-board/company/it-pro.png" width="24" alt="IT Pro Logo" /><span class="fs-sm text-dark opacity-80 px-1">IT Pro TV</span><span class="badge bg-faded-danger rounded-pill fs-sm ms-auto">Hot</span></div>
-                                <h3 class="h6 card-title pt-1 mb-2"><a class="text-nav stretched-link text-decoration-none" href="#">Business Analyst</a></h3>
-                                <p class="fs-sm mb-0"> Blandit a tincidunt arcu nulla. Sem neque, rhoncus non odio nulla maecenas elit praesent. Orci tristique velit mauris cursus nibh. Hendrerit et dictum sed...</p>
+
+                    @if (Model.Vacancies != null)
+                    {
+                        foreach (var item in Model.Vacancies)
+                        {
+                            <div class="pb-4">
+                                <div class="card bg-secondary card-hover h-100">
+                                    <div class="card-body pb-3">
+                                        <div class="d-flex align-items-center mb-2"><img class="me-2" src="~/assets/logo2.png" width="24" alt="IT Pro Logo" /><span class="fs-sm text-dark opacity-80 px-1">@item.JobCode</span><span class="badge bg-faded-danger rounded-pill fs-sm ms-auto">Hot</span></div>
+                                        <h3 class="h6 card-title pt-1 mb-2"><a class="text-nav stretched-link text-decoration-none" href="/Catalog/JobDetail/@item.Id">@item.JobTitle</a></h3>
+                                        <p class="fs-sm mb-0">@item.JobObjectives</p>
+                                    </div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
+                                        <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i></span></div>
+                                        <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle content-overlay" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
-                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>Chicago</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>$7,500</span></div>
-                                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle content-overlay" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="pb-4">
-                        <div class="card bg-secondary card-hover h-100">
-                            <div class="card-body pb-3">
-                                <div class="d-flex align-items-center mb-2"><img class="me-2" src="~/img/job-board/company/xbox.png" width="24" alt="Xbox Logo"><span class="fs-sm text-dark opacity-80 px-1">Xbox Company</span><span class="badge bg-faded-accent rounded-pill fs-sm ms-auto">Featured</span></div>
-                                <h3 class="h6 card-title pt-1 mb-2"><a class="text-nav stretched-link text-decoration-none" href="#">Full-Stack Developer</a></h3>
-                                <p class="fs-sm mb-0">Euismod nec sagittis sit arcu libero, metus. Aliquam nisl rhoncus porttitor volutpat, ante cras tincidunt. Nec sit nunc, ornare tincidunt enim, neque...</p>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
-                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>Washington</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>$13,000</span></div>
-                                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle content-overlay" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="pb-4">
-                        <div class="card bg-secondary card-hover h-100">
-                            <div class="card-body pb-3">
-                                <div class="d-flex align-items-center mb-2"><img class="me-2" src="~/img/job-board/company/xampp.png" width="24" alt="XAMPP Logo"><span class="fs-sm text-dark opacity-80 px-1">XAMPP Company</span><span class="badge bg-faded-danger rounded-pill fs-sm ms-auto">Hot</span></div>
-                                <h3 class="h6 card-title pt-1 mb-2"><a class="text-nav stretched-link text-decoration-none" href="#">Business Analyst</a></h3>
-                                <p class="fs-sm mb-0">Auctor elit in aenean sodales mattis. Ultricies nec eu augue sit. Ornare pulvinar enim fames orci enim in libero. Eu, lorem leo netus velit egestas risus...</p>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
-                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>New Jersey</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>$6,500</span></div>
-                                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle content-overlay" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item-->
-                    <div class="pb-4">
-                        <div class="card bg-secondary card-hover h-100">
-                            <div class="card-body pb-3">
-                                <div class="d-flex align-items-center mb-2"><img class="me-2" src="~/img/job-board/company/zapier.png" width="24" alt="Zapier Logo"><span class="fs-sm text-dark opacity-80 px-1">Zapier</span><span class="badge bg-faded-info rounded-pill fs-sm ms-auto">New</span></div>
-                                <h3 class="h6 card-title pt-1 mb-2"><a class="text-nav stretched-link text-decoration-none" href="#">Onboarding Specialist</a></h3>
-                                <p class="fs-sm mb-0">Blandit a tincidunt arcu nulla. Sem neque, rhoncus non odio nulla maecenas elit praesent. Orci tristique velit mauris cursus nibh. Hendrerit et dictum sed...</p>
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
-                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>Houston</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>$4,000</span></div>
-                                <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle content-overlay" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
-                            </div>
-                        </div>
-                    </div>
+
+                        }
+                    }
+
                 </div>
             </div>
         </section>
@@ -470,10 +436,10 @@
     <footer class="footer bg-dark pt-5">
         <div class="container pb-2">
             <div class="row align-items-center pb-4">
-              
+
             </div>
             <!-- Copyright-->
-            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com" target="_blank" rel="noopener">NSIA INSURANCE IT</a></p>
         </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>

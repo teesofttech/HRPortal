@@ -30,6 +30,10 @@ namespace HRPortal.Web.Controllers
             var result = db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefault();
             jobDetailViewModel.Summary = db.TblSummaries.FirstOrDefault();
             jobDetailViewModel.Vacancy = result;
+            jobDetailViewModel.Vacancies = db.TblVacancyAdverts
+                                            .OrderByDescending(c => c.Datecreated)
+                                            .ThenByDescending(c => c.Status == "Open").ToList();
+
             return View(jobDetailViewModel);
         }
 

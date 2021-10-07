@@ -13,17 +13,17 @@
     <meta charset="utf-8">
     <title>NSIA Recruitment Portal</title>
     <!-- SEO Meta Tags-->
-    <meta name="description" content="Finder - Directory &amp; Listings Bootstrap Template">
+    <meta name="description" content="NSIA - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
     <meta name="author" content="Createx Studio">
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
     @*<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">*@
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">*@
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
     <!-- Page loading styles-->
@@ -227,7 +227,7 @@
                             </div>
                             <div class="tab-pane fade" id="employer" role="tabpanel">
                                 <h3>Register to post a vacancy</h3>
-                                <p class="pb-3">Get access to all special services for employers on Finder.</p>
+                                <p class="pb-3">Get access to all special services for employers on NSIA.</p>
                                 <form class="needs-validation" novalidate>
                                     <div class="row gx-2 gx-md-4">
                                         <div class="col-sm-6 mb-4">
@@ -299,7 +299,7 @@
                             <a class="nav-link " href="/Identity/Account/Login" role="button">Account</a>
 
                         </li>
-                       
+
                         <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
                     </ul>
                 </div>
@@ -324,7 +324,7 @@
                     </div>
                     <div class="col-md-7 order-md-1">
                         <h1 class="display-4 text-light pb-2 mb-4 mb-lg-5" style="max-width: 29.5rem;">Hack your way to the <span class='text-primary'>dream job</span></h1>
-                       
+
                     </div>
                 </div>
 
@@ -356,7 +356,7 @@
                             <div class="icon-box-media bg-light text-primary rounded-circle me-2"><i class="fi-dots-horisontal"></i></div>
                             <h3 class="icon-box-title fs-sm ps-1 pe-2 mb-0">Technical</h3>
                         </a>
-                        
+
                     </div>
                 </div>
             </div>
@@ -379,22 +379,25 @@
                         {
                             foreach (var item in Model)
                             {
-                                <div class="card bg-secondary collapsed mb-2" data-bs-toggle="collapse" data-bs-target="#jobCollapse1-@item.Id">
+
+                                <div class="card bg-secondary collapsed mb-2" >
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between mb-2">
                                             <div class="d-flex align-items-center"><img class="me-2" src="~/assets/logo.png" width="50" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 ps-1">@item.JobCode</span></div><span class="badge bg-faded-danger rounded-pill fs-sm">Hot</span>
                                         </div>
                                         <h3 class="h6 card-title pt-1 mb-0">@item.JobTitle</h3>
                                     </div>
-                                    <div class="collapse" id="jobCollapse1-@item.Id" data-bs-parent="#accordionJobs">
+                                    <div >
                                         <div class="card-body mt-n1 pt-0">
                                             <p class="fs-sm">
-                                                @item.JobObjectives <br /><br /><a href="@Url.Action("JobDetail","Catalog")/@item.Id">Read more...</a>
+                                                @item.JobObjectives <br /><br /><a href="/Catalog/JobDetail/@item.Id">Read more...</a>
                                             </p>
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()</span></div>
                                                 <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
                                             </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -410,7 +413,7 @@
                 <div class="col-md-5 text-center text-md-start">
                     <img class="d-block mx-auto mb-4" src="~/img/job-board/illustrations/post-resume-cta2.svg" width="416" alt="Illustration">
                     <h2 class="h3 pt-2 mb-4">Professional CV is your ticket to the dream job</h2>
-                    <p class="pb-md-3">Create a great resume on Finder and take a step toward finding your dream job!</p><a class="btn btn-primary btn-lg rounded-pill ms-sm-auto" href="job-board-post-resume-1.html">Post resume<i class="fi-chevron-right fs-sm ms-2"></i></a>
+                    <p class="pb-md-3">Create a great resume on NSIA and take a step toward finding your dream job!</p><a class="btn btn-primary btn-lg rounded-pill ms-sm-auto" href="job-board-post-resume-1.html">Post resume<i class="fi-chevron-right fs-sm ms-2"></i></a>
                 </div>
             </div>
         </section>
