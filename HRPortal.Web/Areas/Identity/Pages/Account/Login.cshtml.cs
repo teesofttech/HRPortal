@@ -14,19 +14,20 @@ using Microsoft.Extensions.Logging;
 using HRPortal.Web.Data;
 using HRPortal.Domain.Entities;
 using HRPortal.Web.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HRPortal.Web.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly db_a54634_portalContext _context;
-        public LoginModel(SignInManager<IdentityUser> signInManager,
+        public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager, db_a54634_portalContext context)
+            UserManager<ApplicationUser> userManager, db_a54634_portalContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -90,39 +91,26 @@ namespace HRPortal.Web.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
 
-                    var getUserRole = (from c in _context.AspNetUserRoles
-                                       where c.User.Email == Input.Email
-                                       select c).FirstOrDefault();
-
-                    var getRole = (from c in _context.AspNetRoles
-                                   where c.Id == getUserRole.RoleId
-                                   select c).FirstOrDefault();
+                    var getUserRole = await _context.AspNetUsers.Where(c => c.Email == Input.Email).FirstOrDefaultAsync();
 
 
-                    if (getRole.Name.Equals("Admin"))
+                    if (getUserRole.Role.Equals("Admin"))
                     {
                         return RedirectToAction("Index", "HRDashboard");
                     }
-                    else if (getRole.Name.Equals("User"))
+                    else if (getUserRole.Role.Equals("User"))
                     {
                         return RedirectToAction("Index", "SupportDashboard");
                     }
-                    else if (getRole.Name.Equals("Customer"))
+                    else if (getUserRole.Role.Equals("Candidate"))
                     {
                         return RedirectToAction("Index", "Dashboard");
                     }
                 }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
+
                 else
                 {
+                    TempData["error"] = "Invalid Credentials";
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }

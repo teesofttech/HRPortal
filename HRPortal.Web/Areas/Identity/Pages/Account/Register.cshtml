@@ -27,6 +27,7 @@
     <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
+    <link href="~/sweetalert2.css" rel="stylesheet" />
     <!-- Page loading styles-->
     <style>
         .page-loading {
@@ -173,19 +174,28 @@
             </nav>
             <!-- Page content-->
             <div class="row justify-content-center pb-sm-2">
-                <div class="col-lg-11 col-xl-10">
+                <div class="col-lg-8 col-xl-8">
                     <!-- Page title-->
                     <div class="text-center pb-4 mb-3">
-                        <h1 class="h2 mb-4">Login to your account </h1>
-                        <p class="mb-4">Login to your account on NSIA Human Recruitment portal.</p>
+                        <h1 class="h2 mb-4">Register a new account </h1>
+                        <p class="mb-4">Register a new account on NSIA Human Recruitment portal.</p>
 
                     </div>
                     <!-- Steps-->
                     <!-- Step 1: Basic Info-->
-                    <form id="account" method="post" class="form-horizontal">
+                    <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                         <div class="bg-light rounded-3 p-4 p-md-5 mb-3">
 
                             <div class="row">
+
+                                <div class="col-sm-12 mb-4">
+                                    <label class="form-label" for="pr-fn">First Name <span class='text-danger'>*</span></label>
+                                    <input class="form-control form-control-lg" asp-for="Input.FirstName" type="text" id="pr-fn" placeholder="Enter your firstname" required>
+                                </div>
+                                <div class="col-sm-12 mb-4">
+                                    <label class="form-label" for="pr-fn">Last Name <span class='text-danger'>*</span></label>
+                                    <input class="form-control form-control-lg" asp-for="Input.LastName" type="text" id="pr-fn" placeholder="Enter your lastname" required>
+                                </div>
                                 <div class="col-sm-12 mb-4">
                                     <label class="form-label" for="pr-fn">Email <span class='text-danger'>*</span></label>
                                     <input class="form-control form-control-lg" asp-for="Input.Email" type="text" id="pr-fn" placeholder="Enter your email" required>
@@ -194,11 +204,15 @@
                                     <label class="form-label" for="pr-sn">Password <span class='text-danger'>*</span></label>
                                     <input class="form-control form-control-lg" asp-for="Input.Password" type="password" id="pr-sn" placeholder="Enter your password" required>
                                 </div>
+                                <div class="col-sm-12 mb-4">
+                                    <label class="form-label" for="pr-sn">Confirm Password <span class='text-danger'>*</span></label>
+                                    <input class="form-control form-control-lg" asp-for="Input.ConfirmPassword" type="password" id="pr-sn" placeholder="Enter your password" required>
+                                </div>
 
                                 <div>
-                                    <button type="submit" class="btn btn-primary btn-lg rounded-pill ms-sm-auto">Login<i class="fi-chevron-right fs-sm ms-2"></i></button>
+                                    <button type="submit" class="btn btn-primary btn-lg rounded-pill ms-sm-auto">Submit<i class="fi-chevron-right fs-sm ms-2"></i></button>
 
-                                    <a href="/Identity/Account/Register" style="float:right;" class="btn btn-info btn-lg rounded-pill ms-sm-auto">Register<i class="fi-chevron-right fs-sm ms-2"></i></a>
+                                    <a href="/Identity/Account/Login" style="float:right;" class="btn btn-info btn-lg rounded-pill ms-sm-auto">Click to Log In<i class="fi-chevron-right fs-sm ms-2"></i></a>
                                 </div>
 
 
@@ -226,6 +240,29 @@
     <script src="~/vendor/flatpickr/dist/flatpickr.min.js"></script>
     <!-- Main theme script-->
     <script src="~/js/theme.min.js"></script>
+    <script src="~/sweetalert2.min.js"></script>
+    @if (TempData["success"] != null)
+    {
+        <script type="text/javascript">
+            Swal({
+                type: 'success',
+                title: 'Thank you',
+                html: 'Your account has been created. Kindly login to the account and apply for the job.'
+
+            })
+        </script>
+    }
+    else if (TempData["error"] != null)
+    {
+        <script type="text/javascript">
+            Swal({
+                type: 'error',
+                title: 'Failed Registration !',
+                html: 'Opps!!! An error occurred during the registration. Kindly cross-check the supplied information and try again.'
+
+            })
+        </script>
+    }
 </body>
 
 </html>
