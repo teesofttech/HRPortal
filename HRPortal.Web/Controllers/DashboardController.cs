@@ -1,14 +1,17 @@
 ﻿using DocumentParser.src.parser;
+using HRPortal.Domain.Entities;
 using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HRPortal.Web.Controllers
@@ -17,14 +20,28 @@ namespace HRPortal.Web.Controllers
     public class DashboardController : Controller
     {
         public readonly IHostingEnvironment _hostingEnvironment;
-        public DashboardController(IHostingEnvironment hostingEnvironment)
+        db_a54634_portalContext db;
+        public DashboardController(IHostingEnvironment hostingEnvironment, db_a54634_portalContext db)
         {
-
+            this.db = db;
             _hostingEnvironment = hostingEnvironment;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            UserDashboardModel userDashboardModel = new UserDashboardModel();
+            var getVacanies = await db.TblVacancyAdverts.OrderByDescending(c => c.Datecreated).ToListAsync();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            if (getUser != null)
+            {
+                userDashboardModel.AspNetUser = getUser;
+                userDashboardModel.Vacanies = getVacanies;
+                return View(userDashboardModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult MyResume()
@@ -94,6 +111,42 @@ namespace HRPortal.Web.Controllers
             {
                 ViewData["error"] = "Errors occurred while creating vendor";
                 return RedirectToAction("UploadResume", "UploadResume");
+            }
+        }
+
+        public async Task<IActionResult> ListJobs()
+        {
+            UserDashboardModel userDashboardModel = new UserDashboardModel();
+            var getVacanies = await db.TblVacancyAdverts.OrderByDescending(c => c.Datecreated).ToListAsync();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            if (getUser != null)
+            {
+                userDashboardModel.AspNetUser = getUser;
+                userDashboardModel.Vacanies = getVacanies;
+                return View(userDashboardModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public async Task<IActionResult> JobDetail(int id)
+        {
+            UserDashboardModel userDashboardModel = new UserDashboardModel();
+            var getVacanies = await db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            if (getUser != null)
+            {
+                userDashboardModel.AspNetUser = getUser;
+                userDashboardModel.TblVacancyAdvert = getVacanies;
+                return View(userDashboardModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
             }
         }
     }

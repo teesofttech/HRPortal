@@ -1,16 +1,16 @@
-﻿
+﻿@model HRPortal.Web.Models.UserDashboardModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="position-absolute top-0 start-0 w-100 bg-dark" style="height: 398px;"></div>
+
 <div class="container content-overlay mt-5 mb-md-4 py-5">
     <!-- Breadcrumb-->
     <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
         <ol class="breadcrumb breadcrumb-light">
-            <li class="breadcrumb-item"><a href="job-board-home-v1.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="job-board-account-profile.html">Account</a></li>
-            <li class="breadcrumb-item active" aria-current="page">My resumes</li>
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Profile settings</li>
         </ol>
     </nav>
     <!-- Page card like wrapper-->
@@ -19,161 +19,113 @@
         <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
             <div class="d-flex align-items-start">
                 <div class="position-relative flex-shrink-0">
-                    <img class="rounded-circle" src="~/img/avatars/37.png" width="100" alt="Annette Black">
+                    <img class="rounded-circle" src="~/img/avatars/37.png" width="100" alt="">
                     <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
                 </div>
                 <div class="ps-3 ps-sm-4">
                     <h3 class="h5">Annette Black</h3>
                     <ul class="list-unstyled fs-sm mb-0">
-                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>annette_black@email.com</span></li>
-                        <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>(302) 555-0107</span></li>
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
+                      
                     </ul>
                 </div>
-            </div><a class="nav-link p-0 d-none d-md-block" href="#"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
+            </div>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark nav-link p-0 d-none d-md-block"><i class="fi-logout mt-n1 me-2"></i> Click here to Logout</button>
+            </form>
         </div>
         <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
         <div class="collapse d-md-block" id="account-nav">
             <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="job-board-account-profile.html"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="job-board-account-my-resumes.html" aria-current="page"><i class="fi-file mt-n1 me-2 fs-base"></i>My Resumes</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="job-board-account-saved-jobs.html"><i class="fi-heart mt-n1 me-2 fs-base"></i>Saved Jobs</a></li>
-                <li class="nav-item mb-md-0"><a class="nav-link" href="job-board-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Notifications</a></li>
-                <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("Index","Dashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>List Jobs</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("AllPostedJobs", "Dashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>Saved Jobs</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Summary","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
+
+                @*<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Resume", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Resumes</a></li>*@
+
+                <li class="nav-item d-md-none"><a class="nav-link" href="/Identity/Account/Logout"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
         </div>
-        <!-- Page title-->
-        <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
-            <h1 class="h3 mb-0">My resumes</h1><a class="fw-bold text-decoration-none" href="#"><i class="fi-trash me-2"></i><span class="align-middle">Delete all</span></a>
-        </div>
-        <div class="row">
-            <!-- Sidebar-->
-            <div class="col-md-3 mb-4 pb-3 pb-md-0">
-                <div style="max-width: 13rem;">
-                    <ul class="list-unstyled fs-sm pb-1 pb-md-3">
-                        <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1" href="#"><i class="fi-file opacity-70 me-2"></i><span>Publihed</span><span class="text-muted ms-auto">(3)</span></a></li>
-                        <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1" href="#"><i class="fi-file-clean opacity-70 me-2"></i><span>Drafts</span><span class="text-muted ms-auto">(0)</span></a></li>
-                        <li><a class="nav-link fw-normal d-flex align-items-center px-0 py-1" href="#"><i class="fi-archive opacity-70 me-2"></i><span>Archived</span><span class="text-muted ms-auto">(0)</span></a></li>
-                    </ul><a class="btn btn-primary rounded-pill w-100" href="job-board-post-resume-1.html"><i class="fi-plus fs-sm me-2"></i>Post resume</a>
+        <!-- Authorization info-->
+        <div class="row pt-4 mt-3">
+            <div class="col-lg-3">
+                <h2 class="h4">Authorization info</h2>
+            </div>
+            <div class="col-lg-9">
+                <div class="border rounded-3 p-3" id="auth-info">
+                    <!-- Email-->
+                    <div class="border-bottom pb-3 mb-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="pe-2">
+                                <label class="form-label fw-bold">Email</label>
+                                <div id="email-value">annette_black@email.com</div>
+                            </div>
+                            <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#email-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                        </div>
+                        <div class="collapse" id="email-collapse" data-bs-parent="#auth-info">
+                            <input class="form-control mt-3" type="email" data-bs-binded-element="#email-value" data-bs-unset-value="Not specified" value="annette_black@email.com">
+                        </div>
+                    </div>
+                    <!-- Password-->
+                    <div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="pe-2">
+                                <label class="form-label fw-bold">Password</label>
+                                <div>********</div>
+                            </div>
+                            <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#password-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                        </div>
+                        <div class="collapse" id="password-collapse" data-bs-parent="#auth-info">
+                            <div class="row gx-3 align-items-center my-3">
+                                <label class="col-sm-4 col-md-3 col-form-label" for="account-password-current">Current password:</label>
+                                <div class="col-sm-8 col-md-9">
+                                    <div class="password-toggle">
+                                        <input class="form-control" type="password" id="account-password-current" placeholder="Enter current password">
+                                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3 align-items-center my-3">
+                                <label class="col-sm-4 col-md-3 col-form-label" for="account-password-new">New password:</label>
+                                <div class="col-sm-8 col-md-9">
+                                    <div class="password-toggle">
+                                        <input class="form-control" type="password" id="account-password-new" placeholder="Enter new password">
+                                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row gx-3 align-items-center">
+                                <label class="col-sm-4 col-md-3 col-form-label" for="account-password-confirm">Confirm new password:</label>
+                                <div class="col-sm-8 col-md-9">
+                                    <div class="password-toggle">
+                                        <input class="form-control" type="password" id="account-password-confirm" placeholder="Confirm new password">
+                                        <label class="password-toggle-btn" aria-label="Show/hide password">
+                                            <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- List of resumes-->
-            <div class="col-md-9">
-                <!-- Item-->
-                <div class="card bg-secondary card-hover mb-2">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex align-items-start">
-                                <img class="d-none d-sm-block" src="~/img/avatars/38.png" width="100" alt="Resume picture">
-                                <div class="ps-sm-3">
-                                    <h3 class="h6 card-title pb-1 mb-2"><a class="stretched-link text-nav text-decoration-none" href="#">Lead Web Designer</a></h3>
-                                    <div class="fs-sm">
-                                        <div class="text-nowrap mb-2"><i class="fi-map-pin text-muted me-1"> </i>New York</div>
-                                        <div class="text-nowrap"><i class="fi-cash fs-base text-muted me-1"></i>$4,000</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column align-items-end justify-content-between">
-                                <div class="dropdown position-relative zindex-10 mb-3">
-                                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
-                                    <ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-edit opacity-60 me-2"></i>Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-flame opacity-60 me-2"></i>Promote</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-download-file opacity-60 me-2"></i>Download as PDF</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-power opacity-60 me-2"></i>Deactivate</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-trash opacity-60 me-2"></i>Delete</button>
-                                        </li>
-                                    </ul>
-                                </div><strong class="fs-sm">80 views</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item-->
-                <div class="card bg-secondary card-hover mb-2">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex align-items-start">
-                                <img class="d-none d-sm-block" src="~/img/avatars/37.png" width="100" alt="Resume picture">
-                                <div class="ps-sm-3">
-                                    <h3 class="h6 card-title pb-1 mb-2"><a class="stretched-link text-nav text-decoration-none" href="#"><span class="me-3">Graphic Designer</span><span class="badge bg-faded-accent fs-sm rounded-pill">Featured</span></a></h3>
-                                    <div class="fs-sm">
-                                        <div class="text-nowrap mb-2"><i class="fi-map-pin text-muted me-1"> </i>New York</div>
-                                        <div class="text-nowrap"><i class="fi-cash fs-base text-muted me-1"></i>$2,000 - $2,500</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column align-items-end justify-content-between">
-                                <div class="dropdown position-relative zindex-5 mb-3">
-                                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu2" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
-                                    <ul class="dropdown-menu my-1" aria-labelledby="contextMenu2">
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-edit opacity-60 me-2"></i>Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-flame opacity-60 me-2"></i>Promote</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-download-file opacity-60 me-2"></i>Download as PDF</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-power opacity-60 me-2"></i>Deactivate</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-trash opacity-60 me-2"></i>Delete</button>
-                                        </li>
-                                    </ul>
-                                </div><strong class="fs-sm">203 views</strong>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item-->
-                <div class="card bg-secondary card-hover">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex align-items-start">
-                                <img class="d-none d-sm-block" src="~/img/avatars/37.png" width="100" alt="Resume picture">
-                                <div class="ps-sm-3">
-                                    <h3 class="h6 card-title pb-1 mb-2"><a class="stretched-link text-nav text-decoration-none" href="#">Identity Designer / Illustrator</a></h3>
-                                    <div class="fs-sm">
-                                        <div class="text-nowrap mb-2"><i class="fi-map-pin text-muted me-1"> </i>New York</div>
-                                        <div class="text-nowrap"><i class="fi-cash fs-base text-muted me-1"></i>$2,500</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-column align-items-end justify-content-between">
-                                <div class="dropdown position-relative zindex-1 mb-3">
-                                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu3" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
-                                    <ul class="dropdown-menu my-1" aria-labelledby="contextMenu3">
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-edit opacity-60 me-2"></i>Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-flame opacity-60 me-2"></i>Promote</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-download-file opacity-60 me-2"></i>Download as PDF</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-power opacity-60 me-2"></i>Deactivate</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item" type="button"><i class="fi-trash opacity-60 me-2"></i>Delete</button>
-                                        </li>
-                                    </ul>
-                                </div><strong class="fs-sm">92 views</strong>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+
+        <div class="row pt-4 mt-2">
+            <div class="col-lg-9 offset-lg-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <button class="btn btn-primary rounded-pill px-3 px-sm-4" type="button">Save changes</button>
+                    <button class="btn btn-link btn-sm px-0" type="button"><i class="fi-trash me-2"></i>Delete account</button>
                 </div>
             </div>
         </div>
