@@ -151,11 +151,10 @@ namespace HRPortal.Web.Controllers
             }
         }
 
-
-        //public async Task<IActionResult> Apply(int id)
-        //{
-        //    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-        //}
+        public async Task<IActionResult> Apply(int id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return View();
+        }
     }
 }
