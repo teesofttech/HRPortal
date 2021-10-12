@@ -1,4 +1,4 @@
-﻿
+﻿@model HRPortal.Web.Models.UserDashboardModel
 @{
     ViewData["Title"] = "Job Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,51 +19,45 @@
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a href="job-board-home-v1.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="job-board-catalog.html">Find jobs</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Partnership Manager</li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.TblVacancyAdvert.JobTitle</li>
             </ol>
         </nav>
         <div class="row">
             <!-- Signle job content-->
             <div class="col-lg-7 position-relative pe-lg-5 mb-5 mb-lg-0" style="z-index: 1025;">
                 <div class="d-flex justify-content-between mb-2">
-                    <h2 class="h3 mb-0">Partnership Manager</h2>
+                    <h2 class="h3 mb-0">@Model.TblVacancyAdvert.JobTitle</h2>
                     <div class="text-end">
                         <span class="badge bg-faded-accent rounded-pill fs-sm mb-2">Featured</span>
-                        <div class="fs-sm text-muted">2 hours ago</div>
+                        <div class="fs-sm text-muted">@Model.TblVacancyAdvert.Datecreated.Value.ToLongDateString()</div>
                     </div>
                 </div>
                 <ul class="list-unstyled fs-sm mb-4">
-                    <li class="mb-2"><a class="d-flex align-items-center text-decoration-none" href="job-board-employer-single.html"><i class="fi-external-link me-2"></i><span class="text-decoration-underline">Zalo Tech Company</span></a></li>
-                    <li class="d-flex align-items-center mb-2"><i class="fi-map-pin text-muted me-2"></i><span>New York</span></li>
-                    <li class="d-flex align-items-center mb-2"><i class="fi-cash fs-base text-muted me-2"></i><span>$10,000</span></li>
-                    <li class="d-flex align-items-center mb-2"><i class="fi-phone text-muted me-2"></i><span class="me-2">Bessie Cooper, HR Manager</span><a href="#">Show phone</a></li>
-                    <li class="d-flex align-items-center mb-2"><i class="fi-clock text-muted me-2"></i><span class="me-2">Full-time</span></li>
+                    <li class="mb-2"><a class="d-flex align-items-center text-decoration-none" href="job-board-employer-single.html"><i class="fi-external-link me-2"></i><span class="text-decoration-underline">NSIA INSURANCE</span></a></li>
+                    <li class="d-flex align-items-center mb-2"><i class="fi-map-pin text-muted me-2"></i><span>@Model.TblVacancyAdvert.Location</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="fi-cash fs-base text-muted me-2"></i><span>TBD</span></li>
+             
+                    <li class="d-flex align-items-center mb-2"><i class="fi-clock text-muted me-2"></i><span class="me-2">@Model.TblVacancyAdvert.ContractType</span></li>
                 </ul>
                 <hr class="mb-4">
                 <h3 class="h6">Description:</h3>
-                <p>Sit sit viverra aenean nunc. Vestibulum nulla tellus, praesent mi. Eget eu sapien posuere varius nisl. Arcu scelerisque ut venenatis, nec. Sed id etiam nisl nisl, elementum ac odio morbi dolor. Sem mauris turpis ultrices sed porttitor orci, erat. Ultrices ut a mi sem mauris, vitae egestas. Eget suscipit a, consectetur quam sed morbi. Metus, tortor egestas phasellus urna. Lorem eu dictum egestas vitae faucibus congue urna. Sed dolor sed risus duis volutpat ullamcorper.</p>
+                <p>@Model.TblVacancyAdvert.JobObjectives</p>
                 <h3 class="h6 pt-2">Requirements:</h3>
                 <ul class="list-unstyled">
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Placerat id mauris, ac ipsum nulla mi netus vestibulum fringilla.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Turpis venenatis sapien etiam in orci, euismod.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Elit tempor, integer augue aliquam justo.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Ultricies accumsan, malesuada pellentesque malesuada massa sed viverra eget.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Varius mauris netus placerat neque, orci amet odio orci.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Fermentum ut mi sit vel sit dictum mollis turpis.</li>
+                    @Model.TblVacancyAdvert.RelevantRequirement
                 </ul>
-                <h3 class="h6 pt-2">Company offers:</h3>
+                <h3 class="h6 pt-2">Company Summary:</h3>
                 <ul class="list-unstyled">
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Et mattis sit imperdiet risus, fermentum ultrices non.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Sed phasellus consequat nunc enim interdum tristique ultrices egestas.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Molestie mus ultrices tellus enim.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Vitae pulvinar massa id lorem aliquam fermentum egestas.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Dictumst blandit sit mauris in consectetur.</li>
-                    <li class="d-flex"><span class="text-primary fs-lg me-2">&#8226;</span>Sem purus lorem odio donec faucibus ipsum ultricies.</li>
+                    @Model.TblSummary.CompanySummary
                 </ul>
-                <p class="pt-2 mb-1">Please, send your CV marked “Partnership Manager” in the subject via e-mail:</p><a class="nav-link-muted fw-bold" href="mailto:contact@example.com">contact@example.com</a>
+                <h3 class="h6 pt-2">Equality Statement:</h3>
+                <ul class="list-unstyled">
+                    @Model.TblSummary.EqualityStatement
+                </ul>
+
                 <hr class="my-4">
                 <div class="btn-group btn-group-lg">
-                    <button class="btn btn-primary rounded-pill rounded-end-0 ps-4 pe-3" type="button">Apply for this position</button>
+                    <a class="btn btn-primary rounded-pill rounded-end-0 ps-4 pe-3" href="@Url.Action("Apply","Dashboard")/@Model.TblVacancyAdvert.Id">Apply for this position</a>
                     <button class="btn btn-primary border-end-0 border-top-0 border-bottom-0 border-light rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart me-1"></i></button>
                 </div>
             </div>
@@ -81,17 +75,10 @@
                                 </div>
                                 <button class="btn btn-primary rounded-pill" type="button">Subscribe</button>
                             </form>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="agree">
-                                <label class="form-check-label" for="agree">I agree to receive communications from Finder.</label>
-                            </div>
-                            <hr class="my-4">
-                            <div class="d-flex align-items-end">
-                                <div class="fs-lg fw-bold me-3">Like our jobs?<br>Receive vacancies in Telegram</div><a class="btn btn-icon btn-translucent-primary btn-xs rounded-circle" href="#"><i class="fi-telegram"></i></a>
-                            </div>
+                            
                         </div>
                     </div>
-                    <div class="pt-4 pt-lg-5 ps-4">
+                    @*<div class="pt-4 pt-lg-5 ps-4">
                         <h2 class="h3">My last search queries:</h2>
                         <ul class="list-unstyled mb-0">
                             <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Accountant</a></li>
@@ -99,7 +86,7 @@
                             <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Administrator</a></li>
                             <li class="mb-0"><a class="nav-link-muted d-inline-block fw-bold py-1" href="#">Clear all<i class="fi-x fs-xs ms-2"></i></a></li>
                         </ul>
-                    </div>
+                    </div>*@
                 </div>
             </aside>
         </div>

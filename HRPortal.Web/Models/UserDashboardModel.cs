@@ -11,5 +11,6 @@ namespace HRPortal.Web.Models
         public AspNetUser AspNetUser { get; set; }
         public List<TblVacancyAdvert> Vacanies { get; set; }
         public TblVacancyAdvert TblVacancyAdvert { get; set; }
+        public TblSummary TblSummary { get; set; }
     }
 }

@@ -142,6 +142,7 @@ namespace HRPortal.Web.Controllers
             {
                 userDashboardModel.AspNetUser = getUser;
                 userDashboardModel.TblVacancyAdvert = getVacanies;
+                userDashboardModel.TblSummary = await db.TblSummaries.FirstOrDefaultAsync();
                 return View(userDashboardModel);
             }
             else
@@ -149,5 +150,12 @@ namespace HRPortal.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+
+        //public async Task<IActionResult> Apply(int id)
+        //{
+        //    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        //}
     }
 }
