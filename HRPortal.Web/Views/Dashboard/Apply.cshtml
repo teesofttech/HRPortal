@@ -2,7 +2,506 @@
 @{
     ViewData["Title"] = "Apply";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    <style>
+        .page-loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all .4s .2s ease-in-out;
+            transition: all .4s .2s ease-in-out;
+            background-color: #fff;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+        }
+
+            .page-loading.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+        .page-loading-inner {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+            -webkit-transition: opacity .2s ease-in-out;
+            transition: opacity .2s ease-in-out;
+            opacity: 0;
+        }
+
+        .page-loading.active > .page-loading-inner {
+            opacity: 1;
+        }
+
+        .page-loading-inner > span {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #666276;
+            ;
+        }
+
+        .page-spinner {
+            display: inline-block;
+            width: 2.75rem;
+            height: 2.75rem;
+            margin-bottom: .75rem;
+            vertical-align: text-bottom;
+            border: .15em solid #bbb7c5;
+            border-right-color: transparent;
+            border-radius: 50%;
+            -webkit-animation: spinner .75s linear infinite;
+            animation: spinner .75s linear infinite;
+        }
+
+        @@-webkit-keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes spinner {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <!-- Page loading scripts-->
+    <script>
+        (function () {
+            window.onload = function () {
+                var preloader = document.querySelector('.page-loading');
+                preloader.classList.remove('active');
+                setTimeout(function () {
+                    preloader.remove();
+                }, 2000);
+            };
+        })();
+
+    </script>
+    <!-- Vendor Styles-->
+    <link rel="stylesheet" media="screen" href="~/vendor/simplebar/dist/simplebar.min.css" />
+    <link rel="stylesheet" media="screen" href="~/vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css" />
+    <link rel="stylesheet" media="screen" href="~/vendor/filepond/dist/filepond.min.css" />
+    <!-- Main Theme Styles + Bootstrap-->
+    <link rel="stylesheet" media="screen" href="~/css/theme.min.css">
+    <!-- Google Tag Manager-->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    '../www.googletagmanager.com/gtm5445.html?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WKV3GT5');
+    </script>
 }
 
-<h2>Apply</h2>
+<section class="bg-dark pt-5">
+    <div class="container py-5">
+    </div>
 
+</section>
+<section class="position-relative bg-white rounded-xxl-4 zindex-5" style="margin-top: -30px;">
+    <div class="container mt-5 mb-md-4 py-5">
+        <!-- Breadcrumb-->
+        <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="job-board-home-v1.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Post resume</li>
+            </ol>
+        </nav>
+        <!-- Page content-->
+        <div class="row justify-content-center pb-sm-2">
+            <div class="col-lg-11 col-xl-10">
+                <!-- Page title-->
+                <div class="text-center pb-4 mb-3">
+                    <h1 class="h2 mb-4">Create online resume</h1>
+                    <p class="mb-4">Save time by uploading a resume to prefill some of the fields below. Please, use PDF format.</p>
+                    <button class="btn btn-primary btn-lg rounded-pill" type="button"><i class="fi-upload me-2"></i>Upload existing resume</button>
+                    <a href="~/document/default.docx" class="btn btn-success">Download Template</a>
+                </div>
+
+                <div class="bg-light rounded-3 pt-4 pb-0 px-4 p-md-5 mb-3">
+                    <!-- Title + Action buttons-->
+                    <div class="d-md-flex align-items-center mb-4 pb-md-2">
+                        <h2 class="h4 mb-md-0"><i class="fi-eye-on text-primary fs-5 mt-n1 me-2 pe-1"></i>Review your resume and save</h2>
+                        <div class="ms-md-auto">
+                            <div class="dropdown d-lg-none">
+                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-align-justify me-1"></i>Actions</button>
+                                <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item" href="#"><i class="fi-trash me-2"></i>Delete</a><a class="dropdown-item" href="#"><i class="fi-archive me-2"></i>Archive</a><a class="dropdown-item" href="#"><i class="fi-download-file me-2"></i>Download as PDF</a></div>
+                            </div>
+                            <ul class="list-unstyled d-none d-lg-flex flex-wrap fs-sm mb-0">
+                                <li class="border-end mb-0"><a class="nav-link text-nowrap" href="#"><i class="fi-trash me-1"></i><span class="align-middle">Delete</span></a></li>
+                                <li class="border-end mb-0"><a class="nav-link text-nowrap" href="#"><i class="fi-archive me-1"></i><span class="align-middle">Archive</span></a></li>
+                                <li class="mb-0"><a class="nav-link text-nowrap pe-0" href="#"><i class="fi-download-file me-1"></i><span class="align-middle">Download as PDF</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Resume preview-->
+                    <div class="card shadow-sm p-md-2 mx-n4 mx-md-0">
+                        <div class="card-body p-4">
+                            <div class="d-sm-flex justify-content-between align-items-start pb-4">
+                                <div class="flex-shrink-0 order-sm-2 mb-4" style="width: 10rem; height: 10rem;">
+                                    <input class="file-uploader bg-secondary" type="file" accept="image/png, image/jpeg" data-label-idle="&lt;i class=&quot;d-inline-block fi-camera-plus fs-2 text-muted mb-2&quot;&gt;&lt;/i&gt;&lt;br&gt;&lt;span class=&quot;fw-bold&quot;&gt;Change picture&lt;/span&gt;" data-style-panel-layout="compact" data-image-preview-height="160" data-image-crop-aspect-ratio="1:1" data-image-resize-target-width="200" data-image-resize-target-height="200">
+                                </div>
+                                <div class="order-sm-1">
+                                    <h3 class="h4 mb-sm-4">Annette Black</h3>
+                                    <h4 class="h5">Basic info</h4>
+                                    <ul class="list-unstyled text-nav">
+                                        <li><span class='text-muted'>Position:</span> UX Designer</li>
+                                        <li><span class='text-muted'>Job type:</span> Part-time</li>
+                                        <li><span class='text-muted'>Location:</span> New York, USA</li>
+                                        <li><span class='text-muted'>Salary:</span> $2000 – $3000</li>
+                                        <li><span class='text-muted'>Categories:</span> Design, Internet Technology</li>
+                                    </ul><a class="d-inline-block fw-bold text-decoration-none py-1" href="#"><i class="fi-edit mt-n1 me-2"></i>Edit</a>
+                                </div>
+                            </div>
+                            <div class="border-top py-4">
+                                <h4 class="h5">Personal info</h4>
+                                <ul class="list-unstyled text-nav">
+                                    <li><span class='text-muted'>Full name:</span> Annete Black</li>
+                                    <li><span class='text-muted'>Date of birth:</span> May 18, 1989</li>
+                                    <li><span class='text-muted'>Address:</span> 2464 Royal Ln. Mesa, New Jersey 45463</li>
+                                    <li><span class='text-muted'>Phone:</span> (302) 555-0107</li>
+                                    <li><span class='text-muted'>Email:</span> annette_black@email.com</li>
+                                    <li>
+                                        <span class="text-muted">Socials: </span>
+                                        <div class="d-inline-flex ms-1"><a class="btn btn-icon btn-light-primary btn-xs rounded-circle shadow-sm me-2 my-1" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs rounded-circle shadow-sm me-2 my-1" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs rounded-circle shadow-sm my-1" href="#"><i class="fi-linkedin"></i></a></div>
+                                    </li>
+                                </ul><a class="d-inline-block fw-bold text-decoration-none py-1" href="#"><i class="fi-edit mt-n1 me-2"></i>Edit</a>
+                            </div>
+                            <div class="border-top py-4">
+                                <h4 class="h5">Work experience</h4>
+                                <div class="mt-3">
+                                    <h5 class="h6 mb-2">Product Designer</h5>
+                                    <ul class="list-unstyled fs-sm mb-2">
+                                        <li>XAMPP Company (IT, Consulting)</li>
+                                        <li>2015 – 2020</li>
+                                    </ul>
+                                    <p>Praesent sed pulvinar posuere nisl tincidunt. Iaculis sit quam magna congue. Amet vel non aliquet habitasse. Egestas erat odio et, eleifend turpis etiam blandit interdum. Nec augue ut senectus quisque diam quis. At augue accumsan, bibendum. A eget et, eget quisque egestas netus vel.</p>
+                                    <div class="d-flex"><a class="d-inline-block fw-bold text-decoration-none py-1 pe-3 border-end" href="job-board-post-resume-3.html"><i class="fi-edit mt-n1 me-2"></i>Edit</a><a class="d-inline-block fw-bold text-decoration-none py-1 ps-3" href="#"><i class="fi-trash mt-n1 me-2"></i>Delete</a></div>
+                                </div>
+                                <div class="pt-2 mt-3">
+                                    <h5 class="h6 mb-2">Product Designer</h5>
+                                    <ul class="list-unstyled fs-sm">
+                                        <li>XAMPP Company (IT, Consulting)</li>
+                                        <li>2015 – 2020</li>
+                                    </ul>
+                                    <div class="d-flex"><a class="d-inline-block fw-bold text-decoration-none py-1 pe-3 border-end" href="job-board-post-resume-3.html"><i class="fi-edit mt-n1 me-2"></i>Edit</a><a class="d-inline-block fw-bold text-decoration-none py-1 ps-3" href="#"><i class="fi-trash mt-n1 me-2"></i>Delete</a></div>
+                                </div>
+                            </div>
+                            <div class="border-top py-4">
+                                <h4 class="h5">Education</h4>
+                                <div class="mt-3">
+                                    <h5 class="h6 mb-2">Bachelor's degree</h5>
+                                    <ul class="list-unstyled fs-sm">
+                                        <li>Syracuse University</li>
+                                        <li>900 South Crouse Ave. Syracuse, NY 13244</li>
+                                        <li>2008 – 2012</li>
+                                    </ul>
+                                    <div class="d-flex"><a class="d-inline-block fw-bold text-decoration-none py-1 pe-3 border-end" href="#"><i class="fi-edit mt-n1 me-2"></i>Edit</a><a class="d-inline-block fw-bold text-decoration-none py-1 ps-3" href="#"><i class="fi-trash mt-n1 me-2"></i>Delete</a></div>
+                                </div>
+                            </div>
+                            <div class="border-top pt-4">
+                                <h4 class="h5">Skills</h4><a class="d-inline-block fw-bold text-decoration-none py-1" href="#"><i class="fi-plus fs-sm me-2"></i>Add skills</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Navigation-->
+                <div class="d-flex flex-column flex-sm-row bg-light rounded-3 p-4 px-md-5">
+                    <a class="btn btn-outline-primary btn-lg rounded-pill mb-3 mb-sm-0" href="#"><i class="fi-chevron-left fs-sm me-2"></i>Previous step</a>
+                    <button class="btn btn-primary btn-lg rounded-pill ms-sm-auto" type="button">Save resume</button>
+                </div>
+
+                @*<div class="bg-light rounded-3 p-4 p-md-5 mb-3">
+                        <h2 class="h4 mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
+                        <div class="row">
+                            <div class="col-sm-6 mb-4">
+                                <label class="form-label" for="pr-fn">First name <span class='text-danger'>*</span></label>
+                                <input class="form-control form-control-lg" type="text" id="pr-fn" value="Annette" placeholder="Enter your first name" required>
+                            </div>
+                            <div class="col-sm-6 mb-4">
+                                <label class="form-label" for="pr-sn">Second name <span class='text-danger'>*</span></label>
+                                <input class="form-control form-control-lg" type="text" id="pr-sn" value="Black" placeholder="Enter your second name" required>
+                            </div>
+                            <div class="col-sm-6 mb-4">
+                                <label class="form-label" for="pr-email">Email address <span class='text-danger'>*</span></label>
+                                <input class="form-control form-control-lg" type="email" id="pr-email" value="annette_black@email.com" placeholder="Enter your email address" required>
+                            </div>
+                            <div class="col-sm-6 mb-4">
+                                <label class="form-label" for="pr-phone">Phone</label>
+                                <input class="form-control form-control-lg" type="text" id="pr-phone" value="(302) 555-0107" placeholder="Enter your phone number">
+                            </div>
+                            <div class="col-sm-6 mb-4">
+                                <label class="form-label" for="pr-birth-date">Date of birth <span class='text-danger'>*</span></label>
+                                <div class="input-group input-group-lg">
+                                    <input class="form-control date-picker rounded pe-5" type="text" id="pr-birth-date" placeholder="Choose date" data-datepicker-options="{&quot;altInput&quot;: true, &quot;altFormat&quot;: &quot;F j, Y&quot;, &quot;dateFormat&quot;: &quot;Y-m-d&quot;}"><i class="fi-calendar text-muted position-absolute top-50 end-0 translate-middle-y me-3"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 mb-4">
+                                <label class="form-label" for="pr-country">Country where you want to work <span class='text-danger'>*</span></label>
+                                <select class="form-select form-select-lg" id="pr-country" required>
+                                    <option value="" disabled selected>Choose country</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="China">China</option>
+                                    <option value="Denmark">Denmark</option>
+                                    <option value="France">France</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="UK">UK</option>
+                                    <option value="USA">USA</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6 mb-4">
+                                <label class="form-label" for="pr-city">City where you want to work <span class='text-danger'>*</span></label>
+                                <select class="form-select form-select-lg" id="pr-city" required>
+                                    <option value="" disabled selected>Choose city</option>
+                                    <option value="Beijing">Beijing</option>
+                                    <option value="Berlin">Berlin</option>
+                                    <option value="Brussels">Brussels</option>
+                                    <option value="Copenhagen">Copenhagen</option>
+                                    <option value="London">London</option>
+                                    <option value="Ottawa">Ottawa</option>
+                                    <option value="Paris">Paris</option>
+                                    <option value="Sydney">Sydney</option>
+                                    <option value="Tokyo">Tokyo</option>
+                                    <option value="Washington">Washington</option>
+                                </select>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label class="form-label" for="pr-address">Your address</label>
+                                <input class="form-control form-control-lg" type="text" id="pr-address" placeholder="Enter the address">
+                            </div>
+                        </div>
+                        <div class="pb-4 mb-2">
+                            <label class="form-label fw-bold mb-3">Socials</label>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-facebook text-body"></i></div>
+                                <input class="form-control" type="text" placeholder="Your Facebook account">
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-linkedin text-body"></i></div>
+                                <input class="form-control" type="text" placeholder="Your LinkedIn account">
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-twitter text-body"></i></div>
+                                <input class="form-control" type="text" placeholder="Your Twitter account">
+                            </div>
+                            <div class="collapse" id="showMoreSocials">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-instagram text-body"></i></div>
+                                    <input class="form-control" type="text" placeholder="Your Instagram account">
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="btn btn-icon btn-light btn-xs shadow-sm rounded-circle pe-none flex-shrink-0 me-3"><i class="fi-behance text-body"></i></div>
+                                    <input class="form-control" type="text" placeholder="Your Behance account">
+                                </div>
+                            </div><a class="collapse-label collapsed d-inline-block fs-sm fw-bold text-decoration-none pt-2" href="#showMoreSocials" data-bs-toggle="collapse" data-bs-label-collapsed="Show more" data-bs-label-expanded="Show less" role="button" aria-expanded="false" aria-controls="showMoreSocials"><i class="fi-arrow-down me-2"></i></a>
+                        </div>
+                        <div class="border-top pt-4">
+                            <label class="form-label fw-bold py-2 mb-1" for="pr-position">Position you want to work on</label>
+                            <input class="form-control form-control-lg mb-4" type="text" id="pr-position" placeholder="Indicate the position" required>
+                            <label class="form-label fw-bold pb-1 mb-2">Choose categories for posting resume</label>
+                            <div class="row row-cols-sm-2 row-cols-md-4 gx-3 gx-lg-4 mb-4">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="accounting">
+                                        <label class="form-check-label" for="accounting">Accounting</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="marketing" checked>
+                                        <label class="form-check-label" for="marketing">Marketing &amp; PR</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="medicine">
+                                        <label class="form-check-label" for="medicine">Medicine</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="agriculture">
+                                        <label class="form-check-label" for="agriculture">Agriculture</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="it" checked>
+                                        <label class="form-check-label" for="it">Internet technology</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="security">
+                                        <label class="form-check-label" for="security">Security</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="management">
+                                        <label class="form-check-label" for="management">Management</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="horeca">
+                                        <label class="form-check-label" for="horeca">HoReCa</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="design" checked>
+                                        <label class="form-check-label" for="design">Design, creativity</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="sport">
+                                        <label class="form-check-label" for="sport">Fitness &amp; sports</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="beauty">
+                                        <label class="form-check-label" for="beauty">Beauty</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="culture">
+                                        <label class="form-check-label" for="culture">Culture</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="music">
+                                        <label class="form-check-label" for="music">Music</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="logistics">
+                                        <label class="form-check-label" for="logistics">Logistics</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="education">
+                                        <label class="form-check-label" for="education">Education &amp; science</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="sales">
+                                        <label class="form-check-label" for="sales">Sales &amp; purchases</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="industry">
+                                        <label class="form-check-label" for="industry">Industry</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="transportation">
+                                        <label class="form-check-label" for="transportation">Transportation</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="media">
+                                        <label class="form-check-label" for="media">Mass media &amp; publishing</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="insurance">
+                                        <label class="form-check-label" for="insurance">Insurance</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="construction">
+                                        <label class="form-check-label" for="construction">Construction</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="architecture">
+                                        <label class="form-check-label" for="architecture">Architecture</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="hr">
+                                        <label class="form-check-label" for="hr">HR management</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="law">
+                                        <label class="form-check-label" for="law">Law</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="form-label fw-bold pb-1 mb-2">Job type</label>
+                            <div class="row row-cols-sm-2 row-cols-md-4 gx-3 gx-lg-4 mb-4">
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="full-time">
+                                        <label class="form-check-label" for="full-time">Full-time</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="part-time" checked>
+                                        <label class="form-check-label" for="part-time">Part-time</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="remote">
+                                        <label class="form-check-label" for="remote">Remote</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="temporary" checked>
+                                        <label class="form-check-label" for="temporary">Temporary</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="contract">
+                                        <label class="form-check-label" for="contract">Contract</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="internship">
+                                        <label class="form-check-label" for="internship">Internship</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="form-label fw-bold pb-1 mb-2">Salary range</label>
+                            <div class="row gx-2 gx-lg-3 gx-xl-4">
+                                <div class="col-md-2 mb-3 mb-md-0">
+                                    <select class="form-select form-select-lg">
+                                        <option value="usd">&#36;</option>
+                                        <option value="eur">&#8364;</option>
+                                        <option value="gbp">&#163;</option>
+                                        <option value="jpy">&#165;</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-7 mb-3 mb-md-0">
+                                    <div class="d-flex align-items-center">
+                                        <input class="form-control form-control-lg" type="number" step="100" min="300" placeholder="From">
+                                        <div class="mx-2">&mdash;</div>
+                                        <input class="form-control form-control-lg" type="number" step="100" min="500" placeholder="To">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-select form-select-lg">
+                                        <option value="monthly">monthly</option>
+                                        <option value="per hour">per hour</option>
+                                        <option value="weekly">weekly</option>
+                                        <option value="annually">annually</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                <!-- Navigation-->
+                @*<div class="d-flex flex-column flex-sm-row bg-light rounded-3 p-4 px-md-5"><a class="btn btn-primary btn-lg rounded-pill ms-sm-auto" href="job-board-post-resume-2.html">Next step<i class="fi-chevron-right fs-sm ms-2"></i></a></div>*@
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
+<script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="~/vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
+<script src="~/vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+<script src="~/vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js"></script>
+<script src="~/vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
+<script src="~/vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
+<script src="~/vendor/filepond/dist/filepond.min.js"></script>
+<!-- Main theme script-->
+<script src="~/js/theme.min.js"></script>
