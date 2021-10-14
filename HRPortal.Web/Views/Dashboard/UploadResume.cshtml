@@ -59,8 +59,6 @@
                         }
                         else
                         {
-
-
                             <textarea class="form-control resume height-120" placeholder="Cover Letter">
                             @if (Model.Objective!=null) {
                                 foreach (var i in Model.Objective.Where(i => !string.IsNullOrEmpty(i)))
@@ -83,26 +81,26 @@
             </div>
 
             @*<div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <label>Cover Letter</label>
-                        @if (Model == null)
-                        {
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Cover Letter</label>
+                                        @if (Model == null)
+                                        {
 
-                        }
-                        else
-                        {
-                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
-                                 @foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
-                                 {
-                                     @i
-                                 }
+                                        }
+                                        else
+                                        {
+                                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
+                                                 @foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
+                                                 {
+                                                     @i
+                                                 }
 
-</textarea>
-                        }
-                    </div>
-                </div>
-            </div>*@
+                </textarea>
+                                        }
+                                    </div>
+                                </div>
+                            </div>*@
 
 
             <!-- Row Experience -->
@@ -118,126 +116,126 @@
                     <div class="form-group">
                         <label>Cover Letter</label>
                         @*@if (Model == null)
-                        {
+                                                    {
 
-                        }
-                        else
-                        {
-                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
-                                 @foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
-                                 {
-                                     @i
-                                 }
+                                                    }
+                                                    else
+                                                    {
+                                                        <textarea class="form-control resume height-120" placeholder="Cover Letter">
+                                                             @foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
+                                                             {
+                                                                 @i
+                                                             }
 
-</textarea>
-                        }
-                    </div>*@
-                </div>
-            </div>
-            <!-- Row Educations -->
-            <div class="row mrg-top-30">
-                <div class="col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <h4>Educations</h4>
+                            </textarea>
+                                                    }
+                                                </div>*@
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <label>Cover Letter</label>
-                        @*@if (Model == null)
-                        {
-
-                        }
-                        else
-                        {
-                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
-                                 @foreach (var i in Model.Education.Where(i => !string.IsNullOrEmpty(i)))
-                                 {
-                                     @i
-                                 }
-
-</textarea>
-                        }*@
+                <!-- Row Educations -->
+                <div class="row mrg-top-30">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <h4>Educations</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- row -->
-            <!-- Row Skills -->
-            <div class="row mrg-top-30">
-                <div class="col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <h4>Skills</h4>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Cover Letter</label>
+                            @*@if (Model == null)
+                                                        {
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
+                                                                 @foreach (var i in Model.Education.Where(i => !string.IsNullOrEmpty(i)))
+                                                                 {
+                                                                     @i
+                                                                 }
+
+                                </textarea>
+                                                        }*@
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <label>Cover Letter</label>
-                        @*@if (Model == null)
-                        {
-
-                        }
-                        else
-                        {
-                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
-                                 @foreach (var i in Model.Skill.Where(i => !string.IsNullOrEmpty(i)))
-                                 {
-                                     @i
-                                 }
-
-</textarea>
-                        }*@
+                <!-- row -->
+                <!-- Row Skills -->
+                <div class="row mrg-top-30">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <h4>Skills</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Row Honors & Awards -->
-            <div class="row mrg-top-30">
-                <div class="col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <h4>Honors & Awards</h4>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Cover Letter</label>
+                            @*@if (Model == null)
+                                                        {
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
+                                                                 @foreach (var i in Model.Skill.Where(i => !string.IsNullOrEmpty(i)))
+                                                                 {
+                                                                     @i
+                                                                 }
+
+                                </textarea>
+                                                        }*@
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="form-group">
-                        <label>Cover Letter</label>
-                        @*@if (Model == null)
-                        {
-
-                        }
-                        else
-                        {
-                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
-                                 @foreach (var i in Model.Achievement.Where(i => !string.IsNullOrEmpty(i)))
-                                 {
-                                     @i
-                                 }
-
-</textarea>
-                        }*@
+                <!-- Row Honors & Awards -->
+                <div class="row mrg-top-30">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <h4>Honors & Awards</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Cover Letter</label>
+                            @*@if (Model == null)
+                                                        {
 
-            <!-- row -->
-            <div class="row mrg-top-30">
-                <div class="col-md-12 col-sm-12">
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn-savepreview"><i class="ti-angle-double-right"></i>Update Resume</button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <textarea class="form-control resume height-120" placeholder="Cover Letter">
+                                                                 @foreach (var i in Model.Achievement.Where(i => !string.IsNullOrEmpty(i)))
+                                                                 {
+                                                                     @i
+                                                                 }
+
+                                </textarea>
+                                                        }*@
+                        </div>
                     </div>
                 </div>
+
+                <!-- row -->
+                <div class="row mrg-top-30">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn-savepreview"><i class="ti-angle-double-right"></i>Update Resume</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
-
     </div>
 </div>
-
 <script type="text/javascript" src="~/assets/plugins/js/jquery.min.js"></script>
 <script type="text/javascript" src="~/assets/plugins/js/viewportchecker.js"></script>
 <script type="text/javascript" src="~/assets/plugins/js/bootstrap.min.js"></script>

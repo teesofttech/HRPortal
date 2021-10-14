@@ -1,4 +1,4 @@
-﻿
+﻿@model HRPortal.Web.Models.DocumentViewModel
 @{
     ViewData["Title"] = "Apply";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -47,7 +47,6 @@
             font-size: 1rem;
             font-weight: normal;
             color: #666276;
-            ;
         }
 
         .page-spinner {
@@ -61,6 +60,21 @@
             border-radius: 50%;
             -webkit-animation: spinner .75s linear infinite;
             animation: spinner .75s linear infinite;
+        }
+       
+        ol.c {
+            list-style-type: upper-roman;
+        }
+
+        ol.d {
+            list-style-type: lower-alpha;
+        }
+        ul.a {
+            list-style-position: outside;
+        }
+
+        ul.b {
+            list-style-position: inside;
         }
 
         @@-webkit-keyframes spinner {
@@ -97,6 +111,10 @@
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="~/css/theme.min.css">
 
+
+    <script src="~/assets/plugins/js/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+
 }
 
 <section class="bg-dark pt-5">
@@ -126,18 +144,18 @@
                             </div>
                             <div class="col-sm-8 mb-4">
                                 <label class="form-label" for="pr-fn">Resume<span class='text-danger'>*</span></label>
-                                <input class="form-control form-control-lg" type="file" id="pr-fn" placeholder="Enter your first name" required>
+                                <input class="form-control form-control-lg" type="file" id="pr-fn" placeholder="Enter your first name" name="formFile" required>
 
                             </div>
                             <div class="col-sm-2 mb-4">
                             </div>
                         </div>
 
-                        <button class="btn btn-primary  rounded-pill" type="button">
+                        <button class="btn btn-primary  rounded-pill" type="submit">
                             <i class="fi-upload me-2"></i>Upload existing resume
                         </button>
 
-                        <a href="~/document/default.docx" class="btn btn-success rounded-pill">Download Template</a>
+                        <a href="~/cv/TestCV.docx" class="btn btn-success rounded-pill">Download Template</a>
                     </form>
                 </div>
 
@@ -160,71 +178,127 @@
                     <!-- Resume preview-->
                     <div class="card shadow-sm p-md-2 mx-n4 mx-md-0">
                         <div class="card-body p-4">
-                            <div class="d-sm-flex justify-content-between align-items-start pb-4">
-                                <div class="flex-shrink-0 order-sm-2 mb-4" style="width: 10rem; height: 10rem;">
-                                    <input class="file-uploader bg-secondary" type="file" accept="image/png, image/jpeg" data-label-idle="&lt;i class=&quot;d-inline-block fi-camera-plus fs-2 text-muted mb-2&quot;&gt;&lt;/i&gt;&lt;br&gt;&lt;span class=&quot;fw-bold&quot;&gt;Change picture&lt;/span&gt;" data-style-panel-layout="compact" data-image-preview-height="160" data-image-crop-aspect-ratio="1:1" data-image-resize-target-width="200" data-image-resize-target-height="200">
-                                </div>
-                                <div class="order-sm-1">
-                                    <h3 class="h4 mb-sm-4">Annette Black</h3>
-                                    <h4 class="h5">Basic info</h4>
-                                    <ul class="list-unstyled text-nav">
-                                        <li><span class='text-muted'>Position:</span> UX Designer</li>
-                                        <li><span class='text-muted'>Job type:</span> Part-time</li>
-                                        <li><span class='text-muted'>Location:</span> New York, USA</li>
-                                        <li><span class='text-muted'>Salary:</span> $2000 – $3000</li>
-                                        <li><span class='text-muted'>Categories:</span> Design, Internet Technology</li>
-                                    </ul><a class="d-inline-block fw-bold text-decoration-none py-1" href="#"><i class="fi-edit mt-n1 me-2"></i>Edit</a>
-                                </div>
+                            <div class="mb-4">
+                                <h4 class="h5">Objective</h4>
+
+                                @if (Model == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    <ul >
+                                        @if (Model.Objective != null)
+                                        {
+                                            foreach (var i in Model.Objective.Where(i => !string.IsNullOrEmpty(i)))
+                                            {
+                                                @i
+                                            }
+                                        }
+                                    </ul>
+                                }
+
+                            </div>
+
+                            <div class="border-top py-4">
+                                <h4 class="h5">Experience Summary</h4>
+
+                                <ul >
+                                    @if (Model == null)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        @if (Model.ExperienceSummary != null)
+                                        {
+                                            foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
+                                            {
+                                                @i
+                                            }
+                                        }
+                                    }
+                                </ul>
+
                             </div>
                             <div class="border-top py-4">
-                                <h4 class="h5">Personal info</h4>
-                                <ul class="list-unstyled text-nav">
-                                    <li><span class='text-muted'>Full name:</span> Annete Black</li>
-                                    <li><span class='text-muted'>Date of birth:</span> May 18, 1989</li>
-                                    <li><span class='text-muted'>Address:</span> 2464 Royal Ln. Mesa, New Jersey 45463</li>
-                                    <li><span class='text-muted'>Phone:</span> (302) 555-0107</li>
-                                    <li><span class='text-muted'>Email:</span> annette_black@email.com</li>
-                                    <li>
-                                        <span class="text-muted">Socials: </span>
-                                        <div class="d-inline-flex ms-1"><a class="btn btn-icon btn-light-primary btn-xs rounded-circle shadow-sm me-2 my-1" href="#"><i class="fi-facebook"></i></a><a class="btn btn-icon btn-light-primary btn-xs rounded-circle shadow-sm me-2 my-1" href="#"><i class="fi-twitter"></i></a><a class="btn btn-icon btn-light-primary btn-xs rounded-circle shadow-sm my-1" href="#"><i class="fi-linkedin"></i></a></div>
-                                    </li>
-                                </ul><a class="d-inline-block fw-bold text-decoration-none py-1" href="#"><i class="fi-edit mt-n1 me-2"></i>Edit</a>
+                                <h4 class="h5">Academics</h4>
+                                @if (Model == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    <ul >
+                                        @if (Model.Education != null)
+                                        {
+                                            foreach (var i in Model.Education.Where(i => !string.IsNullOrEmpty(i)))
+                                            {
+                                                @i
+                                            }
+                                        }
+                                    </ul>
+                                }
                             </div>
                             <div class="border-top py-4">
-                                <h4 class="h5">Work experience</h4>
-                                <div class="mt-3">
-                                    <h5 class="h6 mb-2">Product Designer</h5>
-                                    <ul class="list-unstyled fs-sm mb-2">
-                                        <li>XAMPP Company (IT, Consulting)</li>
-                                        <li>2015 – 2020</li>
+                                <h4 class="h5">Skill</h4>
+                                @if (Model == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    <ul >
+                                        @if (Model.Skill != null)
+                                        {
+                                            foreach (var i in Model.Skill.Where(i => !string.IsNullOrEmpty(i)))
+                                            {
+                                                @i
+                                            }
+                                        }
                                     </ul>
-                                    <p>Praesent sed pulvinar posuere nisl tincidunt. Iaculis sit quam magna congue. Amet vel non aliquet habitasse. Egestas erat odio et, eleifend turpis etiam blandit interdum. Nec augue ut senectus quisque diam quis. At augue accumsan, bibendum. A eget et, eget quisque egestas netus vel.</p>
-                                    <div class="d-flex"><a class="d-inline-block fw-bold text-decoration-none py-1 pe-3 border-end" href="job-board-post-resume-3.html"><i class="fi-edit mt-n1 me-2"></i>Edit</a><a class="d-inline-block fw-bold text-decoration-none py-1 ps-3" href="#"><i class="fi-trash mt-n1 me-2"></i>Delete</a></div>
-                                </div>
-                                <div class="pt-2 mt-3">
-                                    <h5 class="h6 mb-2">Product Designer</h5>
-                                    <ul class="list-unstyled fs-sm">
-                                        <li>XAMPP Company (IT, Consulting)</li>
-                                        <li>2015 – 2020</li>
-                                    </ul>
-                                    <div class="d-flex"><a class="d-inline-block fw-bold text-decoration-none py-1 pe-3 border-end" href="job-board-post-resume-3.html"><i class="fi-edit mt-n1 me-2"></i>Edit</a><a class="d-inline-block fw-bold text-decoration-none py-1 ps-3" href="#"><i class="fi-trash mt-n1 me-2"></i>Delete</a></div>
-                                </div>
-                            </div>
-                            <div class="border-top py-4">
-                                <h4 class="h5">Education</h4>
-                                <div class="mt-3">
-                                    <h5 class="h6 mb-2">Bachelor's degree</h5>
-                                    <ul class="list-unstyled fs-sm">
-                                        <li>Syracuse University</li>
-                                        <li>900 South Crouse Ave. Syracuse, NY 13244</li>
-                                        <li>2008 – 2012</li>
-                                    </ul>
-                                    <div class="d-flex"><a class="d-inline-block fw-bold text-decoration-none py-1 pe-3 border-end" href="#"><i class="fi-edit mt-n1 me-2"></i>Edit</a><a class="d-inline-block fw-bold text-decoration-none py-1 ps-3" href="#"><i class="fi-trash mt-n1 me-2"></i>Delete</a></div>
-                                </div>
+                                }
                             </div>
                             <div class="border-top pt-4">
-                                <h4 class="h5">Skills</h4><a class="d-inline-block fw-bold text-decoration-none py-1" href="#"><i class="fi-plus fs-sm me-2"></i>Add skills</a>
+                                <h4 class="h5">Project Experience</h4>
+                                @if (Model == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    <ul>
+                                        @if (Model.ProjectExperience != null)
+                                        {
+                                            foreach (var i in Model.ProjectExperience.Where(i => !string.IsNullOrEmpty(i)))
+                                            {
+                                                @i
+                                            }
+                                        }
+                                    </ul>
+                                }
                             </div>
+
+                            <div class="border-top pt-4">
+                                <h4 class="h5">Online Presence</h4>
+                                @if (Model == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    <ul >
+                                        @if (Model.Handle != null)
+                                        {
+                                            foreach (var i in Model.Handle.Where(i => !string.IsNullOrEmpty(i)))
+                                            {
+                                                @i
+                                            }
+                                        }
+                                    </ul>
+                                }
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -238,11 +312,9 @@
             </div>
         </div>
     </div>
-
+    
 </section>
-
-
-<script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!--<script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
 <script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
 <script src="~/vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
@@ -250,6 +322,6 @@
 <script src="~/vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js"></script>
 <script src="~/vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
 <script src="~/vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
-<script src="~/vendor/filepond/dist/filepond.min.js"></script>
+<script src="~/vendor/filepond/dist/filepond.min.js"></script>-->
 <!-- Main theme script-->
-<script src="~/js/theme.min.js"></script>
+<!--<script src="~/js/theme.min.js"></script>-->
