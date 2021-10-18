@@ -89,12 +89,12 @@ namespace HRPortal.Web.Controllers
             if (success)
             {
                 TempData["success"] = "Company summary and Equality statement has been saved successfully";
-                return RedirectToAction("PostJob", "HRDashboard");
+                return RedirectToAction("ViewSummary", "HRDashboard");
             }
             else
             {
                 TempData["error"] = "Opps! We encounter an error while creating the summary. Kindly try again in few minutes";
-                return RedirectToAction("PostJob", "HRDashboard");
+                return RedirectToAction("ViewSummary", "HRDashboard");
             }
         }
 

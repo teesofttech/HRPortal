@@ -80,33 +80,34 @@ else if (TempData["error"] != null)
                 <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
         </div>
-        <!-- Basic info-->
-        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
-            <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
-            <div class="mb-3">
-                <label class="form-label" for="sc-title">About Company <span class="text-danger">*</span></label>
-                <textarea class="form-control" rows="5" placeholder="About Company" name="companySummary"></textarea>
-            </div>
+        <form asp-action="Summary" asp-controller="HRDashboard" method="post">
+            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
+                <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
+                <div class="mb-3">
+                    <label class="form-label" for="sc-title">About Company <span class="text-danger">*</span></label>
+                    <textarea class="form-control" rows="5" placeholder="About Company" name="companySummary"></textarea>
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label" for="sc-title">Eqaulity Statement <span class="text-danger">*</span></label>
-                @*<input class="form-control" type="text" id="sc-title" placeholder="Title for your property" value="Mercedes-Benz E 400 Cabriolet" required>*@
-                <textarea class="form-control" rows="5" placeholder="About Company" name="equalityStatement"></textarea>
-            </div>
+                <div class="mb-3">
+                    <label class="form-label" for="sc-title">Eqaulity Statement <span class="text-danger">*</span></label>
+                    @*<input class="form-control" type="text" id="sc-title" placeholder="Title for your property" value="Mercedes-Benz E 400 Cabriolet" required>*@
+                    <textarea class="form-control" rows="5" placeholder="About Company" name="equalityStatement"></textarea>
+                </div>
 
 
-        </section>
-        <!-- Price-->
+            </section>
+            <!-- Price-->
 
-        <div class="row pt-4 mt-2">
-            <div class="col-lg-9 offset-lg-3">
-                <div class="d-flex align-items-center justify-content-between">
-                    <button class="btn btn-primary btn-lg rounded-pill px-3 px-sm-4" type="button">Submit</button>
+            <div class="row pt-4 mt-2">
+                <div class="col-lg-9 offset-lg-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <button class="btn btn-primary btn-lg rounded-pill px-3 px-sm-4" type="submit">Submit</button>
 
-                   
+
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 

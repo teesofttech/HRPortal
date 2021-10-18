@@ -61,7 +61,7 @@
             -webkit-animation: spinner .75s linear infinite;
             animation: spinner .75s linear infinite;
         }
-       
+
         ol.c {
             list-style-type: upper-roman;
         }
@@ -69,6 +69,7 @@
         ol.d {
             list-style-type: lower-alpha;
         }
+
         ul.a {
             list-style-position: outside;
         }
@@ -159,160 +160,163 @@
                     </form>
                 </div>
 
-                <div class="bg-light rounded-3 pt-4 pb-0 px-4 p-md-5 mb-3">
-                    <!-- Title + Action buttons-->
-                    <div class="d-md-flex align-items-center mb-4 pb-md-2">
-                        <h2 class="h4 mb-md-0"><i class="fi-eye-on text-primary fs-5 mt-n1 me-2 pe-1"></i>Review your resume and save</h2>
-                        <div class="ms-md-auto">
-                            <div class="dropdown d-lg-none">
-                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-align-justify me-1"></i>Actions</button>
-                                <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item" href="#"><i class="fi-trash me-2"></i>Delete</a><a class="dropdown-item" href="#"><i class="fi-archive me-2"></i>Archive</a><a class="dropdown-item" href="#"><i class="fi-download-file me-2"></i>Download as PDF</a></div>
+                <form asp-controller="Dashboard" asp-action="Apply" method="post">
+                    <div class="bg-light rounded-3 pt-4 pb-0 px-4 p-md-5 mb-3">
+                        <!-- Title + Action buttons-->
+                        <div class="d-md-flex align-items-center mb-4 pb-md-2">
+                            <h2 class="h4 mb-md-0"><i class="fi-eye-on text-primary fs-5 mt-n1 me-2 pe-1"></i>Review your resume and save</h2>
+                            <div class="ms-md-auto">
+                                <div class="dropdown d-lg-none">
+                                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="fi-align-justify me-1"></i>Actions</button>
+                                    <div class="dropdown-menu dropdown-menu-end my-1"><a class="dropdown-item" href="#"><i class="fi-trash me-2"></i>Delete</a><a class="dropdown-item" href="#"><i class="fi-archive me-2"></i>Archive</a><a class="dropdown-item" href="#"><i class="fi-download-file me-2"></i>Download as PDF</a></div>
+                                </div>
+                                <ul class="list-unstyled d-none d-lg-flex flex-wrap fs-sm mb-0">
+                                    <li class="border-end mb-0"><a class="nav-link text-nowrap" href="#"><i class="fi-trash me-1"></i><span class="align-middle">Delete</span></a></li>
+                                    <li class="border-end mb-0"><a class="nav-link text-nowrap" href="#"><i class="fi-archive me-1"></i><span class="align-middle">Archive</span></a></li>
+                                    <li class="mb-0"><a class="nav-link text-nowrap pe-0" href="#"><i class="fi-download-file me-1"></i><span class="align-middle">Download as PDF</span></a></li>
+                                </ul>
                             </div>
-                            <ul class="list-unstyled d-none d-lg-flex flex-wrap fs-sm mb-0">
-                                <li class="border-end mb-0"><a class="nav-link text-nowrap" href="#"><i class="fi-trash me-1"></i><span class="align-middle">Delete</span></a></li>
-                                <li class="border-end mb-0"><a class="nav-link text-nowrap" href="#"><i class="fi-archive me-1"></i><span class="align-middle">Archive</span></a></li>
-                                <li class="mb-0"><a class="nav-link text-nowrap pe-0" href="#"><i class="fi-download-file me-1"></i><span class="align-middle">Download as PDF</span></a></li>
-                            </ul>
                         </div>
-                    </div>
-                    <!-- Resume preview-->
-                    <div class="card shadow-sm p-md-2 mx-n4 mx-md-0">
-                        <div class="card-body p-4">
-                            <div class="mb-4">
-                                <h4 class="h5">Objective</h4>
+                        <!-- Resume preview-->
+                        <div class="card shadow-sm p-md-2 mx-n4 mx-md-0">
+                            <div class="card-body p-4">
+                                <div class="mb-4">
+                                    <h4 class="h5">Objective</h4>
 
-                                @if (Model == null)
-                                {
-
-                                }
-                                else
-                                {
-                                    <ul >
-                                        @if (Model.Objective != null)
-                                        {
-                                            foreach (var i in Model.Objective.Where(i => !string.IsNullOrEmpty(i)))
-                                            {
-                                                @i
-                                            }
-                                        }
-                                    </ul>
-                                }
-
-                            </div>
-
-                            <div class="border-top py-4">
-                                <h4 class="h5">Experience Summary</h4>
-
-                                <ul >
                                     @if (Model == null)
                                     {
 
                                     }
                                     else
                                     {
-                                        @if (Model.ExperienceSummary != null)
-                                        {
-                                            foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
+                                        <ul>
+                                            @if (Model.Objective != null)
                                             {
-                                                @i
+                                                foreach (var i in Model.Objective.Where(i => !string.IsNullOrEmpty(i)))
+                                                {
+                                                    @i
+                                                }
                                             }
-                                        }
+                                        </ul>
                                     }
-                                </ul>
 
-                            </div>
-                            <div class="border-top py-4">
-                                <h4 class="h5">Academics</h4>
-                                @if (Model == null)
-                                {
+                                </div>
 
-                                }
-                                else
-                                {
-                                    <ul >
-                                        @if (Model.Education != null)
-                                        {
-                                            foreach (var i in Model.Education.Where(i => !string.IsNullOrEmpty(i)))
-                                            {
-                                                @i
-                                            }
-                                        }
-                                    </ul>
-                                }
-                            </div>
-                            <div class="border-top py-4">
-                                <h4 class="h5">Skill</h4>
-                                @if (Model == null)
-                                {
+                                <div class="border-top py-4">
+                                    <h4 class="h5">Experience Summary</h4>
 
-                                }
-                                else
-                                {
-                                    <ul >
-                                        @if (Model.Skill != null)
-                                        {
-                                            foreach (var i in Model.Skill.Where(i => !string.IsNullOrEmpty(i)))
-                                            {
-                                                @i
-                                            }
-                                        }
-                                    </ul>
-                                }
-                            </div>
-                            <div class="border-top pt-4">
-                                <h4 class="h5">Project Experience</h4>
-                                @if (Model == null)
-                                {
-
-                                }
-                                else
-                                {
                                     <ul>
-                                        @if (Model.ProjectExperience != null)
+                                        @if (Model == null)
                                         {
-                                            foreach (var i in Model.ProjectExperience.Where(i => !string.IsNullOrEmpty(i)))
+
+                                        }
+                                        else
+                                        {
+                                            @if (Model.ExperienceSummary != null)
                                             {
-                                                @i
+                                                foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
+                                                {
+                                                    <li> @i</li>
+                                                }
                                             }
                                         }
                                     </ul>
-                                }
-                            </div>
 
-                            <div class="border-top pt-4">
-                                <h4 class="h5">Online Presence</h4>
-                                @if (Model == null)
-                                {
+                                </div>
+                                <div class="border-top py-4">
+                                    <h4 class="h5">Academics</h4>
+                                    @if (Model == null)
+                                    {
 
-                                }
-                                else
-                                {
-                                    <ul >
-                                        @if (Model.Handle != null)
-                                        {
-                                            foreach (var i in Model.Handle.Where(i => !string.IsNullOrEmpty(i)))
+                                    }
+                                    else
+                                    {
+                                        <ul>
+                                            @if (Model.Education != null)
                                             {
-                                                @i
+                                                foreach (var i in Model.Education.Where(i => !string.IsNullOrEmpty(i)))
+                                                {
+                                                    <li>  @i</li>
+                                                }
                                             }
-                                        }
-                                    </ul>
-                                }
-                            </div>
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="border-top py-4">
+                                    <h4 class="h5">Skill</h4>
+                                    @if (Model == null)
+                                    {
 
+                                    }
+                                    else
+                                    {
+                                        <ul>
+                                            @if (Model.Skill != null)
+                                            {
+                                                foreach (var i in Model.Skill.Where(i => !string.IsNullOrEmpty(i)))
+                                                {
+                                                    <li> @i</li>
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="border-top pt-4">
+                                    <h4 class="h5">Project Experience</h4>
+                                    @if (Model == null)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        <ul>
+                                            @if (Model.ProjectExperience != null)
+                                            {
+                                                foreach (var i in Model.ProjectExperience.Where(i => !string.IsNullOrEmpty(i)))
+                                                {
+                                                    <li> @i</li>
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+
+                                <div class="border-top pt-4">
+                                    <h4 class="h5">Online Presence</h4>
+                                    @if (Model == null)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        <ul id="onlinepresence" name="onlinepresence">
+                                            @if (Model.Handle != null)
+                                            {
+                                                foreach (var i in Model.Handle.Where(i => !string.IsNullOrEmpty(i)))
+                                                {
+                                                    <li> @i</li>
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- Navigation-->
-                <div class="d-flex flex-column flex-sm-row bg-light rounded-3 p-4 px-md-5">
-                    <a class="btn btn-outline-primary btn-lg rounded-pill mb-3 mb-sm-0" href="#"><i class="fi-chevron-left fs-sm me-2"></i>Previous step</a>
-                    <button class="btn btn-primary btn-lg rounded-pill ms-sm-auto" type="button">Save resume</button>
-                </div>
+                    <!-- Navigation-->
+                    <div class="d-flex flex-column flex-sm-row bg-light rounded-3 p-4 px-md-5">
+                        <a class="btn btn-outline-primary btn-lg rounded-pill mb-3 mb-sm-0" href="#"><i class="fi-chevron-left fs-sm me-2"></i>Previous step</a>
+                        <button class="btn btn-primary btn-lg rounded-pill ms-sm-auto" type="submit">Submit</button>
+                    </div>
 
 
+
+                </form>
             </div>
         </div>
     </div>
-    
+
 </section>
 <!--<script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
