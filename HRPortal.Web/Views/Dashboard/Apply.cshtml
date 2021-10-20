@@ -111,7 +111,7 @@
     <link rel="stylesheet" media="screen" href="~/vendor/filepond/dist/filepond.min.css" />
     <!-- Main Theme Styles + Bootstrap-->
     <link rel="stylesheet" media="screen" href="~/css/theme.min.css">
-
+    <link href="~/sweetalert2.css" rel="stylesheet" />
 
     <script src="~/assets/plugins/js/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
@@ -162,7 +162,7 @@
                 </div>
 
                 <form asp-controller="Dashboard" asp-action="Submit" method="post">
-                    <input type="text" value="@TempData["vacancyId"]" name="vacancyId" id="vacancyId" />
+                    <input type="hidden" value="@TempData["vacancyId"]" name="vacancyId" id="vacancyId" />
 
                     <div class="bg-light rounded-3 pt-4 pb-0 px-4 p-md-5 mb-3">
                         <!-- Title + Action buttons-->
@@ -337,7 +337,7 @@
 
 </section>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
+<script src="~/sweetalert2.min.js"></script>
 <script type="text/javascript">
     $("#submit").on('click', function () {
 
@@ -363,6 +363,8 @@
             type: "POST",
             data: data,
             success: function (response) {
+                console.log(response);
+                
                 if (response.status == "true") {
                     Swal({
                         type: 'success',
@@ -370,15 +372,14 @@
                         html: 'Your application has been submitted succesfully. We will get back to you shortly.'
 
                     });
-                    location.reload();
                 } else if (response.status =="exist") {
                     Swal({
                         type: 'error',
                         title: 'Job Application',
                         html: 'You have applied for the vacancy before.'
 
-                    })
-                    location.reload();
+                    });
+                   // location.reload();
                 }
                 else {
                     Swal({
@@ -386,8 +387,8 @@
                         title: 'Job Application',
                         html: 'Opps! Error occurred while submitting the application. Kindly try again later.'
 
-                    })
-                    location.reload();
+                    });
+                    //location.reload();
                 }
             },
             error: function (xhr) {
