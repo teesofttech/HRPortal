@@ -364,13 +364,17 @@
             data: data,
             success: function (response) {
                 console.log(response);
-                
+
                 if (response.status == "true") {
                     Swal({
                         type: 'success',
                         title: 'Job Application',
                         html: 'Your application has been submitted succesfully. We will get back to you shortly.'
-
+                    }).then((result) => {
+                       // if (result['isConfirmed']) {
+                        // Put your function here
+                        window.location.href = '@Url.Action("Index", "Dashboard")';
+                        //}
                     });
                 } else if (response.status =="exist") {
                     Swal({
@@ -378,8 +382,12 @@
                         title: 'Job Application',
                         html: 'You have applied for the vacancy before.'
 
+                    }).then((result) => {
+                       // if (result['isConfirmed']) {
+                        // Put your function here
+                        window.location.href = '@Url.Action("Index", "Catalog")';
+                        //}
                     });
-                   // location.reload();
                 }
                 else {
                     Swal({
@@ -387,8 +395,12 @@
                         title: 'Job Application',
                         html: 'Opps! Error occurred while submitting the application. Kindly try again later.'
 
+                    }).then((result) => {
+                       // if (result['isConfirmed']) {
+                        // Put your function here
+                        window.location.href = '@Url.Action("Index", "Catalog")';
+                        //}
                     });
-                    //location.reload();
                 }
             },
             error: function (xhr) {

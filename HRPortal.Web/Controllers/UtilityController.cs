@@ -1,4 +1,5 @@
 ﻿using HRPortal.Domain.Entities;
+using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace HRPortal.Web.Controllers
            string objective,
            string experiencesummary, string vacancyId)
         {
+            Strength strength = new Strength();
             string status = "";
             try
             {
@@ -46,19 +48,19 @@ namespace HRPortal.Web.Controllers
                     _context.TblApplications.Add(tblApplication);
                     _context.SaveChanges();
 
-                    status = "true";
-                    return Json(status);
+                    strength.status = "true";
+                    return Json(strength);
                 }
                 else
                 {
-                    status = "exist";
-                    return Json(status);
+                    strength.status = "exist";
+                    return Json(strength);
                 }
             }
             catch (Exception ex)
             {
-                status = "false";
-                return Json(status);
+                strength.status = "false";
+                return Json(strength);
             }
         }
     }
