@@ -363,7 +363,32 @@
             type: "POST",
             data: data,
             success: function (response) {
-                console.log(response);
+                if (response.status == "true") {
+                    Swal({
+                        type: 'success',
+                        title: 'Job Application',
+                        html: 'Your application has been submitted succesfully. We will get back to you shortly.'
+
+                    });
+                    location.reload();
+                } else if (response.status =="exist") {
+                    Swal({
+                        type: 'error',
+                        title: 'Job Application',
+                        html: 'You have applied for the vacancy before.'
+
+                    })
+                    location.reload();
+                }
+                else {
+                    Swal({
+                        type: 'error',
+                        title: 'Job Application',
+                        html: 'Opps! Error occurred while submitting the application. Kindly try again later.'
+
+                    })
+                    location.reload();
+                }
             },
             error: function (xhr) {
                 console.log(xhr);

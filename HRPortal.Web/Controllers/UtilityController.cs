@@ -25,22 +25,41 @@ namespace HRPortal.Web.Controllers
            string objective,
            string experiencesummary, string vacancyId)
         {
+            string status = "";
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                int vaca = Convert.ToInt32(vacancyId);
+                var getcheck = _context.TblApplications.Where(c => c.UserId == userId && c.VacancyId == vaca).FirstOrDefault();
+                if (getcheck == null)
+                {
+                    TblApplication tblApplication = new TblApplication();
+                    tblApplication.Education = education;
+                    tblApplication.Experiencesummary = experiencesummary;
+                    tblApplication.Objective = objective;
+                    tblApplication.Onlinepresence = onlinePresence;
+                    tblApplication.Projectexperience = projectexperience;
+                    tblApplication.Skill = skill;
+                    tblApplication.UserId = userId;
+                    tblApplication.Date = DateTime.UtcNow;
+                    tblApplication.VacancyId = Convert.ToInt32(vacancyId);
+                    _context.TblApplications.Add(tblApplication);
+                    _context.SaveChanges();
 
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            TblApplication tblApplication = new TblApplication();
-            tblApplication.Education = education;
-            tblApplication.Experiencesummary = experiencesummary;
-            tblApplication.Objective = objective;
-            tblApplication.Onlinepresence = onlinePresence;
-            tblApplication.Projectexperience = projectexperience;
-            tblApplication.Skill = skill;
-            tblApplication.UserId = userId;
-            tblApplication.Date = DateTime.UtcNow;
-            tblApplication.VacancyId = Convert.ToInt32(vacancyId);
-            _context.TblApplications.Add(tblApplication);
-            _context.SaveChanges();
-
-
+                    status = "true";
+                    return Json(status);
+                }
+                else
+                {
+                    status = "exist";
+                    return Json(status);
+                }
+            }
+            catch (Exception ex)
+            {
+                status = "false";
+                return Json(status);
+            }
         }
     }
 }
