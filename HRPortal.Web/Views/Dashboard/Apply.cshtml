@@ -140,6 +140,7 @@
                     <h1 class="h2 mb-4">Create online resume</h1>
                     <p class="mb-4">Save time by uploading a resume to prefill some of the fields below. Please, use PDF format.</p>
                     <form asp-controller="Dashboard" asp-action="Apply" enctype="multipart/form-data">
+                        <input type="hidden" value="@Model.vacancyId" name="vacancyId" id="vacancyId" />
                         <div class="row">
                             <div class="col-sm-2 mb-4">
                             </div>
@@ -160,7 +161,9 @@
                     </form>
                 </div>
 
-                <form asp-controller="Dashboard" asp-action="Apply" method="post">
+                <form asp-controller="Dashboard" asp-action="Submit" method="post">
+                    <input type="text" value="@TempData["vacancyId"]" name="vacancyId" id="vacancyId" />
+
                     <div class="bg-light rounded-3 pt-4 pb-0 px-4 p-md-5 mb-3">
                         <!-- Title + Action buttons-->
                         <div class="d-md-flex align-items-center mb-4 pb-md-2">
@@ -189,15 +192,18 @@
                                     }
                                     else
                                     {
-                                        <ul>
-                                            @if (Model.Objective != null)
-                                            {
-                                                foreach (var i in Model.Objective.Where(i => !string.IsNullOrEmpty(i)))
+                                        <div id="objective" name="objective">
+                                            <ul>
+                                                @if (Model.Objective != null)
                                                 {
-                                                    @i
+                                                    foreach (var i in Model.Objective.Where(i => !string.IsNullOrEmpty(i)))
+                                                    {
+                                                        @i
+                                                    }
                                                 }
-                                            }
-                                        </ul>
+                                            </ul>
+                                        </div>
+
                                     }
 
                                 </div>
@@ -205,22 +211,27 @@
                                 <div class="border-top py-4">
                                     <h4 class="h5">Experience Summary</h4>
 
-                                    <ul>
-                                        @if (Model == null)
-                                        {
 
-                                        }
-                                        else
-                                        {
-                                            @if (Model.ExperienceSummary != null)
-                                            {
-                                                foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
+                                    @if (Model == null)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        <div id="experiencesummary" name="experiencesummary">
+                                            <ul>
+                                                @if (Model.ExperienceSummary != null)
                                                 {
-                                                    <li> @i</li>
+                                                    foreach (var i in Model.ExperienceSummary.Where(i => !string.IsNullOrEmpty(i)))
+                                                    {
+                                                        <li> @i</li>
+                                                    }
                                                 }
-                                            }
-                                        }
-                                    </ul>
+
+                                            </ul>
+                                        </div>
+                                    }
+
 
                                 </div>
                                 <div class="border-top py-4">
@@ -231,15 +242,17 @@
                                     }
                                     else
                                     {
-                                        <ul>
-                                            @if (Model.Education != null)
-                                            {
-                                                foreach (var i in Model.Education.Where(i => !string.IsNullOrEmpty(i)))
+                                        <div id="education" name="education">
+                                            <ul>
+                                                @if (Model.Education != null)
                                                 {
-                                                    <li>  @i</li>
+                                                    foreach (var i in Model.Education.Where(i => !string.IsNullOrEmpty(i)))
+                                                    {
+                                                        <li>  @i</li>
+                                                    }
                                                 }
-                                            }
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     }
                                 </div>
                                 <div class="border-top py-4">
@@ -250,15 +263,17 @@
                                     }
                                     else
                                     {
-                                        <ul>
-                                            @if (Model.Skill != null)
-                                            {
-                                                foreach (var i in Model.Skill.Where(i => !string.IsNullOrEmpty(i)))
+                                        <div id="skill" name="skill">
+                                            <ul>
+                                                @if (Model.Skill != null)
                                                 {
-                                                    <li> @i</li>
+                                                    foreach (var i in Model.Skill.Where(i => !string.IsNullOrEmpty(i)))
+                                                    {
+                                                        <li> @i</li>
+                                                    }
                                                 }
-                                            }
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     }
                                 </div>
                                 <div class="border-top pt-4">
@@ -269,15 +284,17 @@
                                     }
                                     else
                                     {
-                                        <ul>
-                                            @if (Model.ProjectExperience != null)
-                                            {
-                                                foreach (var i in Model.ProjectExperience.Where(i => !string.IsNullOrEmpty(i)))
+                                        <div id="projectexperience" name="projectexperience">
+                                            <ul>
+                                                @if (Model.ProjectExperience != null)
                                                 {
-                                                    <li> @i</li>
+                                                    foreach (var i in Model.ProjectExperience.Where(i => !string.IsNullOrEmpty(i)))
+                                                    {
+                                                        <li> @i</li>
+                                                    }
                                                 }
-                                            }
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     }
                                 </div>
 
@@ -289,15 +306,18 @@
                                     }
                                     else
                                     {
-                                        <ul id="onlinepresence" name="onlinepresence">
-                                            @if (Model.Handle != null)
-                                            {
-                                                foreach (var i in Model.Handle.Where(i => !string.IsNullOrEmpty(i)))
+                                        <div id="onlinepresence" name="onlinepresence">
+                                            <ul>
+                                                @if (Model.Handle != null)
                                                 {
-                                                    <li> @i</li>
+                                                    foreach (var i in Model.Handle.Where(i => !string.IsNullOrEmpty(i)))
+                                                    {
+                                                        <li> @i</li>
+                                                    }
                                                 }
-                                            }
-                                        </ul>
+
+                                            </ul>
+                                        </div>
                                     }
                                 </div>
 
@@ -307,10 +327,8 @@
                     <!-- Navigation-->
                     <div class="d-flex flex-column flex-sm-row bg-light rounded-3 p-4 px-md-5">
                         <a class="btn btn-outline-primary btn-lg rounded-pill mb-3 mb-sm-0" href="#"><i class="fi-chevron-left fs-sm me-2"></i>Previous step</a>
-                        <button class="btn btn-primary btn-lg rounded-pill ms-sm-auto" type="submit">Submit</button>
+                        <button class="btn btn-primary btn-lg rounded-pill ms-sm-auto" id="submit" type="button">Submit</button>
                     </div>
-
-
 
                 </form>
             </div>
@@ -318,14 +336,39 @@
     </div>
 
 </section>
-<!--<script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
-<script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
-<script src="~/vendor/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.min.js"></script>
-<script src="~/vendor/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
-<script src="~/vendor/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.min.js"></script>
-<script src="~/vendor/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.min.js"></script>
-<script src="~/vendor/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.min.js"></script>
-<script src="~/vendor/filepond/dist/filepond.min.js"></script>-->
-<!-- Main theme script-->
-<!--<script src="~/js/theme.min.js"></script>-->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $("#submit").on('click', function () {
+
+        var onlinePresence = $("#onlinepresence").html();
+        var projectexperience = $("#projectexperience").html();
+        var skill = $("#skill").html();
+        var education = $("#education").html();
+        var objective = $("#objective").html();
+        var experiencesummary = $("#experiencesummary").html();
+
+        var data = {
+            "onlinePresence": onlinePresence,
+            "projectexperience": projectexperience,
+            "skill": skill,
+            "education": education,
+            "objective": objective,
+            "experiencesummary": experiencesummary,
+            "vacancyId": "@TempData["vacancyId"]"
+        };
+
+        $.ajax({
+            url: "@Url.Action("Index", "Utility")",
+            type: "POST",
+            data: data,
+            success: function (response) {
+                console.log(response);
+            },
+            error: function (xhr) {
+                console.log(xhr);
+            }
+        });
+
+    });
+</script>

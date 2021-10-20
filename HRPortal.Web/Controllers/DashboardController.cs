@@ -20,8 +20,8 @@ namespace HRPortal.Web.Controllers
     public class DashboardController : Controller
     {
         public readonly IHostingEnvironment _hostingEnvironment;
-        db_a54634_portalContext db;
-        public DashboardController(IHostingEnvironment hostingEnvironment, db_a54634_portalContext db)
+        RecruitmentPortalDBContext db;
+        public DashboardController(IHostingEnvironment hostingEnvironment, RecruitmentPortalDBContext db)
         {
             this.db = db;
             _hostingEnvironment = hostingEnvironment;
@@ -153,12 +153,14 @@ namespace HRPortal.Web.Controllers
 
         public async Task<IActionResult> Apply(int id)
         {
-            //var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            return View();
+            DocumentViewModel documentViewModel = new DocumentViewModel();
+            documentViewModel.vacancyId = id;
+            return View(documentViewModel);
         }
 
+
         [HttpPost]
-        public IActionResult Apply(IFormFile formFile)
+        public IActionResult Apply(IFormFile formFile, int vacancyId)
         {
             string logoFileName = null;
             string pathfile = null;
@@ -182,13 +184,13 @@ namespace HRPortal.Web.Controllers
 
                     fs.Close();
 
-
                     var extension = Path.GetExtension(formFile.FileName);
                     const string mimeType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
                     if (string.Equals(extension, ".docx") && formFile.ContentType.Equals(mimeType))
                     {
                         var dictionaryPath = Path.Combine(_hostingEnvironment.WebRootPath, "KeywordDictionary.xml");
                         var modelData = Engine.Parse(pathfile, dictionaryPath);
+                        TempData["vacancyId"] = vacancyId;
                         return View(JsonConvert.DeserializeObject<DocumentViewModel>(modelData));
                     }
                     else
@@ -197,8 +199,6 @@ namespace HRPortal.Web.Controllers
                         return RedirectToAction("UploadResume", "Dashboard");
                     }
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -206,5 +206,7 @@ namespace HRPortal.Web.Controllers
                 return RedirectToAction("UploadResume", "UploadResume");
             }
         }
+
+
     }
 }

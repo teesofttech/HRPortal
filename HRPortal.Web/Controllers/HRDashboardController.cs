@@ -15,8 +15,8 @@ namespace HRPortal.Web.Controllers
     [Authorize]
     public class HRDashboardController : Microsoft.AspNetCore.Mvc.Controller
     {
-        db_a54634_portalContext db;
-        public HRDashboardController(db_a54634_portalContext db)
+        RecruitmentPortalDBContext db;
+        public HRDashboardController(RecruitmentPortalDBContext db)
         {
             this.db = db;
         }

@@ -24,10 +24,10 @@ namespace HRPortal.Web.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly db_a54634_portalContext _context;
+        private readonly RecruitmentPortalDBContext _context;
         public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager, db_a54634_portalContext context)
+            UserManager<ApplicationUser> userManager, RecruitmentPortalDBContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;

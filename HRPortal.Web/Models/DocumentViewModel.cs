@@ -14,6 +14,8 @@ namespace HRPortal.Web.Models
         /// <value>
         /// The objective.
         /// </value>
+        /// prop
+        public int vacancyId { get; set; }
         public IList<string> Objective { get; set; }
         //public IList<string> Objectives { get; set; }
         //public IList<string> Objectives { get; set; }

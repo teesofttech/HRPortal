@@ -32,7 +32,7 @@ namespace HRPortal.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<db_a54634_portalContext>(options =>
+            services.AddDbContext<RecruitmentPortalDBContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
            // services.AddDatabaseDeveloperPageExceptionFilter();

@@ -13,8 +13,8 @@ namespace HRPortal.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private db_a54634_portalContext db;
-        public HomeController(ILogger<HomeController> logger, db_a54634_portalContext db)
+        private RecruitmentPortalDBContext db;
+        public HomeController(ILogger<HomeController> logger, RecruitmentPortalDBContext db)
         {
             _logger = logger;
             this.db = db;

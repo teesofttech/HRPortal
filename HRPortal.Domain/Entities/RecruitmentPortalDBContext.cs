@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace HRPortal.Domain.Entities
 {
-    public partial class db_a54634_portalContext : DbContext
+    public partial class RecruitmentPortalDBContext : DbContext
     {
-        public db_a54634_portalContext()
-        {
-        }
+        //public RecruitmentPortalDBContext()
+        //{
+        //}
 
-        public db_a54634_portalContext(DbContextOptions<db_a54634_portalContext> options)
+        public RecruitmentPortalDBContext(DbContextOptions<RecruitmentPortalDBContext> options)
             : base(options)
         {
         }
@@ -24,6 +24,7 @@ namespace HRPortal.Domain.Entities
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
+        public virtual DbSet<TblApplication> TblApplications { get; set; }
         public virtual DbSet<TblCandidateApplication> TblCandidateApplications { get; set; }
         public virtual DbSet<TblCompetency> TblCompetencies { get; set; }
         public virtual DbSet<TblSkill> TblSkills { get; set; }
@@ -35,7 +36,7 @@ namespace HRPortal.Domain.Entities
 //            if (!optionsBuilder.IsConfigured)
 //            {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Server=SQL6010.site4now.net;Database=db_a54634_portal; User Id=db_a54634_portal_admin; password=Florence@40391");
+//                optionsBuilder.UseSqlServer("Server=52.137.47.7,49170;Database=RecruitmentPortalDB; User Id=sa; password=Password@2023");
 //            }
 //        }
 
@@ -138,9 +139,52 @@ namespace HRPortal.Domain.Entities
                     .HasForeignKey(d => d.UserId);
             });
 
+            modelBuilder.Entity<TblApplication>(entity =>
+            {
+                entity.ToTable("tbl_application");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Date)
+                    .HasColumnType("datetime")
+                    .HasColumnName("date");
+
+                entity.Property(e => e.Education)
+                    .HasColumnType("text")
+                    .HasColumnName("education");
+
+                entity.Property(e => e.Experiencesummary)
+                    .HasColumnType("text")
+                    .HasColumnName("experiencesummary");
+
+                entity.Property(e => e.Objective)
+                    .HasColumnType("text")
+                    .HasColumnName("objective");
+
+                entity.Property(e => e.Onlinepresence)
+                    .HasColumnType("text")
+                    .HasColumnName("onlinepresence");
+
+                entity.Property(e => e.Projectexperience)
+                    .HasColumnType("text")
+                    .HasColumnName("projectexperience");
+
+                entity.Property(e => e.Skill)
+                    .HasColumnType("text")
+                    .HasColumnName("skill");
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("userId");
+
+                entity.Property(e => e.VacancyId).HasColumnName("vacancyId");
+            });
+
             modelBuilder.Entity<TblCandidateApplication>(entity =>
             {
                 entity.ToTable("tbl_candidate_application");
+
+                entity.HasIndex(e => e.UserId, "IX_tbl_candidate_application_user_id");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -180,9 +224,7 @@ namespace HRPortal.Domain.Entities
 
                 entity.Property(e => e.StateOfResidence).HasColumnName("state_of_residence");
 
-                entity.Property(e => e.UserId)
-                    .HasMaxLength(450)
-                    .HasColumnName("user_id");
+                entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.Property(e => e.WorkExperience)
                     .HasColumnType("text")
@@ -198,11 +240,11 @@ namespace HRPortal.Domain.Entities
             {
                 entity.ToTable("tbl_competency");
 
+                entity.HasIndex(e => e.UserId, "IX_tbl_competency_user_id");
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.UserId)
-                    .HasMaxLength(450)
-                    .HasColumnName("user_id");
+                entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.TblCompetencies)

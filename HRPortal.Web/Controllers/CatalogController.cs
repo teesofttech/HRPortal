@@ -10,8 +10,8 @@ namespace HRPortal.Web.Controllers
 {
     public class CatalogController : Controller
     {
-        db_a54634_portalContext db;
-        public CatalogController(db_a54634_portalContext db)
+        RecruitmentPortalDBContext db;
+        public CatalogController(RecruitmentPortalDBContext db)
         {
             this.db = db;
         }
