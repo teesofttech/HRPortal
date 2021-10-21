@@ -22,13 +22,21 @@
                     <img class="rounded-circle" src="~/img/avatars/37.png" width="100" alt="">
                     <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
                 </div>
+
                 <div class="ps-3 ps-sm-4">
-                    <h3 class="h5">Annette Black</h3>
+                    <h3 class="h5">@Model.AspNetUser.FirstName @Model.AspNetUser.LastName</h3>
                     <ul class="list-unstyled fs-sm mb-0">
-                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
-                      
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.Email</span></li>
+                        <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.PhoneNumber</span></li>
                     </ul>
                 </div>
+                @*<div class="ps-3 ps-sm-4">
+            <h3 class="h5">Ann</h3>
+            <ul class="list-unstyled fs-sm mb-0">
+                <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
+
+            </ul>
+        </div>*@
             </div>
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
                 <button type="submit" class="nav-link btn btn-link text-dark nav-link p-0 d-none d-md-block"><i class="fi-logout mt-n1 me-2"></i> Click here to Logout</button>
@@ -45,10 +53,6 @@
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Summary","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
 
-                @*<li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Resume", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Resumes</a></li>*@
-
                 <li class="nav-item d-md-none"><a class="nav-link" href="/Identity/Account/Logout"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
         </div>
@@ -60,18 +64,22 @@
             <div class="col-lg-9">
                 <div class="border rounded-3 p-3" id="auth-info">
                     <!-- Email-->
+
                     <div class="border-bottom pb-3 mb-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="pe-2">
                                 <label class="form-label fw-bold">Email</label>
-                                <div id="email-value">annette_black@email.com</div>
+                                <div id="email-value">@Model.AspNetUser.Email</div>
                             </div>
                             <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#email-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
                         </div>
                         <div class="collapse" id="email-collapse" data-bs-parent="#auth-info">
-                            <input class="form-control mt-3" type="email" data-bs-binded-element="#email-value" data-bs-unset-value="Not specified" value="annette_black@email.com">
+                            <input class="form-control mt-3" type="email" data-bs-binded-element="#email-value" data-bs-unset-value="Not specified" value="@Model.AspNetUser.Email">
                         </div>
                     </div>
+
+
+
                     <!-- Password-->
                     <div>
                         <div class="d-flex align-items-center justify-content-between">
@@ -79,7 +87,10 @@
                                 <label class="form-label fw-bold">Password</label>
                                 <div>********</div>
                             </div>
-                            <div class="me-n3" data-bs-toggle="tooltip" title="Edit"><a class="nav-link py-0" href="#password-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a></div>
+                            <div class="me-n3" data-bs-toggle="tooltip" title="Edit">
+                                <a class="nav-link py-0" href="#password-collapse" data-bs-toggle="collapse"><i class="fi-edit"></i></a>
+                            </div>
+
                         </div>
                         <div class="collapse" id="password-collapse" data-bs-parent="#auth-info">
                             <div class="row gx-3 align-items-center my-3">

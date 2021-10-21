@@ -24,7 +24,8 @@ namespace HRPortal.Web.Controllers
            string skill,
            string education,
            string objective,
-           string experiencesummary, string vacancyId)
+           string experiencesummary,
+           string vacancyId, string personalinformation)
         {
             Strength strength = new Strength();
             string status = "";
@@ -36,6 +37,7 @@ namespace HRPortal.Web.Controllers
                 if (getcheck == null)
                 {
                     TblApplication tblApplication = new TblApplication();
+                    tblApplication.PersonalInformation = personalinformation;
                     tblApplication.Education = education;
                     tblApplication.Experiencesummary = experiencesummary;
                     tblApplication.Objective = objective;

@@ -184,6 +184,31 @@
                         <div class="card shadow-sm p-md-2 mx-n4 mx-md-0">
                             <div class="card-body p-4">
                                 <div class="mb-4">
+                                    <h4 class="h5">Personal Information</h4>
+
+                                    @if (Model == null)
+                                    {
+
+                                    }
+                                    else
+                                    {
+                                        <div id="personalinformation" name="personalinformation">
+                                            <ul>
+                                                @if (Model.Personal != null)
+                                                {
+                                                    foreach (var i in Model.Personal.Where(i => !string.IsNullOrEmpty(i)))
+                                                    {
+                                                        @i
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+
+                                    }
+
+                                </div>
+
+                                <div class="mb-4">
                                     <h4 class="h5">Objective</h4>
 
                                     @if (Model == null)
@@ -347,8 +372,10 @@
         var education = $("#education").html();
         var objective = $("#objective").html();
         var experiencesummary = $("#experiencesummary").html();
+        var personalinformation = $("#personalinformation").html();
 
         var data = {
+            "personalinformation": personalinformation,
             "onlinePresence": onlinePresence,
             "projectexperience": projectexperience,
             "skill": skill,

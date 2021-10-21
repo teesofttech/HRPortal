@@ -281,16 +281,27 @@
         <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
             <div class="container">
                 <a class="navbar-brand me-0 me-xl-4" href="@Url.Action("Index","Home")"><img class="d-block" src="~/assets/logo2.png" width="120" alt="HRPortal"></a>
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="@Url.Action("Index","Dashboard")"><i class="fi-user me-2"></i>Welcome @User.Identity.Name !!!</a>
+
+                }
+                else
+                {
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
+
+                }
+
 
                 <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
 
-                        <li class="nav-item ">
-                            <a class="nav-link " href="@Url.Action("Index","Home")">Home</a>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
 
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Catalog</a>
 
                         </li>
@@ -299,12 +310,19 @@
 
                         </li>
 
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item d-lg-none"><a class="nav-link" href="@Url.Action("Index","Dashboard")"><i class="fi-user me-2"></i>Welcome  @User.Identity.Name !!!</a></li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
+                        }
                     </ul>
                 </div>
             </div>
         </header>
-
 
 
         <section class="bg-dark pt-5">
@@ -312,10 +330,10 @@
                 <h1 class="text-light pt-1 pt-md-3 mb-4">Find jobs</h1>
                 <!-- Search form-->
                 @*<form class="form-group form-group-light d-block rounded-lg-pill mb-4">
-                        <div class="row align-items-center g-0 ms-n2">
+                    <div class="row align-items-center g-0 ms-n2">
 
-                        </div>
-                    </form>*@
+                    </div>
+                </form>*@
 
             </div>
         </section>
@@ -353,13 +371,13 @@
                                             <div class="dropdown content-overlay">
                                                 <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
                                                 @*<ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
-                                                        <li>
-                                                            <button class="dropdown-item" type="button"><i class="fi-heart opacity-60 me-2"></i>Add to Saved Jobs</button>
-                                                        </li>
-                                                        <li>
-                                                            <button class="dropdown-item" type="button"><i class="fi-x-circle opacity-60 me-2"></i>Not interested</button>
-                                                        </li>
-                                                    </ul>*@
+                                                    <li>
+                                                        <button class="dropdown-item" type="button"><i class="fi-heart opacity-60 me-2"></i>Add to Saved Jobs</button>
+                                                    </li>
+                                                    <li>
+                                                        <button class="dropdown-item" type="button"><i class="fi-x-circle opacity-60 me-2"></i>Not interested</button>
+                                                    </li>
+                                                </ul>*@
                                             </div>
                                         </div>
                                         <h3 class="h6 card-title pt-1 mb-3"><a class="text-nav stretched-link text-decoration-none" href="@Url.Action("JobDetail","Catalog")/@item.Id">@item.JobTitle</a></h3>

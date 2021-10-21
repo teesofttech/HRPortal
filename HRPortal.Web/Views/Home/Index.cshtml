@@ -7,23 +7,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8">
     <title>NSIA Recruitment Portal</title>
     <!-- SEO Meta Tags-->
+
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="description" content="NSIA - Directory &amp; Listings Bootstrap Template">
     <meta name="keywords" content="bootstrap, business, directory, listings, e-commerce, car dealer, city guide, real estate, job board, user account, multipurpose, ui kit, html5, css3, javascript, gallery, slider, touch">
     <meta name="author" content="Createx Studio">
     <!-- Viewport-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon and Touch Icons-->
-    @*<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-        <link rel="manifest" href="site.webmanifest">
-        <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">*@
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
     <!-- Page loading styles-->
@@ -282,7 +276,18 @@
         <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
             <div class="container">
                 <a class="navbar-brand me-0 me-xl-4" href="@Url.Action("Index","Home")"><img class="d-block" src="~/assets/logo2.png" width="120" alt="HRPortal"></a>
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="@Url.Action("Index","Dashboard")"><i class="fi-user me-2"></i>Welcome @User.Identity.Name !!!</a>
+
+                }
+                else
+                {
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
+
+                }
+
 
                 <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
@@ -300,7 +305,15 @@
 
                         </li>
 
-                        <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item d-lg-none"><a class="nav-link" href="@Url.Action("Index","Dashboard")"><i class="fi-user me-2"></i>Welcome  @User.Identity.Name !!!</a></li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -380,14 +393,14 @@
                             foreach (var item in Model)
                             {
 
-                                <div class="card bg-secondary collapsed mb-2" >
+                                <div class="card bg-secondary collapsed mb-2">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between mb-2">
                                             <div class="d-flex align-items-center"><img class="me-2" src="~/assets/logo.png" width="50" alt="IT Pro Logo"><span class="fs-sm text-dark opacity-80 ps-1">@item.JobCode</span></div><span class="badge bg-faded-danger rounded-pill fs-sm">Hot</span>
                                         </div>
                                         <h3 class="h6 card-title pt-1 mb-0">@item.JobTitle</h3>
                                     </div>
-                                    <div >
+                                    <div>
                                         <div class="card-body mt-n1 pt-0">
                                             <p class="fs-sm">
                                                 @item.JobObjectives <br /><br /><a href="/Catalog/JobDetail/@item.Id">Read more...</a>
