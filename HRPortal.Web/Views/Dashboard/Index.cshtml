@@ -31,12 +31,12 @@
                     </ul>
                 </div>
                 @*<div class="ps-3 ps-sm-4">
-            <h3 class="h5">Ann</h3>
-            <ul class="list-unstyled fs-sm mb-0">
-                <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
+                        <h3 class="h5">Ann</h3>
+                        <ul class="list-unstyled fs-sm mb-0">
+                            <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
 
-            </ul>
-        </div>*@
+                        </ul>
+                    </div>*@
             </div>
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
                 <button type="submit" class="nav-link btn btn-link text-dark nav-link p-0 d-none d-md-block"><i class="fi-logout mt-n1 me-2"></i> Click here to Logout</button>
@@ -51,9 +51,8 @@
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("AllPostedJobs", "Dashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>Saved Jobs</a></li>
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Summary","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Applied","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
 
-                <li class="nav-item d-md-none"><a class="nav-link" href="/Identity/Account/Logout"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
         </div>
         <!-- Authorization info-->

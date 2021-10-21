@@ -207,6 +207,28 @@ namespace HRPortal.Web.Controllers
             }
         }
 
+        public async Task<IActionResult> Applied()
+        {
+            List<JobViewModelList> jobDetailViewModels = new List<JobViewModelList>();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var get = await db.TblApplications.Where(c => c.UserId == userId).ToListAsync();
+            foreach (var item in get)
+            {
+                var getJob = await db.TblVacancyAdverts.Where(c => c.Id == item.VacancyId).FirstOrDefaultAsync();
+
+                JobViewModelList jobDetailViewModel = new JobViewModelList();
+                jobDetailViewModel.Id = item.Id;
+                jobDetailViewModel.JobObjectives = getJob.JobObjectives;
+                jobDetailViewModel.userId = item.UserId;
+                jobDetailViewModel.vacancyId = Convert.ToString(item.VacancyId);
+                jobDetailViewModel.JobCode = getJob.JobCode;
+                jobDetailViewModel.JobTitle = getJob.JobTitle;
+                jobDetailViewModel.Location = getJob.Location;
+                jobDetailViewModel.SubmittedDate = item.Date.Value.ToLongDateString();
+                jobDetailViewModels.Add(jobDetailViewModel);
+            }
+            return View(jobDetailViewModels);
+        }
 
     }
 }

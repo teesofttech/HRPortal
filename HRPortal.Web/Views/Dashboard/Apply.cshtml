@@ -183,30 +183,7 @@
                         <!-- Resume preview-->
                         <div class="card shadow-sm p-md-2 mx-n4 mx-md-0">
                             <div class="card-body p-4">
-                                <div class="mb-4">
-                                    <h4 class="h5">Personal Information</h4>
-
-                                    @if (Model == null)
-                                    {
-
-                                    }
-                                    else
-                                    {
-                                        <div id="personalinformation" name="personalinformation">
-                                            <ul>
-                                                @if (Model.Personal != null)
-                                                {
-                                                    foreach (var i in Model.Personal.Where(i => !string.IsNullOrEmpty(i)))
-                                                    {
-                                                        @i
-                                                    }
-                                                }
-                                            </ul>
-                                        </div>
-
-                                    }
-
-                                </div>
+                              
 
                                 <div class="mb-4">
                                     <h4 class="h5">Objective</h4>
@@ -400,7 +377,7 @@
                     }).then((result) => {
                        // if (result['isConfirmed']) {
                         // Put your function here
-                        window.location.href = '@Url.Action("Index", "Dashboard")';
+                        window.location.href = '@Url.Action("Applied", "Dashboard")';
                         //}
                     });
                 } else if (response.status =="exist") {

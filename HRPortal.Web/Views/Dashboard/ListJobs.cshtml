@@ -8,9 +8,9 @@
     <!-- Breadcrumb-->
     <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
         <ol class="breadcrumb breadcrumb-light">
-            <li class="breadcrumb-item"><a href="job-board-home-v1.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="job-board-account-profile.html">Account</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Saved jobs</li>
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Jobs</li>
         </ol>
     </nav>
     <!-- Page card like wrapper-->
@@ -29,20 +29,23 @@
                         <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.PhoneNumber</span></li>
                     </ul>
                 </div>
-            </div><a class="nav-link p-0 d-none d-md-block" href="#"><i class="fi-logout mt-n1 me-2"></i>Sign out</a>
+            </div>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark nav-link p-0 d-none d-md-block"><i class="fi-logout mt-n1 me-2"></i> Click here to Logout</button>
+            </form>
         </div>
         <a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
         <div class="collapse d-md-block" id="account-nav">
             <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("Index","Dashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>List Jobs</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","Dashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>List Jobs</a></li>
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("AllPostedJobs", "Dashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>Saved Jobs</a></li>
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Summary","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Applied","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
 
-                <li class="nav-item d-md-none"><a class="nav-link" href="/Identity/Account/Logout"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+               
             </ul>
         </div>
         @*<div class="collapse d-md-block" id="account-nav">
@@ -56,7 +59,7 @@
         </div>*@
 
         <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
-            <h1 class="h3 mb-0">Saved jobs</h1><a class="fw-bold text-decoration-none" href="#"><i class="fi-x fs-xs me-2"></i><span class="align-middle"></span></a>
+            <h1 class="h3 mb-0">List of Available Jobs</h1><a class="fw-bold text-decoration-none" href="#"><i class="fi-x fs-xs me-2"></i><span class="align-middle"></span></a>
         </div>
 
         <div class="row g-2 g-md-4">
