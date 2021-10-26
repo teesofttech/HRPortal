@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentParser", "Parser\Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRPortal.Admin", "HRPortal.Admin\HRPortal.Admin.csproj", "{B694C2C0-8F8C-4202-A1FD-BEA43DC017A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRPortalAWS", "HRPortalAWS\HRPortalAWS.csproj", "{866C61E3-BCD4-4E1E-AED6-7AC44316FEC1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{B694C2C0-8F8C-4202-A1FD-BEA43DC017A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B694C2C0-8F8C-4202-A1FD-BEA43DC017A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B694C2C0-8F8C-4202-A1FD-BEA43DC017A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{866C61E3-BCD4-4E1E-AED6-7AC44316FEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{866C61E3-BCD4-4E1E-AED6-7AC44316FEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{866C61E3-BCD4-4E1E-AED6-7AC44316FEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{866C61E3-BCD4-4E1E-AED6-7AC44316FEC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
