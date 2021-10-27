@@ -125,5 +125,9 @@ namespace HRPortal.Web.Controllers
             return View(jobDetailViewModel);
         }
 
+        public async Task<IActionResult> Applied()
+        {
+            return View();
+        }
     }
 }
