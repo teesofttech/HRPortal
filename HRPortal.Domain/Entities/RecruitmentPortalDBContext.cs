@@ -8,9 +8,9 @@ namespace HRPortal.Domain.Entities
 {
     public partial class RecruitmentPortalDBContext : DbContext
     {
-        //public RecruitmentPortalDBContext()
-        //{
-        //}
+        public RecruitmentPortalDBContext()
+        {
+        }
 
         public RecruitmentPortalDBContext(DbContextOptions<RecruitmentPortalDBContext> options)
             : base(options)
@@ -27,6 +27,7 @@ namespace HRPortal.Domain.Entities
         public virtual DbSet<TblApplication> TblApplications { get; set; }
         public virtual DbSet<TblCandidateApplication> TblCandidateApplications { get; set; }
         public virtual DbSet<TblCompetency> TblCompetencies { get; set; }
+        public virtual DbSet<TblCvPath> TblCvPaths { get; set; }
         public virtual DbSet<TblSkill> TblSkills { get; set; }
         public virtual DbSet<TblSummary> TblSummaries { get; set; }
         public virtual DbSet<TblVacancyAdvert> TblVacancyAdverts { get; set; }
@@ -165,6 +166,8 @@ namespace HRPortal.Domain.Entities
                     .HasColumnType("text")
                     .HasColumnName("onlinepresence");
 
+                entity.Property(e => e.PersonalInformation).HasColumnType("text");
+
                 entity.Property(e => e.Projectexperience)
                     .HasColumnType("text")
                     .HasColumnName("projectexperience");
@@ -250,6 +253,21 @@ namespace HRPortal.Domain.Entities
                     .WithMany(p => p.TblCompetencies)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_tbl_competency_AspNetUsers");
+            });
+
+            modelBuilder.Entity<TblCvPath>(entity =>
+            {
+                entity.ToTable("tbl_cv_path");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Cvpath)
+                    .HasColumnType("text")
+                    .HasColumnName("cvpath");
+
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+
+                entity.Property(e => e.VacancyId).HasColumnName("vacancyId");
             });
 
             modelBuilder.Entity<TblSkill>(entity =>

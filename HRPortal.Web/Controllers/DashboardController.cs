@@ -160,7 +160,7 @@ namespace HRPortal.Web.Controllers
 
 
         [HttpPost]
-        public IActionResult Apply(IFormFile formFile, int vacancyId)
+        public async Task<IActionResult> ApplyAsync(IFormFile formFile, int vacancyId)
         {
             string logoFileName = null;
             string pathfile = null;
@@ -190,6 +190,14 @@ namespace HRPortal.Web.Controllers
                     {
                         var dictionaryPath = Path.Combine(_hostingEnvironment.WebRootPath, "KeywordDictionary.xml");
                         var modelData = Engine.Parse(pathfile, dictionaryPath);
+                        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                        
+                        TblCvPath tblCvPath = new TblCvPath();
+                        tblCvPath.Cvpath = pathfile;
+                        tblCvPath.UserId = userId;
+                        tblCvPath.VacancyId = vacancyId;
+                        db.TblCvPaths.Add(tblCvPath);
+                        var success = await db.SaveChangesAsync() > 0;
 
                         TempData["vacancyId"] = vacancyId;
                         return View(JsonConvert.DeserializeObject<DocumentViewModel>(modelData));
