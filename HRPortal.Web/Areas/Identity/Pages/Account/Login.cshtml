@@ -9,7 +9,7 @@
 <html lang="en">
 
 
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
     <meta charset="utf-8">
     <title>NSIA Recruitment Portal</title>
@@ -211,8 +211,12 @@
                                     <label class="form-label" for="pr-sn">Password <span class='text-danger'>*</span></label>
                                     <input class="form-control form-control-lg" asp-for="Input.Password" type="password" id="pr-sn" placeholder="Enter your password" required>
                                 </div>
+                                <div class="g-recaptcha" data-sitekey="6Ld0PWsdAAAAABba61cF5p4NwZbP1G6ItoBa3M6C"></div>
+                                <script src='https://www.google.com/recaptcha/api.js'></script>
 
+                                
                                 <div>
+                                    <br /><br /><br />
                                     <button type="submit" class="btn btn-primary btn-lg rounded-pill ms-sm-auto">Login<i class="fi-chevron-right fs-sm ms-2"></i></button>
 
                                     <a href="/Identity/Account/Register" style="float:right;" class="btn btn-info btn-lg rounded-pill ms-sm-auto">Click to Register<i class="fi-chevron-right fs-sm ms-2"></i></a>
@@ -232,7 +236,7 @@
     <footer class="footer bg-dark pt-5">
         <div class="container pb-2">
 
-            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com" target="_blank" rel="noopener">NSIA IT</a></p>
         </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
@@ -262,7 +266,7 @@
             Swal({
                 type: 'error',
                 title: 'Login',
-                html: 'Invalid credentials supplied.'
+                html: '@TempData["error"]'
 
             })
         </script>

@@ -1,4 +1,5 @@
 ﻿@model HRPortal.Web.Models.JobDetailViewModel
+@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Get Single";
     Layout = "~/Views/Shared/_HRLayout.cshtml";
@@ -23,10 +24,10 @@
                     <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
                 </div>
                 <div class="ps-3 ps-sm-4">
-                    <h3 class="h5">Annette Black</h3>
+                    <h3 class="h5">Welcome @Context.Session.GetString("FirstName") !!!</h3>
                     <ul class="list-unstyled fs-sm mb-0">
                         <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
-
+                        @*<li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span></span></li>*@
                     </ul>
                 </div>
             </div>
@@ -50,7 +51,7 @@
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
 
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Resume", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Resumes</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Applied", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Applied</a></li>
 
 
             </ul>
@@ -82,21 +83,16 @@
                     </ul>
                     <hr class="mb-4">
                     <h3 class="h6">Description:</h3>
-                    <p>@Model.Vacancy.JobObjectives</p>
+                    <p style="text-align:justify;">@Model.Vacancy.JobObjectives</p>
                     <h3 class="h6 pt-2">Requirements:</h3>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled" style="text-align:justify;">
                         @Model.Vacancy.RelevantRequirement
                     </ul>
                     <h3 class="h6 pt-2">Company offers:</h3>
-                    <ul class="list-unstyled">
+                    <ul class="list-unstyled" style="text-align:justify;">
                         @Model.Summary.CompanySummary
                     </ul>
-                    @*<p class="pt-2 mb-1">Please, send your CV marked “Partnership Manager” in the subject via e-mail:</p><a class="nav-link-muted fw-bold" href="mailto:contact@example.com">contact@example.com</a>
-                        <hr class="my-4">
-                        <div class="btn-group btn-group-lg">
-                            <button class="btn btn-primary rounded-pill rounded-end-0 ps-4 pe-3" type="button">Apply for this position</button>
-                            <button class="btn btn-primary border-end-0 border-top-0 border-bottom-0 border-light rounded-pill rounded-start-0 px-3" type="button"><i class="fi-heart me-1"></i></button>
-                        </div>*@
+
                 </div>
 
                 <aside class="col-lg-5" style="margin-top: -6rem;">
@@ -114,12 +110,12 @@
                                 </form>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="agree">
-                                    <label class="form-check-label" for="agree">I agree to receive communications from Finder.</label>
+                                    <label class="form-check-label" for="agree">I agree to receive communications from NSIA.</label>
                                 </div>
-                                <hr class="my-4">
+                                @*<hr class="my-4">
                                 <div class="d-flex align-items-end">
                                     <div class="fs-lg fw-bold me-3">Like our jobs?<br>Receive vacancies in Telegram</div><a class="btn btn-icon btn-translucent-primary btn-xs rounded-circle" href="#"><i class="fi-telegram"></i></a>
-                                </div>
+                                </div>*@
                             </div>
                         </div>
                         @*<div class="pt-4 pt-lg-5 ps-4">

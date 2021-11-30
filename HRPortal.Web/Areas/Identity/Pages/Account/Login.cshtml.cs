@@ -15,6 +15,8 @@ using HRPortal.Web.Data;
 using HRPortal.Domain.Entities;
 using HRPortal.Web.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using HRPortal.Web.Helper;
 
 namespace HRPortal.Web.Areas.Identity.Pages.Account
 {
@@ -25,14 +27,16 @@ namespace HRPortal.Web.Areas.Identity.Pages.Account
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly RecruitmentPortalDBContext _context;
+        private readonly ReCaptcha _captcha;
         public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<ApplicationUser> userManager, RecruitmentPortalDBContext context)
+            UserManager<ApplicationUser> userManager, RecruitmentPortalDBContext context, ReCaptcha captcha)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _context = context;
+            _captcha = captcha;
         }
 
         [BindProperty]
@@ -84,6 +88,22 @@ namespace HRPortal.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+
+                if (!Request.Form.ContainsKey("g-recaptcha-response"))
+                {
+                    TempData["error"] = "Captcha not selected";
+                    ModelState.AddModelError(string.Empty, "Captcha not selected");
+                    return Page();
+                }
+                var captcha = Request.Form["g-recaptcha-response"].ToString();
+
+                if (!await _captcha.IsValid(captcha))
+                {
+                    TempData["error"] = "Captcha not selected";
+                    ModelState.AddModelError(string.Empty, "Captcha not selected");
+                    return Page();
+                }
+
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
@@ -96,6 +116,11 @@ namespace HRPortal.Web.Areas.Identity.Pages.Account
 
                     if (getUserRole.Role.Equals("Admin"))
                     {
+                        HttpContext.Session.SetString("UserId", getUserRole.Id);
+                        HttpContext.Session.SetString("FirstName", getUserRole.FirstName);
+                        HttpContext.Session.SetString("LastName", getUserRole.LastName);
+                        HttpContext.Session.SetString("Email", getUserRole.Email);
+                        HttpContext.Session.SetString("Role", getUserRole.Role);
                         return RedirectToAction("Index", "HRDashboard");
                     }
                     else if (getUserRole.Role.Equals("User"))

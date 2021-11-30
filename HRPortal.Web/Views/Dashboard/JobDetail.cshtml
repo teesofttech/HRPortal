@@ -36,22 +36,22 @@
                     <li class="mb-2"><a class="d-flex align-items-center text-decoration-none" href="job-board-employer-single.html"><i class="fi-external-link me-2"></i><span class="text-decoration-underline">NSIA INSURANCE</span></a></li>
                     <li class="d-flex align-items-center mb-2"><i class="fi-map-pin text-muted me-2"></i><span>@Model.TblVacancyAdvert.Location</span></li>
                     <li class="d-flex align-items-center mb-2"><i class="fi-cash fs-base text-muted me-2"></i><span>TBD</span></li>
-             
+
                     <li class="d-flex align-items-center mb-2"><i class="fi-clock text-muted me-2"></i><span class="me-2">@Model.TblVacancyAdvert.ContractType</span></li>
                 </ul>
                 <hr class="mb-4">
                 <h3 class="h6">Description:</h3>
-                <p>@Model.TblVacancyAdvert.JobObjectives</p>
+                <p style="text-align:justify;">@Model.TblVacancyAdvert.JobObjectives</p>
                 <h3 class="h6 pt-2">Requirements:</h3>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled" style="text-align:justify;">
                     @Model.TblVacancyAdvert.RelevantRequirement
                 </ul>
                 <h3 class="h6 pt-2">Company Summary:</h3>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled" style="text-align:justify;">
                     @Model.TblSummary.CompanySummary
                 </ul>
-                <h3 class="h6 pt-2">Equality Statement:</h3>
-                <ul class="list-unstyled">
+                <h3 class="h6 pt-2" style="text-align:justify;">Equality Statement:</h3>
+                <ul class="list-unstyled" style="text-align:justify;">
                     @Model.TblSummary.EqualityStatement
                 </ul>
 
@@ -75,18 +75,18 @@
                                 </div>
                                 <button class="btn btn-primary rounded-pill" type="button">Subscribe</button>
                             </form>
-                            
+
                         </div>
                     </div>
                     @*<div class="pt-4 pt-lg-5 ps-4">
-                        <h2 class="h3">My last search queries:</h2>
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Accountant</a></li>
-                            <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Manager</a></li>
-                            <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Administrator</a></li>
-                            <li class="mb-0"><a class="nav-link-muted d-inline-block fw-bold py-1" href="#">Clear all<i class="fi-x fs-xs ms-2"></i></a></li>
-                        </ul>
-                    </div>*@
+                            <h2 class="h3">My last search queries:</h2>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Accountant</a></li>
+                                <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Manager</a></li>
+                                <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Administrator</a></li>
+                                <li class="mb-0"><a class="nav-link-muted d-inline-block fw-bold py-1" href="#">Clear all<i class="fi-x fs-xs ms-2"></i></a></li>
+                            </ul>
+                        </div>*@
                 </div>
             </aside>
         </div>

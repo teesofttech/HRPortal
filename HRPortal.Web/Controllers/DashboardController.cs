@@ -190,6 +190,7 @@ namespace HRPortal.Web.Controllers
                     {
                         var dictionaryPath = Path.Combine(_hostingEnvironment.WebRootPath, "KeywordDictionary.xml");
                         var modelData = Engine.Parse(pathfile, dictionaryPath);
+
                         TempData["vacancyId"] = vacancyId;
                         return View(JsonConvert.DeserializeObject<DocumentViewModel>(modelData));
                     }
@@ -229,6 +230,7 @@ namespace HRPortal.Web.Controllers
             }
             return View(jobDetailViewModels);
         }
+
 
     }
 }

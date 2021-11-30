@@ -1,5 +1,6 @@
 using HRPortal.Domain.Entities;
 using HRPortal.Web.Data;
+using HRPortal.Web.Helper;
 using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,7 +36,7 @@ namespace HRPortal.Web
             services.AddDbContext<RecruitmentPortalDBContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-           // services.AddDatabaseDeveloperPageExceptionFilter();
+            // services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSession(options =>
             {
@@ -43,7 +44,10 @@ namespace HRPortal.Web
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
-
+            services.AddHttpClient<ReCaptcha>(x =>
+            {
+                x.BaseAddress = new Uri("https://www.google.com/recaptcha/api/siteverify");
+            });
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -78,7 +82,7 @@ namespace HRPortal.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-               // app.UseMigrationsEndPoint();
+                // app.UseMigrationsEndPoint();
             }
             else
             {
@@ -99,6 +103,11 @@ namespace HRPortal.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                   name: "default1",
+                   pattern: "{controller=Home}/{action=Index}/{id?}/{id2?}");
+
                 endpoints.MapRazorPages();
             });
         }

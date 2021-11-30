@@ -1,10 +1,11 @@
 ﻿@model HRPortal.Domain.Entities.TblVacancyAdvert
+@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Post Job";
     Layout = "~/Views/Shared/_HRLayout.cshtml";
     @*<link rel="stylesheet" href="~/assets/plugins/css/plugins.css">
         <link href="~/assets/css/style.css" rel="stylesheet">*@
-
+    <link href="~/sweetalert2.css" rel="stylesheet" />
 }
 
 <div class="container content-overlay mt-5 mb-md-4 py-5">
@@ -26,10 +27,10 @@
                     <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
                 </div>
                 <div class="ps-3 ps-sm-4">
-                    <h3 class="h5">Annette Black</h3>
+                    <h3 class="h5">Welcome @Context.Session.GetString("FirstName") !!!</h3>
                     <ul class="list-unstyled fs-sm mb-0">
                         <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
-
+                        @*<li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span></span></li>*@
                     </ul>
                 </div>
             </div>
@@ -51,7 +52,7 @@
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
 
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Resume", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Resumes</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Applied", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Applied</a></li>
 
                 <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
@@ -186,4 +187,35 @@
 </div>
 
 
+<script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
+<script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="~/vendor/flatpickr/dist/flatpickr.min.js"></script>
+<!-- Main theme script-->
+<script src="~/js/theme.min.js"></script>
+<script src="~/sweetalert2.min.js"></script>
 
+<script src="~/sweetalert2.min.js"></script>
+
+@if (TempData["success"] != null)
+{
+    <script type="text/javascript">
+        Swal({
+            type: 'success',
+            title: 'Job Placement',
+            html: 'Your job post has been submitted successfully.'
+
+        })
+    </script>
+}
+else if (TempData["error"] != null)
+{
+    <script type="text/javascript">
+            Swal({
+                type: 'error',
+                title: 'Login',
+                html: '@TempData["error"]'
+
+            })
+    </script>
+}

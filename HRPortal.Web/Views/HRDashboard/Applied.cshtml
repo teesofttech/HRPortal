@@ -1,5 +1,4 @@
-﻿@model IEnumerable<HRPortal.Domain.Entities.TblVacancyAdvert>
-@using Microsoft.AspNetCore.Http;
+﻿@model HRPortal.Web.Models.AppliedVM
 @{
     ViewData["Title"] = "All Posted Jobs";
     Layout = "~/Views/Shared/_HRLayout.cshtml";
@@ -23,10 +22,10 @@
                     <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
                 </div>
                 <div class="ps-3 ps-sm-4">
-                    <h3 class="h5">Welcome @Context.Session.GetString("FirstName") !!!</h3>
+                    <h3 class="h5">@Model.User.FirstName @Model.User.LastName</h3>
                     <ul class="list-unstyled fs-sm mb-0">
                         <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
-                        @*<li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span></span></li>*@
+
                     </ul>
                 </div>
             </div>
@@ -41,14 +40,14 @@
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","HRDashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("PostJob","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Post Job</a></li>
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("AllPostedJobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("AllPostedJobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Summary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Summary</a></li>
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
 
 
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Applied", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Applied</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("Applied", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Applied</a></li>
 
 
             </ul>
@@ -63,20 +62,23 @@
             @if (Model == null) { }
             else
             {
-                foreach (var item in Model)
+                foreach (var item in Model.VacancyAdvert)
                 {
                     <div class="col-md-6 col-lg-4">
                         <div class="card bg-secondary card-hover h-100">
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-3"><img class="me-2" src="~/assets/logo.png" width="50" alt="IT Pro TV"><span class="fs-sm text-dark opacity-80 px-1">  @item.JobCode</span><span class="badge bg-faded-info rounded-pill fs-sm ms-auto">New</span></div>
-                                <h3 class="h6 card-title mb-2"><a class="text-nav stretched-link text-decoration-none" href="@Url.Action("JobDetail","HRDashboard")/@item.Id">@item.JobTitle</a></h3>
+                                <h3 class="h6 card-title mb-2"><a class="text-nav stretched-link text-decoration-none" href="@Url.Action("ViewApplicants","HRDashboard")/@item.Id">@item.JobTitle</a></h3>
                                 <p class="fs-sm mb-0">@item.JobObjectives</p>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
                                 <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()</span></div>
-                                @*<button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm content-overlay" type="button" data-bs-toggle="tooltip" title="Remove from saved jobs"><i class="fi-heart-filled"></i></button>*@
+                                <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm content-overlay" type="button" data-bs-toggle="tooltip" title="Remove from saved jobs"><i class="fi-heart-filled"></i></button>
                             </div>
+
+                            <a href="@Url.Action("ViewApplicants","HRDashboard")/@item.Id" class=" btn btn-outline-warning">View All Applicants</a>
                         </div>
+
                     </div>
                 }
 

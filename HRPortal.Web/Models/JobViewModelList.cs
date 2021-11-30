@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRPortal.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +16,6 @@ namespace HRPortal.Web.Models
         public string JobCode { get; set; }
         public string SubmittedDate { get; set; }
         public string JobObjectives { get; set; }
+        public AspNetUser UserInfo { get; set; }
     }
 }

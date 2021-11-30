@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AuthorizeAttribute = Microsoft.AspNetCore.Authorization.AuthorizeAttribute;
@@ -53,7 +54,6 @@ namespace HRPortal.Web.Controllers
                 advert.StartDate = DateTime.UtcNow;
                 advert.Status = "Open";
                 advert.Department = model.Department;
-                //  advert.CompanySummary = model.CompanySummary;
                 advert.TravelRequirements = model.TravelRequirements;
                 db.TblVacancyAdverts.Add(advert);
                 var success = await db.SaveChangesAsync() > 0;
@@ -67,9 +67,7 @@ namespace HRPortal.Web.Controllers
                     TempData["error"] = "Opps! We encounter an error while creating the summary. Kindly try again in few minutes";
                     return View();
                 }
-
             }
-
         }
 
         public IActionResult Summary()
@@ -127,7 +125,54 @@ namespace HRPortal.Web.Controllers
 
         public async Task<IActionResult> Applied()
         {
-            return View();
+            var result = db.TblVacancyAdverts.ToList().OrderByDescending(c => c.Datecreated);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getUser = db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefault();
+            AppliedVM appliedVM = new AppliedVM();
+            appliedVM.VacancyAdvert = result.ToList();
+            appliedVM.User = getUser;
+            return View(appliedVM);
+        }
+
+        public async Task<IActionResult> ViewApplicants(int id)
+        {
+            List<JobViewModelList> jobDetailViewModels = new List<JobViewModelList>();
+            var get = await db.TblApplications.Where(c => c.VacancyId == id).ToListAsync();
+            foreach (var item in get)
+            {
+                var getJob = await db.TblVacancyAdverts.Where(c => c.Id == item.VacancyId).FirstOrDefaultAsync();
+                var getUser = await db.AspNetUsers.Where(c => c.Id == item.UserId).FirstOrDefaultAsync();
+
+                JobViewModelList jobDetailViewModel = new JobViewModelList();
+                jobDetailViewModel.Id = item.Id;
+                jobDetailViewModel.JobObjectives = getJob.JobObjectives;
+                jobDetailViewModel.userId = item.UserId;
+                jobDetailViewModel.vacancyId = Convert.ToString(item.VacancyId);
+                jobDetailViewModel.JobCode = getJob.JobCode;
+                jobDetailViewModel.JobTitle = getJob.JobTitle;
+                jobDetailViewModel.Location = getJob.Location;
+                jobDetailViewModel.SubmittedDate = item.Date.Value.ToLongDateString();
+                jobDetailViewModel.UserInfo = getUser;
+                jobDetailViewModels.Add(jobDetailViewModel);
+            }
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getUserInfo = db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefault();
+
+            Applied2VM applied2VM = new Applied2VM();
+            applied2VM.jobViewModelLists = jobDetailViewModels;
+            applied2VM.User = getUserInfo;
+
+            return View(applied2VM);
+        }
+
+        public async Task<IActionResult> ViewApplication(string id, int id2)
+        {
+            var getApplication = db.TblApplications.Where(c => c.UserId == id && c.VacancyId == id2).FirstOrDefault();
+            var getUser = await db.AspNetUsers.Where(c => c.Id == id).FirstOrDefaultAsync();
+            ApplicationVM applicationVM = new ApplicationVM();
+            applicationVM.Application = getApplication;
+            applicationVM.User = getUser;
+            return View(applicationVM);
         }
     }
 }
