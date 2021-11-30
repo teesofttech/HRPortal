@@ -160,7 +160,7 @@ namespace HRPortal.Web.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> ApplyAsync(IFormFile formFile, int vacancyId)
+        public async Task<IActionResult> Apply(IFormFile formFile, int vacancyId)
         {
             string logoFileName = null;
             string pathfile = null;
@@ -191,7 +191,7 @@ namespace HRPortal.Web.Controllers
                         var dictionaryPath = Path.Combine(_hostingEnvironment.WebRootPath, "KeywordDictionary.xml");
                         var modelData = Engine.Parse(pathfile, dictionaryPath);
                         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                        
+
                         TblCvPath tblCvPath = new TblCvPath();
                         tblCvPath.Cvpath = pathfile;
                         tblCvPath.UserId = userId;
@@ -218,6 +218,9 @@ namespace HRPortal.Web.Controllers
 
         public async Task<IActionResult> Applied()
         {
+            //@model HRPortal.Web.Models.UserDashboardModel
+            UserDashboardModel2 userDashboardModel = new UserDashboardModel2();
+
             List<JobViewModelList> jobDetailViewModels = new List<JobViewModelList>();
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var get = await db.TblApplications.Where(c => c.UserId == userId).ToListAsync();
@@ -236,7 +239,15 @@ namespace HRPortal.Web.Controllers
                 jobDetailViewModel.SubmittedDate = item.Date.Value.ToLongDateString();
                 jobDetailViewModels.Add(jobDetailViewModel);
             }
-            return View(jobDetailViewModels);
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            if (getUser != null)
+            {
+                userDashboardModel.AspNetUser = getUser;
+
+            }
+
+            userDashboardModel.jobDetailViewModels = jobDetailViewModels;
+            return View(userDashboardModel);
         }
 
 

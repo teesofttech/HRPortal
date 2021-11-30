@@ -13,4 +13,10 @@ namespace HRPortal.Web.Models
         public TblVacancyAdvert TblVacancyAdvert { get; set; }
         public TblSummary TblSummary { get; set; }
     }
+
+    public class UserDashboardModel2
+    {
+        public AspNetUser AspNetUser { get; set; }
+        public List<JobViewModelList> jobDetailViewModels { get; set; }
+    }
 }
