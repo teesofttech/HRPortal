@@ -12,6 +12,13 @@ namespace HRPortal.Web.Models
         public TblApplication Application { get; set; }
     }
 
+    public class ApplicationVM2
+    {
+        public AspNetUser User { get; set; }
+        public TblApplication Application { get; set; }
+        public TblCvPath TblCvPath { get; set; }
+    }
+
     public class AppliedVM
     {
         public AspNetUser User { get; set; }

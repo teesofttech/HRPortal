@@ -174,5 +174,23 @@ namespace HRPortal.Web.Controllers
             applicationVM.User = getUser;
             return View(applicationVM);
         }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public async Task<IActionResult> ViewCV(int VacancyId, string UserId)
+        {
+            ApplicationVM2 applicationVM = new ApplicationVM2();
+            var getUser = await db.AspNetUsers.Where(c => c.Id == UserId).FirstOrDefaultAsync();
+            var get = await db.TblCvPaths.Where(c => c.VacancyId == VacancyId && c.UserId == UserId).FirstOrDefaultAsync();
+            if (get == null)
+            {
+                return View();
+            }
+            else
+            {
+                applicationVM.TblCvPath = get;
+                applicationVM.User = getUser;
+                return View(applicationVM);
+            }
+        }
     }
 }
