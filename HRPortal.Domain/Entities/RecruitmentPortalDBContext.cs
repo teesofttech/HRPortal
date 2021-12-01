@@ -265,6 +265,10 @@ namespace HRPortal.Domain.Entities
                     .HasColumnType("text")
                     .HasColumnName("cvpath");
 
+                entity.Property(e => e.Pdf)
+                    .HasColumnType("text")
+                    .HasColumnName("pdf");
+
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.Property(e => e.VacancyId).HasColumnName("vacancyId");

@@ -1,4 +1,5 @@
 ﻿using DocumentParser.src.parser;
+using GemBox.Document;
 using HRPortal.Domain.Entities;
 using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -13,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Xceed.Words.NET;
 
 namespace HRPortal.Web.Controllers
 {
@@ -192,10 +194,32 @@ namespace HRPortal.Web.Controllers
                         var modelData = Engine.Parse(pathfile, dictionaryPath);
                         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+                        
+
+                        DocX document = null;
+
+                        document = DocX.Load(pathfile);
+                        MemoryStream ms = new MemoryStream();
+                        document.SaveAs(ms);
+                        byte[] byteArray = ms.ToArray();
+
+                        ComponentInfo.SetLicense("DN-2020Dec21-1ssglziNs2d2QcHZXrjIL6TFUebyheESFOwULzxjITFdIVG1A86Q7YJoRsIqH1UgT4N4xgXgUjG934hcq8luzGNl/gg==A");
+
+                        // In order to convert Word to PDF, we just need to:
+                        // 1. Load DOC or DOCX file into DocumentModel object.
+                        // 2. Save DocumentModel object to PDF file.
+                        DocumentModel documentt = DocumentModel.Load(ms);
+
+                        string _logo1 = Path.Combine(_hostingEnvironment.WebRootPath, "cv_pdf");
+                        string logoFileName1 = Guid.NewGuid().ToString() + "_" + formFile.FileName;
+                        pathfile1 = Path.Combine(_logo1, logoFileName1);
+                        
+                        documentt.Save(pathfile1 + ".pdf");
                         TblCvPath tblCvPath = new TblCvPath();
-                        tblCvPath.Cvpath = pathfile;
+                        tblCvPath.Cvpath = logoFileName;
                         tblCvPath.UserId = userId;
                         tblCvPath.VacancyId = vacancyId;
+                        tblCvPath.Pdf = logoFileName1 + ".pdf";
                         db.TblCvPaths.Add(tblCvPath);
                         var success = await db.SaveChangesAsync() > 0;
 

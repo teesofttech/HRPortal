@@ -11,5 +11,6 @@ namespace HRPortal.Domain.Entities
         public string Cvpath { get; set; }
         public int? VacancyId { get; set; }
         public string UserId { get; set; }
+        public string Pdf { get; set; }
     }
 }
