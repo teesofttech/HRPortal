@@ -1,4 +1,5 @@
 ﻿@model HRPortal.Web.Models.AppliedVM
+@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "All Posted Jobs";
     Layout = "~/Views/Shared/_HRLayout.cshtml";
@@ -22,7 +23,7 @@
                     <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
                 </div>
                 <div class="ps-3 ps-sm-4">
-                    <h3 class="h5">@Model.User.FirstName @Model.User.LastName</h3>
+                    <h3 class="h5">Welcome @Context.Session.GetString("FirstName") !!!</h3>
                     <ul class="list-unstyled fs-sm mb-0">
                         <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
 
@@ -54,7 +55,7 @@
         </div>
         <!-- Page title-->
         <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
-            <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"><i class="fi-x fs-xs me-2"></i><span class="align-middle">Clear all</span></a>
+            <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"></a>
         </div>
         <!-- Grid-->
         <div class="row g-2 g-md-4">

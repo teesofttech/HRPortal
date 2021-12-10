@@ -16,10 +16,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon and Touch Icons-->
     @*<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">*@
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="mask-icon" color="#5bbad5" href="safari-pinned-tab.svg">*@
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
     <!-- Page loading styles-->
@@ -278,7 +278,7 @@
                 </div>
             </div>
         </div>
-        <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <header class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top" data-scroll-header>
             <div class="container">
                 <a class="navbar-brand me-0 me-xl-4" href="@Url.Action("Index","Home")"><img class="d-block" src="~/assets/logo2.png" width="120" alt="HRPortal"></a>
 
@@ -297,12 +297,12 @@
                 <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
 
-                        <li class="nav-item active">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                        <li class="nav-item">
+                            <a class="nav-link " href="@Url.Action("Index", "Home") ">Home</a>
 
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Catalog</a>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Jobs</a>
 
                         </li>
                         <li class="nav-item">
@@ -325,15 +325,15 @@
         </header>
 
 
-        <section class="bg-dark pt-5">
+        <section class="bg-blue pt-5">
             <div class="container py-5">
                 <h1 class="text-light pt-1 pt-md-3 mb-4">Find jobs</h1>
                 <!-- Search form-->
                 @*<form class="form-group form-group-light d-block rounded-lg-pill mb-4">
-                    <div class="row align-items-center g-0 ms-n2">
+                        <div class="row align-items-center g-0 ms-n2">
 
-                    </div>
-                </form>*@
+                        </div>
+                    </form>*@
 
             </div>
         </section>
@@ -349,7 +349,7 @@
                 </nav>
                 <div class="row">
                     <!-- List of jobs-->
-                    <div class="col-lg-5 col-md-6 position-relative mb-4 mb-md-0" style="z-index: 1025;">
+                    <div class="col-lg-7 col-md-6 position-relative mb-4 mb-md-0" style="z-index: 1025;">
                         <!-- Sorting-->
                         <div class="d-sm-flex align-items-center justify-content-between pb-4 mb-sm-2">
                             <div class="d-flex align-items-center">
@@ -371,13 +371,13 @@
                                             <div class="dropdown content-overlay">
                                                 <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm" type="button" id="contextMenu1" data-bs-toggle="dropdown" aria-expanded="false"><i class="fi-dots-vertical"></i></button>
                                                 @*<ul class="dropdown-menu my-1" aria-labelledby="contextMenu1">
-                                                    <li>
-                                                        <button class="dropdown-item" type="button"><i class="fi-heart opacity-60 me-2"></i>Add to Saved Jobs</button>
-                                                    </li>
-                                                    <li>
-                                                        <button class="dropdown-item" type="button"><i class="fi-x-circle opacity-60 me-2"></i>Not interested</button>
-                                                    </li>
-                                                </ul>*@
+                                                        <li>
+                                                            <button class="dropdown-item" type="button"><i class="fi-heart opacity-60 me-2"></i>Add to Saved Jobs</button>
+                                                        </li>
+                                                        <li>
+                                                            <button class="dropdown-item" type="button"><i class="fi-x-circle opacity-60 me-2"></i>Not interested</button>
+                                                        </li>
+                                                    </ul>*@
                                             </div>
                                         </div>
                                         <h3 class="h6 card-title pt-1 mb-3"><a class="text-nav stretched-link text-decoration-none" href="@Url.Action("JobDetail","Catalog")/@item.Id">@item.JobTitle</a></h3>
@@ -397,7 +397,7 @@
 
                     </div>
                     <!-- Sticky sidebar-->
-                    <aside class="col-lg-7 col-md-6" style="margin-top: -6rem;">
+                    <aside class="col-lg-5 col-md-6" style="margin-top: -6rem;">
                         <div class="sticky-top" style="padding-top: 6rem;">
                             <div class="card shadow-sm p-lg-3 mb-3 mb-lg-0">
                                 <div class="card-body p-lg-4">
@@ -422,14 +422,14 @@
         </section>
     </main>
     <!-- Footer-->
-    <footer class="footer bg-dark pt-5">
+    <footer class="footer bg-blue pt-5">
         <div class="container pb-2">
             <div class="row align-items-center pb-4">
 
 
             </div>
             <!-- Copyright-->
-            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://insurance.com" target="_blank" rel="noopener">NSIA INSURANCE LIMITED</a></p>
         </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>

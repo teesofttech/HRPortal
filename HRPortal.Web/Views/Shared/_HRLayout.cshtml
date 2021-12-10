@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<!-- Added by HTTrack -->
-<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
     <meta charset="utf-8">
     <title>NSIA Recruitment Portal</title>
@@ -127,7 +127,7 @@
         </div>
     </div>
     <main class="page-wrapper">
-        <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <header class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top" data-scroll-header>
             <div class="container">
                 <a class="navbar-brand me-0 me-xl-4" href="#"><img class="d-block" src="~/assets/logo2.png" width="120" alt="Finder"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -147,17 +147,14 @@ else
 
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catalog</a>
+                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jobs</a>
 
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
 
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-
-                        </li>
+                      
                         @if (User.Identity.IsAuthenticated)
                         {
             <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="fi-user me-2"></i>Welcome @User.Identity.Name</a></li>
@@ -172,18 +169,18 @@ else
             </div>
         </header>
         <!-- Page container-->
-        <div class="position-absolute top-0 start-0 w-100 bg-dark" style="height: 398px;"></div>
+        <div class="position-absolute top-0 start-0 w-100 bg-blue" style="height: 398px;"></div>
         @RenderBody()
     </main>
     <!-- Footer-->
-    <footer class="footer bg-dark pt-5">
+    <footer class="footer bg-blue pt-5">
         <div class="container pb-2">
             <div class="row align-items-center pb-4">
 
 
             </div>
             <!-- Copyright-->
-            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com/" target="_blank" rel="noopener">NSIA IT</a></p>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com/" target="_blank" rel="noopener">NSIA INSURANCE LIMITED</a></p>
         </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>

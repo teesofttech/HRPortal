@@ -55,7 +55,7 @@
         </div>
         <!-- Page title-->
         <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
-            <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"><i class="fi-x fs-xs me-2"></i><span class="align-middle">Clear all</span></a>
+            <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"></a>
         </div>
         <!-- Grid-->
         <div class="row g-2 g-md-4">
@@ -70,7 +70,7 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-3"><img class="me-2" src="~/assets/logo.png" width="50" alt="IT Pro TV"><span class="fs-sm text-dark opacity-80 px-1">  @item.JobCode</span><span class="badge bg-faded-info rounded-pill fs-sm ms-auto">New</span></div>
                                 <h3 class="h6 card-title mb-2"><a class="text-nav stretched-link text-decoration-none" href="@Url.Action("JobDetail","HRDashboard")/@item.Id">@item.JobTitle</a></h3>
-                                <p class="fs-sm mb-0">@item.JobObjectives</p>
+                                <p class="fs-sm mb-0" style="text-align:justify;">@item.JobObjectives</p>
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
                                 <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()</span></div>

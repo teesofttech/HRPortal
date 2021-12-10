@@ -280,7 +280,7 @@
             </div>
         </div>
         <!-- Navbar-->
-        <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <header class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top" data-scroll-header>
             <div class="container">
                 <a class="navbar-brand me-0 me-xl-4" href="#"><img class="d-block" src="~/assets/logo2.png" width="120" alt="Finder"></a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
@@ -288,11 +288,11 @@
                 <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
 
-                        <li class="nav-item active">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                        <li class="nav-item">
+                            <a class="nav-link " href="@Url.Action("Index", "Home")">Home</a>
 
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Catalog</a>
 
                         </li>
@@ -300,13 +300,7 @@
                             <a class="nav-link " href="/Identity/Account/Login" role="button">Account</a>
 
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#" role="button">Blog</a>
-                            @*<ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="job-board-blog.html">Blog List</a></li>
-                                    <li><a class="dropdown-item" href="job-board-blog-single.html">Single Post</a></li>
-                                </ul>*@
-                        </li>
+                      
                         <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
                     </ul>
                 </div>
@@ -316,7 +310,7 @@
         <!-- Hero-->
 
 
-        <section class="bg-dark pt-5">
+        <section class="bg-blue pt-5">
             <div class="container py-5">
                 <h1 class="text-light pt-1 pt-md-3 mb-4">Find jobs</h1>
                 <!-- Search form-->
@@ -416,25 +410,11 @@
                                         </div>
                                         <button class="btn btn-primary rounded-pill" type="button">Subscribe</button>
                                     </form>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="agree">
-                                        <label class="form-check-label" for="agree">I agree to receive communications from Finder.</label>
-                                    </div>
-                                    <hr class="my-4">
-                                    <div class="d-flex align-items-end">
-                                        <div class="fs-lg fw-bold me-3">Like our jobs?<br>Receive vacancies in Telegram</div><a class="btn btn-icon btn-translucent-primary btn-xs rounded-circle" href="#"><i class="fi-telegram"></i></a>
-                                    </div>
+                                    
+
                                 </div>
                             </div>
-                            <div class="pt-4 pt-lg-5 ps-4 ps-lg-5">
-                                <h2 class="h3">My last search queries:</h2>
-                                <ul class="list-unstyled mb-0">
-                                    <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Accountant</a></li>
-                                    <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Manager</a></li>
-                                    <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Administrator</a></li>
-                                    <li class="mb-0"><a class="nav-link-muted d-inline-block fw-bold py-1" href="#">Clear all<i class="fi-x fs-xs ms-2"></i></a></li>
-                                </ul>
-                            </div>
+
                         </div>
                     </aside>
                 </div>
@@ -442,13 +422,13 @@
         </section>
     </main>
     <!-- Footer-->
-    <footer class="footer bg-dark pt-5">
+    <footer class="footer bg-blue pt-5">
         <div class="container pb-2">
             <div class="row align-items-center pb-4">
 
 
             </div>
-            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://createx.studio/" target="_blank" rel="noopener">Createx Studio</a></p>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://insurnce.com/" target="_blank" rel="noopener">NSIA INSURANCE LIMITED</a></p>
         </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>

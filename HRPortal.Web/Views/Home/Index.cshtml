@@ -20,7 +20,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="msapplication-TileColor" content="#766df4">
     <meta name="theme-color" content="#ffffff">
-    <!-- Page loading styles-->
+
+    <link href="https://fonts.googleapis.com/css?family=Century%20Gothic:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+
+    <style>
+        body {
+            font-family: 'Century Gothic';
+        }
+
+
+        .videoWrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            padding-top: 25px;
+            height: 0;
+        }
+
+            .videoWrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+    </style>
+
+    <style>
+        h1, h2, h3, h4, h5, h6, div, span, a, p {
+            font-family: 'Century Gothic' !important;
+        }
+    </style>
+
+
     <style>
         .page-loading {
             position: fixed;
@@ -273,7 +305,7 @@
             </div>
         </div>
         <!-- Navbar-->
-        <header class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" data-scroll-header>
+        <header class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top" data-scroll-header>
             <div class="container">
                 <a class="navbar-brand me-0 me-xl-4" href="@Url.Action("Index","Home")"><img class="d-block" src="~/assets/logo2.png" width="120" alt="HRPortal"></a>
 
@@ -297,7 +329,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Catalog</a>
+                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Jobs</a>
 
                         </li>
                         <li class="nav-item">
@@ -320,7 +352,7 @@
         </header>
         <!-- Page content-->
         <!-- Hero-->
-        <section class="bg-dark pb-4 pt-5">
+        <section class="bg-blue pb-4 pt-5">
             <div class="container py-5">
                 <div class="row align-items-center mt-2 mt-md-0 pt-md-4 pt-lg-5 pb-5">
                     <div class="col-md-5 order-md-2 mb-5 mb-md-0">
@@ -336,7 +368,7 @@
                         </div>
                     </div>
                     <div class="col-md-7 order-md-1">
-                        <h1 class="display-4 text-light pb-2 mb-4 mb-lg-5" style="max-width: 29.5rem;">Hack your way to the <span class='text-primary'>dream job</span></h1>
+                        <h1 class="display-4 text-light pb-2 mb-4 mb-lg-5" style="max-width: 29.5rem;">Find the right job vacancies in NSIA.</h1>
 
                     </div>
                 </div>
@@ -378,7 +410,7 @@
         <!-- Jobs list + Post resume CTA-->
         <section class="container pb-5 mb-md-4">
             <div class="row">
-                <div class="col-md-6 mb-3 mb-md-0">
+                <div class="col-md-8 mb-3 mb-md-0">
                     <div class="d-sm-flex align-items-center justify-content-between pb-4 mb-sm-2">
                         <h2 class="h3 mb-sm-0">Jobs of the day</h2><a class="btn btn-link fw-normal p-0" href="@Url.Action("Index","Catalog")">View all<i class="fi-arrow-long-right ms-2"></i></a>
                     </div>
@@ -402,14 +434,16 @@
                                     </div>
                                     <div>
                                         <div class="card-body mt-n1 pt-0">
-                                            <p class="fs-sm">
+                                            <p class="fs-sm" style="text-align:justify;">
                                                 @item.JobObjectives <br /><br /><a href="/Catalog/JobDetail/@item.Id">Read more...</a>
                                             </p>
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()</span></div>
                                                 <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
                                             </div>
+                                            <br />
 
+                                            <a class="btn btn-primary" href="/Catalog/JobDetail/@item.Id">View Job Post</a>
 
                                         </div>
                                     </div>
@@ -423,10 +457,13 @@
                 <div class="col-md-1">
                     <hr class="hr-vertical mx-auto">
                 </div>
-                <div class="col-md-5 text-center text-md-start">
+                <div class="col-md-3 text-center text-md-start">
                     <img class="d-block mx-auto mb-4" src="~/img/job-board/illustrations/post-resume-cta2.svg" width="416" alt="Illustration">
-                    <h2 class="h3 pt-2 mb-4">Professional CV is your ticket to the dream job</h2>
-                    <p class="pb-md-3">Create a great resume on NSIA and take a step toward finding your dream job!</p><a class="btn btn-primary btn-lg rounded-pill ms-sm-auto" href="job-board-post-resume-1.html">Post resume<i class="fi-chevron-right fs-sm ms-2"></i></a>
+                    <h2 class="h3 pt-2 mb-4">Find your dream career</h2>
+                    <p class="pb-md-3">
+                        Sign up as a Job Seeker, it's
+                        quick and easy!
+                    </p><a class="btn btn-primary btn-lg rounded-pill ms-sm-auto" href="/Identity/Account/Register">Register<i class="fi-chevron-right fs-sm ms-2"></i></a>
                 </div>
             </div>
         </section>
@@ -435,14 +472,14 @@
 
     </main>
     <!-- Footer-->
-    <footer class="footer bg-dark pt-5">
+    <footer class="footer bg-blue pt-5">
         <div class="container pb-2">
             <div class="row align-items-center pb-4">
 
 
             </div>
             <!-- Copyright-->
-            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com/" target="_blank" rel="noopener">NSIA IT</a></p>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com/" target="_blank" rel="noopener" style="text-align:center;">NSIA INSURANCE LIMITED</a></p>
         </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
