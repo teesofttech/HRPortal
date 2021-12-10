@@ -3,6 +3,8 @@ using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -190,6 +192,31 @@ namespace HRPortal.Web.Controllers
                 applicationVM.TblCvPath = get;
                 applicationVM.User = getUser;
                 return View(applicationVM);
+            }
+        }
+
+        [ValidateInput(false)]
+        public async Task<IActionResult> Notification(string message, string userId, string appicationId)
+        {
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            var apiKey = "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";
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("No-Reply@nsiainsurance.com", "NSIA INSURANCE");
+            string fullname = getUser.FirstName + " " + getUser.LastName;
+            var to = new EmailAddress(getUser.Email, fullname);
+            var subject = "Congratulations";
+
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, message, message);
+            var responses = await client.SendEmailAsync(msg);
+            if (responses.IsSuccessStatusCode)
+            {
+                TempData["success"] = "Email sent successfully";
+                return RedirectToAction("ViewApplication", "HRDashboard", new { id = userId, id2 = appicationId });
+            }
+            else
+            {
+                TempData["error"] = "Error occurred";
+                return RedirectToAction("ViewApplication", "HRDashboard", new { id = userId, id2 = appicationId });
             }
         }
     }
