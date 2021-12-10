@@ -1,0 +1,91 @@
+﻿@model HRPortal.Web.Models.UserDashboardModel
+@{
+    ViewData["Title"] = "Job Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="container content-overlay mt-5 mb-md-4 py-5">
+
+    </div>*@
+<section class="bg-dark pt-5">
+    <div class="container py-5">
+    </div>
+
+</section>
+<section class="position-relative bg-white rounded-xxl-4 zindex-5" style="margin-top: -30px;">
+    <div class="container pt-4 pb-5 mb-md-4">
+        <!-- Breadcrumb-->
+        <nav class="pb-4 my-2" aria-label="Breadcrumb">
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="job-board-catalog.html">Find jobs</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.TblVacancyAdvert.JobTitle</li>
+            </ol>
+        </nav>
+        <div class="row">
+            <!-- Signle job content-->
+            <div class="col-lg-7 position-relative pe-lg-5 mb-5 mb-lg-0" style="z-index: 1025;">
+                <div class="d-flex justify-content-between mb-2">
+                    <h2 class="h3 mb-0">@Model.TblVacancyAdvert.JobTitle</h2>
+                    <div class="text-end">
+                        <span class="badge bg-faded-accent rounded-pill fs-sm mb-2">Featured</span>
+                        <div class="fs-sm text-muted">@Model.TblVacancyAdvert.Datecreated.Value.ToLongDateString()</div>
+                    </div>
+                </div>
+                <ul class="list-unstyled fs-sm mb-4">
+                    <li class="mb-2"><a class="d-flex align-items-center text-decoration-none" href="job-board-employer-single.html"><i class="fi-external-link me-2"></i><span class="text-decoration-underline">NSIA INSURANCE</span></a></li>
+                    <li class="d-flex align-items-center mb-2"><i class="fi-map-pin text-muted me-2"></i><span>@Model.TblVacancyAdvert.Location</span></li>
+                    <li class="d-flex align-items-center mb-2"><i class="fi-cash fs-base text-muted me-2"></i><span>TBD</span></li>
+
+                    <li class="d-flex align-items-center mb-2"><i class="fi-clock text-muted me-2"></i><span class="me-2">@Model.TblVacancyAdvert.ContractType</span></li>
+                </ul>
+                <hr class="mb-4">
+                <h3 class="h6">Description:</h3>
+                <p style="text-align:justify;">@Model.TblVacancyAdvert.JobObjectives</p>
+                <h3 class="h6 pt-2">Requirements:</h3>
+                <ul class="list-unstyled" style="text-align:justify;">
+                    @Model.TblVacancyAdvert.RelevantRequirement
+                </ul>
+                <h3 class="h6 pt-2">Company Summary:</h3>
+                <ul class="list-unstyled" style="text-align:justify;">
+                    @Model.TblSummary.CompanySummary
+                </ul>
+                <h3 class="h6 pt-2" style="text-align:justify;">Equality Statement:</h3>
+                <ul class="list-unstyled" style="text-align:justify;">
+                    @Model.TblSummary.EqualityStatement
+                </ul>
+
+                <hr class="my-4">
+                
+            </div>
+            <!-- Sticky sidebar-->
+            <aside class="col-lg-5" style="margin-top: -6rem;">
+                <div class="sticky-top" style="padding-top: 6rem;">
+                    <div class="card shadow-sm mb-3 mb-lg-0">
+                        <div class="card-body">
+                            <h2 class="h3">Subscribe to our newsletter</h2>
+                            <p>Don’t miss any job updates and relevant vacancies info!</p>
+                            <form class="form-group rounded-pill mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text text-muted"><i class="fi-mail text-muted"></i></span>
+                                    <input class="form-control" type="text" placeholder="Your email">
+                                </div>
+                                <button class="btn btn-primary rounded-pill" type="button">Subscribe</button>
+                            </form>
+
+                        </div>
+                    </div>
+                    @*<div class="pt-4 pt-lg-5 ps-4">
+                            <h2 class="h3">My last search queries:</h2>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Accountant</a></li>
+                                <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Manager</a></li>
+                                <li class="mb-0"><a class="nav-link d-inline-block fw-normal px-0 py-1" href="#">Administrator</a></li>
+                                <li class="mb-0"><a class="nav-link-muted d-inline-block fw-bold py-1" href="#">Clear all<i class="fi-x fs-xs ms-2"></i></a></li>
+                            </ul>x
+                        </div>*@
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>

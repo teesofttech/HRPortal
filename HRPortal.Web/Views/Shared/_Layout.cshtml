@@ -155,24 +155,26 @@ else
 
                         @if (User.Identity.IsAuthenticated)
                         {
-            <li class="nav-item d-lg-none"><a class="nav-link" href="@Url.Action("Index","Dashboard")"><i class="fi-user me-2"></i>Welcome  @User.Identity.Name !!!</a></li> }
-                        else
-                        {
-            <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>}
+            <li class="nav-item d-lg-none"><a class="nav-link" href="@Url.Action("Index","Dashboard")"><i class="fi-user me-2"></i>Welcome  @User.Identity.Name !!!</a></li>
+ }
+        else
+        {
+<li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
+}
                     </ul>
                 </div>
             </div>
         </header>
 
 
-        <div class="position-absolute top-0 start-0 w-100 bg-dark" style="height: 398px;"></div>
+        <div class="position-absolute top-0 start-0 w-100 bg-blue" style="height: 398px;"></div>
         @RenderBody()
     </main>
     <!-- Footer-->
     <footer class="footer bg-blue pt-5">
         <div class="container pb-2">
 
-            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://createx.studio/" target="_blank" rel="noopener">NSIA IT</a></p>
+            <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com" target="_blank" rel="noopener">NSIA INSURANCE LIMITED</a></p>
         </div>
     </footer>
     <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>

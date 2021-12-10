@@ -153,6 +153,24 @@ namespace HRPortal.Web.Controllers
             }
         }
 
+        public async Task<IActionResult> ViewApplied(int id)
+        {
+            UserDashboardModel userDashboardModel = new UserDashboardModel();
+            var getVacanies = await db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefaultAsync();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            if (getUser != null)
+            {
+                userDashboardModel.AspNetUser = getUser;
+                userDashboardModel.TblVacancyAdvert = getVacanies;
+                userDashboardModel.TblSummary = await db.TblSummaries.FirstOrDefaultAsync();
+                return View(userDashboardModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
         public async Task<IActionResult> Apply(int id)
         {
             DocumentViewModel documentViewModel = new DocumentViewModel();
@@ -194,7 +212,7 @@ namespace HRPortal.Web.Controllers
                         var modelData = Engine.Parse(pathfile, dictionaryPath);
                         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-                        
+
 
                         DocX document = null;
 
@@ -213,7 +231,7 @@ namespace HRPortal.Web.Controllers
                         string _logo1 = Path.Combine(_hostingEnvironment.WebRootPath, "cv_pdf");
                         string logoFileName1 = Guid.NewGuid().ToString() + "_" + formFile.FileName;
                         pathfile1 = Path.Combine(_logo1, logoFileName1);
-                        
+
                         documentt.Save(pathfile1 + ".pdf");
                         TblCvPath tblCvPath = new TblCvPath();
                         tblCvPath.Cvpath = logoFileName;
