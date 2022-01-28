@@ -22,5 +22,14 @@ namespace HRPortal.Domain.Entities
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public string Department { get; set; }
+        public string ReportsTo { get; set; }
+        public string DirectReports { get; set; }
+        public string CoreResponisbilities { get; set; }
+        public string Knowledge { get; set; }
+        public string Education { get; set; }
+        public string Skills { get; set; }
+        public string Experience { get; set; }
+        public string ProfQualitification { get; set; }
+        public string BehaviouralCompetencies { get; set; }
     }
 }

@@ -304,7 +304,15 @@ namespace HRPortal.Domain.Entities
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.BehaviouralCompetencies)
+                    .HasColumnType("text")
+                    .HasColumnName("behavioural_competencies");
+
                 entity.Property(e => e.ContractType).HasColumnName("contract_type");
+
+                entity.Property(e => e.CoreResponisbilities)
+                    .HasColumnType("text")
+                    .HasColumnName("core_responisbilities");
 
                 entity.Property(e => e.DateOfAdvert)
                     .HasColumnType("date")
@@ -316,9 +324,17 @@ namespace HRPortal.Domain.Entities
 
                 entity.Property(e => e.Department).HasColumnName("department");
 
+                entity.Property(e => e.DirectReports).HasColumnName("direct_reports");
+
+                entity.Property(e => e.Education).HasColumnType("text");
+
                 entity.Property(e => e.EndDate)
                     .HasColumnType("date")
                     .HasColumnName("endDate");
+
+                entity.Property(e => e.Experience)
+                    .HasColumnType("text")
+                    .HasColumnName("experience");
 
                 entity.Property(e => e.JobCode).HasColumnName("job_code");
 
@@ -328,13 +344,25 @@ namespace HRPortal.Domain.Entities
 
                 entity.Property(e => e.JobTitle).HasColumnName("job_title");
 
+                entity.Property(e => e.Knowledge).HasColumnType("text");
+
                 entity.Property(e => e.Location).HasColumnName("location");
 
                 entity.Property(e => e.PostedBy).HasColumnName("postedBy");
 
+                entity.Property(e => e.ProfQualitification)
+                    .HasColumnType("text")
+                    .HasColumnName("prof_qualitification");
+
                 entity.Property(e => e.RelevantRequirement)
                     .HasColumnType("text")
                     .HasColumnName("relevant_requirement");
+
+                entity.Property(e => e.ReportsTo).HasColumnName("reports_to");
+
+                entity.Property(e => e.Skills)
+                    .HasColumnType("text")
+                    .HasColumnName("skills");
 
                 entity.Property(e => e.StartDate)
                     .HasColumnType("date")

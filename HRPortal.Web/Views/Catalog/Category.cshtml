@@ -328,7 +328,7 @@
                 <!-- Breadcrumb-->
                 <nav class="pb-4 my-2" aria-label="Breadcrumb">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Find jobs</li>
                     </ol>
                 </nav>
@@ -337,14 +337,13 @@
                     <div class="col-lg-5 col-md-6 position-relative mb-4 mb-md-0" style="z-index: 1025;">
                         <!-- Sorting-->
                         <div class="d-sm-flex align-items-center justify-content-between pb-4 mb-sm-2">
-                            <div class="d-flex align-items-center">
+                            @*<div class="d-flex align-items-center">
                                 <label class="fs-sm me-2 pe-1 text-nowrap" for="sorting"><i class="fi-arrows-sort mt-n1 me-2"></i>Sort by:</label>
                                 <select class="form-select form-select-sm" id="sorting">
                                     <option>Newest</option>
                                     <option>Popular</option>
-                                    <option>Highest Salary</option>
                                 </select>
-                            </div>
+                            </div>*@
                             <div class="text-muted fs-sm text-nowrap"><i class="fi-briefcase fs-base mt-n1 me-2"></i>@Model.Vacancies.Count jobs</div>
                         </div>
 
