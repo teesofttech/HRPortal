@@ -16,6 +16,11 @@ namespace HRPortal.Web.Models
         public string JobCode { get; set; }
         public string SubmittedDate { get; set; }
         public string JobObjectives { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Title { get; set; }
+        public string DateofAdvert { get; set; }
         public AspNetUser UserInfo { get; set; }
     }
 }

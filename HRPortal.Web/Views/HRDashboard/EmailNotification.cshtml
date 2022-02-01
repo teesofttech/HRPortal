@@ -1,10 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Http;
 @{
-    ViewData["Title"] = "PostJob";
+    ViewData["Title"] = "EmailNotification";
     Layout = "~/Views/Shared/_HRLayout.cshtml";
-    @*<link rel="stylesheet" href="~/assets/plugins/css/plugins.css">
-        <link href="~/assets/css/style.css" rel="stylesheet">*@
-
+    <link href="~/sweetalert2.css" rel="stylesheet" />
 }
 
 @if (TempData["success"] != null)
@@ -82,117 +80,71 @@ else if (TempData["error"] != null)
                 <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
         </div>
-        <form asp-action="Summary" asp-controller="HRDashboard" method="post">
+        <form asp-action="EmailNotification" asp-controller="HRDashboard" method="post">
             <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
-                <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Basic info</h2>
+                <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Email Notification </h2>
+
                 <div class="mb-3">
-                    <label class="form-label" for="sc-title">About Company <span class="text-danger">*</span></label>
-                    <textarea class="form-control" rows="5" placeholder="About Company" name="companySummary"></textarea>
+                    <label class="form-label" for="sc-title">Subject<span class="text-danger">*</span></label>
+                    <input class="form-control" placeholder="Enter email subject" name="subject" id="subject" />
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="sc-title">Eqaulity Statement <span class="text-danger">*</span></label>
+                    <label class="form-label" for="sc-title">Email Addresses<span class="text-danger">*</span></label>
+                    <textarea class="form-control" rows="5" placeholder="test@gmail.com, tunde@look.com,marthy@aol.com" name="emailaddresses"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="sc-title">Message<span class="text-danger">*</span></label>
                     @*<input class="form-control" type="text" id="sc-title" placeholder="Title for your property" value="Mercedes-Benz E 400 Cabriolet" required>*@
-                    <textarea class="form-control" rows="5" placeholder="About Company" name="equalityStatement"></textarea>
+                    <textarea class="form-control" rows="5" placeholder="Message" name="message"></textarea>
                 </div>
-
-
+                <div class="mb-3">
+                    <button class="btn btn-primary btn-lg rounded-pill px-3 px-sm-4" type="submit">Submit</button>
+                </div>
             </section>
             <!-- Price-->
-
-            <div class="row pt-4 mt-2">
-                <div class="col-lg-9 offset-lg-3">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <button class="btn btn-primary btn-lg rounded-pill px-3 px-sm-4" type="submit">Submit</button>
+            @*<div class="row pt-4 mt-2">
+                    <div class="col-lg-9 offset-lg-3">
+                        <div class="d-flex align-items-center justify-content-between">
 
 
+
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div>*@
         </form>
     </div>
 </div>
 
 
+<script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
+<script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="~/vendor/flatpickr/dist/flatpickr.min.js"></script>
+<!-- Main theme script-->
+<script src="~/js/theme.min.js"></script>
+<script src="~/sweetalert2.min.js"></script>
 
+@if (TempData["success"] != null)
+{
+    <script type="text/javascript">
+        Swal({
+            type: 'success',
+            title: 'Email Notification',
+            html: 'Your Email has been sent succesfully.'
 
-<!-- Content Wrap -->
-@*<div class="col-lg-9 col-md-8">
-        <div class="dashboard-body">
-            <div class="dashboard-caption">
+        })
+    </script>
+}
+else if (TempData["error"] != null)
+{
+    <script type="text/javascript">
+            Swal({
+                type: 'error',
+                title: 'Login',
+                html: '@TempData["error"]'
 
-                <div class="dashboard-caption-header">
-                    <h4><i class="ti-ruler-pencil"></i>Capture Company Summary & Equality</h4>
-                </div>
-
-
-                <div class="dashboard-caption-wrap">
-                    <form class="post-form" asp-controller="HRDashboard" asp-action="Summary" method="post">
-
-
-
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label>Company Summary</label>
-                                    <textarea class="form-control about height-120" placeholder="About Company" name="companySummary"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="form-group">
-                                    <label>Equality Statement</label>
-                                    <textarea class="form-control about height-120" placeholder="About Company" name="equalityStatement"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mrg-top-30">
-                            <div class="col-md-12 col-sm-12">
-                                <div class="form-group text-center">
-                                    <button type="submit" class="btn-savepreview"><i class="ti-angle-double-right"></i>Save</button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>*@
-
-
-<!--<script type="text/javascript" src="~/assets/plugins/js/jquery.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/viewportchecker.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootsnav.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/select2.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/wysihtml5-0.3.0.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/bootstrap-wysihtml5.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/datedropper.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/dropzone.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/loader.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/slick.min.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/jquery.easy-autocomplete.min.js"></script>-->
-<!-- Custom Js -->
-<!--<script src="~/assets/js/custom.js"></script>
-<script type="text/javascript" src="~/assets/plugins/js/counterup.min.js"></script>
-
-<script type="text/javascript" src="~/assets/plugins/js/sweetalert.html"></script>-->
-<!-- Map -->
-<!--<script src="http://maps.google.com/maps/api/js?key="></script>
-<script src="~/assets/js/map_infobox.js"></script>
-<script src="~/assets/js/markerclusterer.js"></script>
-<script src="~/assets/js/map.js"></script>
-
-<script src="~/assets/js/dashboard-custom.js"></script>
-
-<script>
-    $('#expirejob').dateDropper();
-</script>-->
+            })
+    </script>
+}

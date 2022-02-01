@@ -143,26 +143,26 @@ else
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
 
                         <li class="nav-item dropdown active">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                            <a class="nav-link " href="@Url.Action("Index","Home")" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
 
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jobs</a>
+                            <a class="nav-link " href="@Url.Action("Index","Catalog")" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jobs</a>
 
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
+                            <a class="nav-link " href="/Identity/Account/Login" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
 
                         </li>
                       
                         @if (User.Identity.IsAuthenticated)
                         {
             <li class="nav-item d-lg-none"><a class="nav-link" href="#"><i class="fi-user me-2"></i>Welcome @User.Identity.Name</a></li>
- }
-        else
-        {
-<li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
-}
+         }
+                else
+                {
+        <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
+        }
 
                     </ul>
                 </div>

@@ -1,12 +1,17 @@
-﻿using HRPortal.Domain.Entities;
+﻿using ClosedXML.Excel;
+using GemBox.Document;
+using HRPortal.Domain.Entities;
 using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -19,9 +24,14 @@ namespace HRPortal.Web.Controllers
     public class HRDashboardController : Microsoft.AspNetCore.Mvc.Controller
     {
         RecruitmentPortalDBContext db;
-        public HRDashboardController(RecruitmentPortalDBContext db)
+
+        private IHostingEnvironment Environment;
+
+
+
+        public HRDashboardController(RecruitmentPortalDBContext db, IHostingEnvironment _environment)
         {
-            this.db = db;
+            this.db = db; Environment = _environment;
         }
         public IActionResult Index()
         {
@@ -57,6 +67,17 @@ namespace HRPortal.Web.Controllers
                 advert.Status = "Open";
                 advert.Department = model.Department;
                 advert.TravelRequirements = model.TravelRequirements;
+
+                advert.BehaviouralCompetencies = model.BehaviouralCompetencies;
+                advert.CoreResponisbilities = model.CoreResponisbilities;
+                advert.DirectReports = model.DirectReports;
+                advert.Education = model.Education;
+                advert.Experience = model.Experience;
+                advert.Knowledge = model.Knowledge;
+                advert.ProfQualitification = model.ProfQualitification;
+                advert.ReportsTo = model.ReportsTo;
+                advert.Skills = model.Skills;
+
                 db.TblVacancyAdverts.Add(advert);
                 var success = await db.SaveChangesAsync() > 0;
                 if (success)
@@ -167,6 +188,66 @@ namespace HRPortal.Web.Controllers
             return View(applied2VM);
         }
 
+        public async Task<IActionResult> DownloadApplicantsRecord(int id)
+        {
+            List<JobViewModelList> jobDetailViewModels = new List<JobViewModelList>();
+            var get = await db.TblApplications.Where(c => c.VacancyId == id).ToListAsync();
+            foreach (var item in get)
+            {
+                var getJob = await db.TblVacancyAdverts.Where(c => c.Id == item.VacancyId).FirstOrDefaultAsync();
+                var getUser = await db.AspNetUsers.Where(c => c.Id == item.UserId).FirstOrDefaultAsync();
+
+                JobViewModelList jobDetailViewModel = new JobViewModelList();
+                jobDetailViewModel.Id = item.Id;
+                jobDetailViewModel.JobObjectives = getJob.JobObjectives;
+                jobDetailViewModel.userId = item.UserId;
+                jobDetailViewModel.vacancyId = Convert.ToString(item.VacancyId);
+                jobDetailViewModel.JobCode = getJob.JobCode;
+                jobDetailViewModel.JobTitle = getJob.JobTitle;
+                jobDetailViewModel.Location = getJob.Location;
+                jobDetailViewModel.SubmittedDate = item.Date.Value.ToLongDateString();
+                jobDetailViewModel.UserInfo = getUser;
+                jobDetailViewModel.FirstName = getUser.FirstName;
+                jobDetailViewModel.LastName = getUser.LastName;
+                jobDetailViewModel.Email = getUser.Email;
+                jobDetailViewModel.Title = getJob.JobTitle;
+                jobDetailViewModel.DateofAdvert = getJob.DateOfAdvert.Value.ToLongDateString();
+                jobDetailViewModels.Add(jobDetailViewModel);
+            }
+
+            DataTable dt = new DataTable("Applicants");
+            dt.Columns.AddRange(new DataColumn[7] {
+                                            new DataColumn("DateOfAdvert"),
+                                            new DataColumn("FirstName"),
+                                            new DataColumn("LastName"),
+                                            new DataColumn("JobCode"),
+                                            new DataColumn("JobTitle"),
+                                            new DataColumn("Location"),
+                                            new DataColumn("SubmittedDate")
+                                           });
+            foreach (var customer in jobDetailViewModels)
+            {
+                dt.Rows.Add(
+                    customer.DateofAdvert,
+                    customer.FirstName,
+                    customer.LastName,
+                    customer.JobCode,
+                    customer.JobTitle,
+                    customer.Location,
+                    customer.SubmittedDate
+                    );
+            }
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "GridSMS.xlsx");
+                }
+            }
+        }
+
         public async Task<IActionResult> ViewApplication(string id, int id2)
         {
             var getApplication = db.TblApplications.Where(c => c.UserId == id && c.VacancyId == id2).FirstOrDefault();
@@ -218,6 +299,85 @@ namespace HRPortal.Web.Controllers
                 TempData["error"] = "Error occurred";
                 return RedirectToAction("ViewApplication", "HRDashboard", new { id = userId, id2 = appicationId });
             }
+        }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public async Task<IActionResult> DownloadCV(int VacancyId, string UserId)
+        {
+            ApplicationVM2 applicationVM = new ApplicationVM2();
+            var getUser = await db.AspNetUsers.Where(c => c.Id == UserId).FirstOrDefaultAsync();
+            var get = await db.TblCvPaths.Where(c => c.VacancyId == VacancyId && c.UserId == UserId).FirstOrDefaultAsync();
+            if (get == null)
+            {
+                return View();
+            }
+            else
+            {
+                applicationVM.TblCvPath = get;
+                applicationVM.User = getUser;
+
+                ComponentInfo.SetLicense("DN-2020Dec21-1ssglziNs2d2QcHZXrjIL6TFUebyheESFOwULzxjITFdIVG1A86Q7YJoRsIqH1UgT4N4xgXgUjG934hcq8luzGNl/gg==A");
+
+                //string path = Path.Combine(this.Environment.WebRootPath, "cv/") + applicationVM.TblCvPath.Cvpath;
+                //convert the docx to pdf on the fly
+                var path = Path.Combine(this.Environment.WebRootPath, "cv/") + applicationVM.TblCvPath.Cvpath;
+                var document = DocumentModel.Load(path);
+
+                // Execute find and replace operations.
+                //document.Content.Replace("{{Number}}", this.Invoice.Number.ToString("0000"));
+                //document.Content.Replace("{{Date}}", this.Invoice.Date.ToString("d MMM yyyy HH:mm"));
+                //document.Content.Replace("{{Company}}", this.Invoice.Company);
+                //document.Content.Replace("{{Address}}", this.Invoice.Address);
+                //document.Content.Replace("{{Name}}", this.Invoice.Name);
+
+                // Save document in specified file format.
+                using var stream = new MemoryStream();
+                document.Save(stream, GemBox.Document.SaveOptions.PdfDefault);
+
+                // Download file.
+                return File(stream.ToArray(), "application/octet-stream", getUser.FirstName + "_CV.pdf");
+
+                //Read the File data into Byte Array.
+                //byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+                ////Send the File to Download.
+                //return File(bytes, "application/octet-stream", getUser.FirstName + "_CV");
+            }
+
+        }
+
+        public async Task<IActionResult> EmailNotification()
+        {
+            return View();
+        }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public async Task<IActionResult> EmailNotification(string emailaddresses, string message, string subject)
+        {
+            string[] split = emailaddresses.Split(',');
+            foreach (var item in split)
+            {
+                var apiKey = "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";
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("No-Reply@nsiainsurance.com", "NSIA INSURANCE");
+                //string fullname = getUser.FirstName + " " + getUser.LastName;
+                var to = new EmailAddress(item, item);
+                //var subject = "Congratulations";
+
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, message, message);
+                var responses = await client.SendEmailAsync(msg);
+                if (responses.IsSuccessStatusCode)
+                {
+                    TempData["success"] = "Email sent successfully";
+                   
+                }
+                else
+                {
+                    TempData["error"] = "Error occurred";
+                   
+                }
+            }
+            return RedirectToAction("EmailNotification", "HRDashboard");
         }
     }
 }
