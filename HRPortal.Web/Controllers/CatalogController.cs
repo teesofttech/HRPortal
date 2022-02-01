@@ -18,7 +18,7 @@ namespace HRPortal.Web.Controllers
         public IActionResult Index()
         {
             JobDetailViewModel jobDetailViewModel = new JobDetailViewModel();
-            var result = db.TblVacancyAdverts.OrderByDescending(c => c.Datecreated).ToList();
+            var result = db.TblVacancyAdverts.Where(c => c.Status == "Open").OrderByDescending(c => c.Datecreated).ToList();
             jobDetailViewModel.Summary = db.TblSummaries.FirstOrDefault();
             jobDetailViewModel.Vacancies = result;
             return View(jobDetailViewModel);
@@ -40,7 +40,7 @@ namespace HRPortal.Web.Controllers
         public IActionResult Category(string id)
         {
             JobDetailViewModel jobDetailViewModel = new JobDetailViewModel();
-            var result = db.TblVacancyAdverts.Where(c => c.Department == id).ToList();
+            var result = db.TblVacancyAdverts.Where(c => c.Status == "Open").Where(c => c.Department == id).ToList();
             jobDetailViewModel.Summary = db.TblSummaries.FirstOrDefault();
             jobDetailViewModel.Vacancies = result;
             return View(jobDetailViewModel);

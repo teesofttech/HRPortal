@@ -57,8 +57,8 @@
         </div>
         <!-- Page title-->
         @*<div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
-                <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"></a>
-            </div>*@
+            <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"></a>
+        </div>*@
 
 
 
@@ -74,7 +74,7 @@
                             <th style='font-size:14px;'>Start Date</th>
                             <th style='font-size:14px;'>End Date</th>
                             <th style='font-size:14px;'>Status</th>
-                            <th style='font-size:14px;'>Action</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,7 +90,7 @@
                                     <td>@item.StartDate.Value.ToLongDateString()</td>
                                     <td>@item.EndDate.Value.ToLongDateString()</td>
                                     <td>@item.Status</td>
-                                    <th><a class="btn btn-primary btn-sm" href="@Url.Action("ChangeStatus","HRDashboard")/@item.Id">Change Status</a></th>
+                                    <th><a class="btn btn-primary" href="@Url.Action("ChangeStatus","HRDashboard")/@item.Id">Change Status</a></th>
                                 </tr>
                             }
                         }

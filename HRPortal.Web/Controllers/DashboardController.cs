@@ -31,7 +31,7 @@ namespace HRPortal.Web.Controllers
         public async Task<IActionResult> Index()
         {
             UserDashboardModel userDashboardModel = new UserDashboardModel();
-            var getVacanies = await db.TblVacancyAdverts.OrderByDescending(c => c.Datecreated).ToListAsync();
+            var getVacanies = await db.TblVacancyAdverts.Where(c => c.Status == "Open").OrderByDescending(c => c.Datecreated).ToListAsync();
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
             if (getUser != null)
@@ -119,7 +119,7 @@ namespace HRPortal.Web.Controllers
         public async Task<IActionResult> ListJobs()
         {
             UserDashboardModel userDashboardModel = new UserDashboardModel();
-            var getVacanies = await db.TblVacancyAdverts.OrderByDescending(c => c.Datecreated).ToListAsync();
+            var getVacanies = await db.TblVacancyAdverts.Where(c => c.Status == "Open").OrderByDescending(c => c.Datecreated).ToListAsync();
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
             if (getUser != null)

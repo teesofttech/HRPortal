@@ -124,6 +124,21 @@ namespace HRPortal.Web.Controllers
             return View(await db.TblSummaries.FirstOrDefaultAsync());
         }
 
+        public async Task<IActionResult> List()
+        {
+            var result = db.TblVacancyAdverts.ToList().OrderByDescending(c => c.Datecreated);//(c => c.Datecreated).ToList();
+            return View(result);
+        }
+
+        public async Task<IActionResult> ChangeStatus(int id)
+        {
+            var get = db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefault();
+            get.Status = "Closed";
+            db.SaveChanges();
+            TempData["success"] = "Status updated";
+            return RedirectToAction("List", "HRDashboard");
+        }
+
         public async Task<IActionResult> AllPostedJobs()
         {
             var result = db.TblVacancyAdverts.ToList().OrderByDescending(c => c.Datecreated);//(c => c.Datecreated).ToList();
@@ -369,12 +384,12 @@ namespace HRPortal.Web.Controllers
                 if (responses.IsSuccessStatusCode)
                 {
                     TempData["success"] = "Email sent successfully";
-                   
+
                 }
                 else
                 {
                     TempData["error"] = "Error occurred";
-                   
+
                 }
             }
             return RedirectToAction("EmailNotification", "HRDashboard");
