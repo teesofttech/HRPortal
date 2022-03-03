@@ -83,7 +83,7 @@ namespace HRPortal.Web.Controllers
                 if (success)
                 {
                     TempData["success"] = "Job posted successfully";
-                    return RedirectToAction("PostJob", "HRDashboard");
+                    return RedirectToAction("Question", "HRDashboard", new { id = advert.Id });
                 }
                 else
                 {
@@ -394,5 +394,13 @@ namespace HRPortal.Web.Controllers
             }
             return RedirectToAction("EmailNotification", "HRDashboard");
         }
+
+        public async Task<IActionResult> Question(int id)
+        {
+            var get = db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefault();
+            return View(get);
+        }
+
+
     }
 }
