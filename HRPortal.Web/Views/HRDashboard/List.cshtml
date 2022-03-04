@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "List";
     Layout = "~/Views/Shared/_HRLayout.cshtml";
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 }
 
 <div class="container content-overlay mt-5 mb-md-4 py-5">
@@ -37,28 +39,12 @@
         </div>
         <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
         <div class="collapse d-md-block" id="account-nav">
-            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","HRDashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("PostJob","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Post Job</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("AllPostedJobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Summary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Summary</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
-
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Applied", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Applied</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("EmailNotification", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Email Notification</a></li>
-
-            </ul>
+            <partial name="_nav" />
         </div>
         <!-- Page title-->
         @*<div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
-            <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"></a>
-        </div>*@
+                <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"></a>
+            </div>*@
 
 
 
@@ -90,19 +76,32 @@
                                     <td>@item.StartDate.Value.ToLongDateString()</td>
                                     <td>@item.EndDate.Value.ToLongDateString()</td>
                                     <td>@item.Status</td>
-                                    <th><a class="btn btn-primary" href="@Url.Action("ChangeStatus","HRDashboard")/@item.Id">Change Status</a></th>
+                                    <td>
+                                        @if (item.Status == "Closed")
+                                        {
+                                            <a class="btn btn-primary btn-sm" href="@Url.Action("ChangeOpenStatus", "HRDashboard")/@item.Id" onclick="return confirm('Are you sure you want to open the vacancy?')">Open</a>
+                                        }
+                                        else
+                                        {
+                                            <a class="btn btn-danger btn-sm" href="@Url.Action("ChangeStatus", "HRDashboard")/@item.Id" onclick="return confirm('Are you sure you want to close the vacancy?')">Close</a>
+                                        }
+                                    </td>
                                 </tr>
                             }
                         }
 
                     </tbody>
                 </table>
-
             </div>
         </div>
-
     </div>
-
 </div>
 
 
+<script src="~/assets/plugins/js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>

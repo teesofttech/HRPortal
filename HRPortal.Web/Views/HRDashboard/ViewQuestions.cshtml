@@ -1,11 +1,8 @@
-﻿@model IEnumerable<HRPortal.Domain.Entities.TblVacancyAdvert>
+﻿@model IEnumerable<HRPortal.Web.Models.QuestionViewModel>
 @using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "List";
     Layout = "~/Views/Shared/_HRLayout.cshtml";
-
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 }
 
 <div class="container content-overlay mt-5 mb-md-4 py-5">
@@ -43,25 +40,25 @@
             <partial name="_nav" />
         </div>
         <!-- Page title-->
-        @*<div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
-                <h1 class="h3 mb-0">Jobs</h1><a class="fw-bold text-decoration-none" href="#"></a>
-            </div>*@
+        <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
+            <h1 class="h3 mb-0">Questions</h1><a class="fw-bold text-decoration-none" href="@Url.Action("CreateQuestion","HRDashboard")">Create Question</a>
+        </div>
 
 
 
         <div class="card mx-auto mt-3">
-            <div class="card-header bg-dark text-white text-center">Jobs</div>
+            <div class="card-header bg-dark text-white text-center">Questions</div>
             <div class="card-body table-responsive">
                 <table class="table table-bordered" id="dataTable">
                     <thead>
                         <tr>
-                            <th style='font-size:14px;'>Job Code</th>
-                            <th style='font-size:14px;'>Job Title</th>
-                            <th style='font-size:14px;'>Job Type</th>
-                            <th style='font-size:14px;'>Start Date</th>
-                            <th style='font-size:14px;'>End Date</th>
-                            <th style='font-size:14px;'>Status</th>
-                            <th style='font-size:14px;'>Action</th>
+                            <th style='font-size:14px;'>Question 1</th>
+                            <th style='font-size:14px;'>Question 1</th>
+                            <th style='font-size:14px;'>Question 2</th>
+                            <th style='font-size:14px;'>Question 3</th>
+                            <th style='font-size:14px;'>Question 4</th>
+                            <th style='font-size:14px;'>Question 5</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,36 +68,24 @@
                             foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>@item.JobCode</td>
                                     <td>@item.JobTitle</td>
-                                    <td>@item.ContractType</td>
-                                    <td>@item.StartDate.Value.ToLongDateString()</td>
-                                    <td>@item.EndDate.Value.ToLongDateString()</td>
-                                    <td>@item.Status</td>
-                                    <td>
-                                        @if (item.Status == "Closed")
-                                        {
-                                            <a class="btn btn-primary btn-sm" href="@Url.Action("ChangeOpenStatus", "HRDashboard")/@item.Id" onclick="return confirm('Are you sure you want to open the vacancy?')">Open</a>
-                                        }
-                                        else
-                                        {
-                                            <a class="btn btn-danger btn-sm" href="@Url.Action("ChangeStatus", "HRDashboard")/@item.Id" onclick="return confirm('Are you sure you want to close the vacancy?')">Close</a>
-                                        }
-                                    </td>
+                                    <td>@item.Question1</td>
+                                    <td>@item.Question2</td>
+                                    <td>@item.Question3</td>
+                                    <td>@item.Question4</td>
+                                    <td>@item.Question5</td>
+
+                                    <td><a class="btn btn-primary" href="@Url.Action("DeleteQuestion","HRDashboard")/@item.Id" onclick="return confirm('Are you sure you want to delete?')">Delete</a></td>
                                 </tr>
                             }
                         }
 
                     </tbody>
                 </table>
+
             </div>
         </div>
+
     </div>
+
 </div>
-<script src="~/assets/plugins/js/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#dataTable').DataTable();
-    });
-</script>

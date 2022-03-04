@@ -306,6 +306,11 @@ namespace HRPortal.Domain.Entities
                     .HasColumnName("question5");
 
                 entity.Property(e => e.VacanyId).HasColumnName("vacanyId");
+
+                entity.HasOne(d => d.Vacany)
+                    .WithMany(p => p.TblQuestions)
+                    .HasForeignKey(d => d.VacanyId)
+                    .HasConstraintName("FK_tbl_question_tbl_vacancy_advert");
             });
 
             modelBuilder.Entity<TblSkill>(entity =>

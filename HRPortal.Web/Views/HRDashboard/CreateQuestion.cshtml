@@ -1,4 +1,4 @@
-﻿@model HRPortal.Domain.Entities.TblVacancyAdvert
+﻿@model HRPortal.Web.Models.VacancyModel
 @using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Create Question";
@@ -45,11 +45,19 @@
         </div>
         <!-- Basic info-->
         <p style="text-align:center;color:green;">@TempData["success"]</p>
-        <form asp-controller="HRDashboard" asp-action="Question" method="post">
+        <form asp-controller="HRDashboard" asp-action="CreateQuestion" method="post">
             <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
 
-                <input type="hidden" value="@Model.Id" name="vacanyId" id="vacanyId" />
-                <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Question Input</h2>
+                <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Create Question </h2>
+                <div class="row mb-2">
+                    <div class="col-sm-12 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Vacancy</label>
+                            @Html.DropDownListFor(model => model.VacancyId, new SelectList(Model.Adverts, "Id", "JobTitle"), "Please select", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row mb-2">
                     <div class="col-sm-12 mb-3">
                         <div class="mb-3">

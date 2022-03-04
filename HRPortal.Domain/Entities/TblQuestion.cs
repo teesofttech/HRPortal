@@ -15,5 +15,7 @@ namespace HRPortal.Domain.Entities
         public string Question5 { get; set; }
         public string Question2 { get; set; }
         public DateTime? Datetime { get; set; }
+
+        public virtual TblVacancyAdvert Vacany { get; set; }
     }
 }
