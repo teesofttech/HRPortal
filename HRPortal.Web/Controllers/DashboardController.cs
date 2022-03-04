@@ -294,7 +294,8 @@ namespace HRPortal.Web.Controllers
 
         public async Task<IActionResult> Question(int id)
         {
-            return View();
+            var get = db.TblQuestions.Where(c => c.VacanyId == id).FirstOrDefault();
+            return View(get);
         }
     }
 }
