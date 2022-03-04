@@ -292,6 +292,9 @@ namespace HRPortal.Web.Controllers
             return View(userDashboardModel);
         }
 
-
+        public async Task<IActionResult> Question(int id)
+        {
+            return View();
+        }
     }
 }

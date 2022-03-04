@@ -377,7 +377,7 @@
                     }).then((result) => {
                        // if (result['isConfirmed']) {
                         // Put your function here
-                        window.location.href = '@Url.Action("Applied", "Dashboard")';
+                        window.location.href = '@Url.Action("Question", "Dashboard")/@TempData["vacancyId"]';
                         //}
                     });
                 } else if (response.status =="exist") {
