@@ -38,24 +38,9 @@
             @*<a class="nav-link p-0 d-none d-md-block" href="/Identity/Account/Logout">Sign out</a>*@
         </div>
         <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
-        <div class="collapse d-md-block" id="account-nav">
-            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","HRDashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("PostJob","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Post Job</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("AllPostedJobs", "HRDashboard")"><i class="fi-heart mt-n1 me-2 fs-base"></i>All Posted Jobs</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Summary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Summary</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewSummary","HRDashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Summary</a></li>
-
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("Applied", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Applied</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("EmailNotification", "HRDashboard")"><i class="fi-list mt-n1 me-2 fs-base"></i>Email Notification</a></li>
-
-            </ul>
-        </div>
+                            <div class="collapse d-md-block" id="account-nav">
+                                <partial name="_nav" />
+                            </div>
         <!-- Page title-->
         <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
             <h1 class="h3 mb-0"></h1>

@@ -1,0 +1,158 @@
+﻿@model HRPortal.Web.Models.VacancyModel
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Create Question";
+    Layout = "~/Views/Shared/_HRLayout.cshtml";
+    @*<link rel="stylesheet" href="~/assets/plugins/css/plugins.css">
+        <link href="~/assets/css/style.css" rel="stylesheet">*@
+    <link href="~/sweetalert2.css" rel="stylesheet" />
+}
+
+<div class="container content-overlay mt-5 mb-md-4 py-5">
+    <!-- Breadcrumb-->
+    <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-light">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Question</li>
+        </ol>
+    </nav>
+    <!-- Page card like wrapper-->
+    <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
+        <!-- Account header-->
+        <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
+            <div class="d-flex align-items-start">
+                <div class="position-relative flex-shrink-0">
+                    <img class="rounded-circle" src="~/img/avatars/37.png" width="100" alt="Annette Black">
+                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
+                </div>
+                <div class="ps-3 ps-sm-4">
+                    <h3 class="h5">Welcome @Context.Session.GetString("FirstName") !!!</h3>
+                    <ul class="list-unstyled fs-sm mb-0">
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
+                        @*<li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span></span></li>*@
+                    </ul>
+                </div>
+            </div>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark nav-link p-0 d-none d-md-block"><i class="fi-logout mt-n1 me-2"></i> Click here to Logout</button>
+            </form>
+        </div>
+        <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
+
+        <div class="collapse d-md-block" id="account-nav">
+            <partial name="_nav" />
+        </div>
+        <!-- Basic info-->
+        <p style="text-align:center;color:green;">@TempData["success"]</p>
+        <form asp-controller="HRDashboard" asp-action="CreateQuestion" method="post">
+            <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
+
+                <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Create Question </h2>
+                <div class="row mb-2">
+                    <div class="col-sm-12 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Vacancy</label>
+                            @Html.DropDownListFor(model => model.VacancyId, new SelectList(Model.Adverts, "Id", "JobTitle"), "Please select", new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-12 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Question 1</label>
+                            <input class="form-control" type="text" id="sc-title" placeholder="Question 1" name="Question1">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-12 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Question 2</label>
+                            <input class="form-control" type="text" id="sc-title" placeholder="Question 2" name="Question2" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-sm-12 mb-3">
+                        <div class="mb-2">
+                            <label class="form-label" for="sc-title">Question 3</label>
+                            <input class="form-control" type="text" name="Question3" id="sc-title" placeholder="Question 3" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+
+                    <div class="col-sm-12 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Question 4</label>
+                            <input class="form-control" type="text" name="Question4" id="sc-title" placeholder="Question 4" value="">
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+                    <div class="col-sm-12 mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" for="sc-title">Question 5</label>
+                            <input class="form-control" type="text" name="Question5" id="sc-title" placeholder="Question 5" value="">
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- Price-->
+
+            <div class="row pt-4 mt-2">
+                <div class="col-lg-6 offset-lg-3">
+                    @*<div class="d-flex align-items-center justify-content-between">*@
+                    <button class="btn btn-primary btn-lg rounded-pill px-3 px-sm-4" type="submit">Submit</button>
+                    @*</div>*@
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+<script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
+<script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="~/vendor/flatpickr/dist/flatpickr.min.js"></script>
+<!-- Main theme script-->
+<script src="~/js/theme.min.js"></script>
+<script src="~/sweetalert2.min.js"></script>
+
+<script src="~/sweetalert2.min.js"></script>
+
+@if (TempData["success"] != null)
+{
+    <script type="text/javascript">
+        Swal({
+            type: 'success',
+            title: 'Job Placement',
+            html: 'Your job post has been submitted successfully.'
+
+        })
+    </script>
+}
+else if (TempData["error"] != null)
+{
+    <script type="text/javascript">
+            Swal({
+                type: 'error',
+                title: 'Login',
+                html: '@TempData["error"]'
+
+            })
+    </script>
+}

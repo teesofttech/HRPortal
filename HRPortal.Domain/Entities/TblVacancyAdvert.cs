@@ -7,6 +7,11 @@ namespace HRPortal.Domain.Entities
 {
     public partial class TblVacancyAdvert
     {
+        public TblVacancyAdvert()
+        {
+            TblQuestions = new HashSet<TblQuestion>();
+        }
+
         public int Id { get; set; }
         public DateTime? DateOfAdvert { get; set; }
         public string JobTitle { get; set; }
@@ -31,5 +36,7 @@ namespace HRPortal.Domain.Entities
         public string Experience { get; set; }
         public string ProfQualitification { get; set; }
         public string BehaviouralCompetencies { get; set; }
+
+        public virtual ICollection<TblQuestion> TblQuestions { get; set; }
     }
 }

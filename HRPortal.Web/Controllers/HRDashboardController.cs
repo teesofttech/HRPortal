@@ -83,7 +83,7 @@ namespace HRPortal.Web.Controllers
                 if (success)
                 {
                     TempData["success"] = "Job posted successfully";
-                    return RedirectToAction("PostJob", "HRDashboard");
+                    return RedirectToAction("Question", "HRDashboard", new { id = advert.Id });
                 }
                 else
                 {
@@ -139,6 +139,15 @@ namespace HRPortal.Web.Controllers
             return RedirectToAction("List", "HRDashboard");
         }
 
+
+        public async Task<IActionResult> ChangeOpenStatus(int id)
+        {
+            var get = db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefault();
+            get.Status = "Open";
+            db.SaveChanges();
+            TempData["success"] = "Status updated";
+            return RedirectToAction("List", "HRDashboard");
+        }
         public async Task<IActionResult> AllPostedJobs()
         {
             var result = db.TblVacancyAdverts.ToList().OrderByDescending(c => c.Datecreated);//(c => c.Datecreated).ToList();
@@ -393,6 +402,86 @@ namespace HRPortal.Web.Controllers
                 }
             }
             return RedirectToAction("EmailNotification", "HRDashboard");
+        }
+
+        public async Task<IActionResult> Question(int id)
+        {
+            var get = db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefault();
+            return View(get);
+        }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public async Task<IActionResult> Question(int vacanyId, string Question1, string Question2, string Question3, string Question4, string Question5)
+        {
+            TblQuestion tbl = new TblQuestion();
+            tbl.VacanyId = vacanyId;
+            tbl.Question1 = Question1;
+            tbl.Question2 = Question2;
+            tbl.Question3 = Question3;
+            tbl.Question4 = Question4;
+            tbl.Question5 = Question5;
+            db.TblQuestions.Add(tbl);
+            db.SaveChanges();
+            TempData["success"] = "Question has been added";
+            return RedirectToAction("ViewQuestions");
+        }
+        public async Task<IActionResult> CreateQuestion()
+        {
+            VacancyModel vacancyModel = new VacancyModel();
+            var getAllVacancy = db.TblVacancyAdverts.ToList();
+            vacancyModel.Adverts = getAllVacancy;
+            return View(vacancyModel);
+        }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        public async Task<IActionResult> CreateQuestion(VacancyModel model, string Question1, string Question2, string Question3, string Question4, string Question5)
+        {
+            TblQuestion tbl = new TblQuestion();
+            tbl.VacanyId = model.VacancyId;
+            tbl.Question1 = Question1;
+            tbl.Question2 = Question2;
+            tbl.Question3 = Question3;
+            tbl.Question4 = Question4;
+            tbl.Question5 = Question5;
+            db.TblQuestions.Add(tbl);
+            db.SaveChanges();
+            TempData["success"] = "Question has been added";
+            return RedirectToAction("ViewQuestions");
+        }
+        public async Task<IActionResult> ViewQuestions()
+        {
+            List<QuestionViewModel> questionViewModels = new List<QuestionViewModel>();
+            var get = db.TblQuestions.ToList();
+
+            foreach (var item in get)
+            {
+                var ggg = db.TblVacancyAdverts.Where(c => c.Id == item.VacanyId).FirstOrDefault();
+                QuestionViewModel questionView = new QuestionViewModel();
+                questionView.JobTitle = ggg.JobTitle;
+                questionView.Id = item.Id;
+                questionView.Question1 = item.Question1;
+                questionView.Question2 = item.Question2;
+                questionView.Question3 = item.Question3;
+                questionView.Question4 = item.Question4;
+                questionView.Question5 = item.Question5;
+                questionViewModels.Add(questionView);
+            }
+            return View(questionViewModels);
+        }
+
+        public async Task<IActionResult> DeleteQuestion(int id)
+        {
+            var get = db.TblQuestions.Where(c => c.Id == id).FirstOrDefault();
+            if (get != null)
+            {
+                db.TblQuestions.Remove(get);
+                db.SaveChanges();
+                return RedirectToAction("ViewQuestions");
+            }
+            else
+            {
+                return RedirectToAction("ViewQuestions");
+            }
         }
     }
 }

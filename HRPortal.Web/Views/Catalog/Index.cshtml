@@ -302,13 +302,13 @@
 
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Jobs</a>
+                            <a class="nav-link " href="@Url.Action("Index", "Catalog")" role="button">Available Jobs</a>
 
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="/Identity/Account/Login" role="button">Account</a>
+                        @*<li class="nav-item">
+                                <a class="nav-link " href="/Identity/Account/Login" role="button">Account</a>
 
-                        </li>
+                            </li>*@
 
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -327,7 +327,7 @@
 
         <section class="bg-blue pt-5">
             <div class="container py-5">
-                <h1 class="text-light pt-1 pt-md-3 mb-4">Find jobs</h1>
+                <h1 class="text-light pt-1 pt-md-3 mb-4">Available jobs</h1>
                 <!-- Search form-->
                 @*<form class="form-group form-group-light d-block rounded-lg-pill mb-4">
                         <div class="row align-items-center g-0 ms-n2">
@@ -344,7 +344,7 @@
                 <nav class="pb-4 my-2" aria-label="Breadcrumb">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Find jobs</li>
+                        <li class="breadcrumb-item active" aria-current="page">Available jobs</li>
                     </ol>
                 </nav>
                 <div class="row">

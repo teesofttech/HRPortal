@@ -1,4 +1,4 @@
-﻿@model HRPortal.Web.Models.UserDashboardModel
+﻿@model HRPortal.Domain.Entities.TblQuestion
 @using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Dashboard";
@@ -24,13 +24,7 @@
                     <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
                 </div>
 
-                <div class="ps-3 ps-sm-4">
-                    <h3 class="h5">@Model.AspNetUser.FirstName @Model.AspNetUser.LastName</h3>
-                    <ul class="list-unstyled fs-sm mb-0">
-                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.Email</span></li>
-                        <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.PhoneNumber</span></li>
-                    </ul>
-                </div>
+
                 @*<div class="ps-3 ps-sm-4">
                         <h3 class="h5">Ann</h3>
                         <ul class="list-unstyled fs-sm mb-0">
@@ -48,7 +42,7 @@
             <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("Index","Dashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Available Jobs</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>List Jobs</a></li>
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="#"><i class="fi-heart mt-n1 me-2 fs-base"></i>Saved Jobs</a></li>
 
@@ -58,55 +52,97 @@
         </div>
         <!-- Authorization info-->
         <div class="row pt-4 mt-3">
-            <div class="col-lg-3">
-                <h2 class="h4">Personal Information</h2>
-            </div>
-            <div class="col-lg-9">
+
+            <div class="col-lg-12">
                 <div class="border rounded-3 p-3" id="auth-info">
                     <!-- Email-->
 
                     <div class="border-bottom pb-3 mb-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="pe-2">
-                                <label class="form-label fw-bold">FirstName</label>
-                                <div id="email-value">@Model.AspNetUser.FirstName</div>
+                                <label class="form-label fw-bold">Question 1</label>
+                                <div id="email-value">@Model.Question1</div>
+
                             </div>
+                        </div>
+                        <div class="col col-md-3">
+                            <br />
+                            <select class="form-control" name="question1Answer" id="question1Answer">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="border-bottom pb-3 mb-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="pe-2">
-                                <label class="form-label fw-bold">LastName</label>
-                                <div id="email-value">@Model.AspNetUser.LastName</div>
+                                <label class="form-label fw-bold">Question 2</label>
+                                <div id="email-value">@Model.Question2</div>
+
                             </div>
+                        </div>
+                        <div class="col col-md-3">
+                            <br />
+                            <select class="form-control" name="question2Answer" id="question2Answer">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="border-bottom pb-3 mb-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="pe-2">
-                                <label class="form-label fw-bold">Email</label>
-                                <div id="email-value">@Model.AspNetUser.Email</div>
+                                <label class="form-label fw-bold">Question 3</label>
+                                <div id="email-value">@Model.Question3</div>
+
                             </div>
+
+
+                        </div>
+                        <div class="col col-md-3">
+                            <br />
+                            <select class="form-control" name="question3Answer" id="question3Answer">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="border-bottom pb-3 mb-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="pe-2">
-                                <label class="form-label fw-bold">Role</label>
-                                <div id="email-value">@Model.AspNetUser.Role</div>
+                                <label class="form-label fw-bold">Question 4</label>
+                                <div id="email-value">@Model.Question4</div>
+
                             </div>
+
+                        </div>
+                        <div class="col col-md-3">
+                            <br />
+                            <select class="form-control" name="question4Answer" id="question4Answer">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="border-bottom pb-3 mb-3">
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="pe-2">
-                                <label class="form-label fw-bold">Phone Number</label>
-                                <div id="email-value">@Model.AspNetUser.PhoneNumber</div>
+                                <label class="form-label fw-bold">Question 5</label>
+                                <div id="email-value">@Model.Question5</div>
+
                             </div>
+
+                        </div>
+                        <div class="col col-md-3">
+                            <br />
+                            <select class="form-control" name="question5Answer" id="question5Answer">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
                         </div>
                     </div>
 

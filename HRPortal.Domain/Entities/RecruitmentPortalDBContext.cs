@@ -28,6 +28,7 @@ namespace HRPortal.Domain.Entities
         public virtual DbSet<TblCandidateApplication> TblCandidateApplications { get; set; }
         public virtual DbSet<TblCompetency> TblCompetencies { get; set; }
         public virtual DbSet<TblCvPath> TblCvPaths { get; set; }
+        public virtual DbSet<TblQuestion> TblQuestions { get; set; }
         public virtual DbSet<TblSkill> TblSkills { get; set; }
         public virtual DbSet<TblSummary> TblSummaries { get; set; }
         public virtual DbSet<TblVacancyAdvert> TblVacancyAdverts { get; set; }
@@ -272,6 +273,44 @@ namespace HRPortal.Domain.Entities
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.Property(e => e.VacancyId).HasColumnName("vacancyId");
+            });
+
+            modelBuilder.Entity<TblQuestion>(entity =>
+            {
+                entity.ToTable("tbl_question");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Datetime)
+                    .HasColumnType("date")
+                    .HasColumnName("datetime");
+
+                entity.Property(e => e.Question1)
+                    .HasColumnType("text")
+                    .HasColumnName("question1");
+
+                entity.Property(e => e.Question2)
+                    .HasColumnType("text")
+                    .HasColumnName("question2");
+
+                entity.Property(e => e.Question3)
+                    .HasColumnType("text")
+                    .HasColumnName("question3");
+
+                entity.Property(e => e.Question4)
+                    .HasColumnType("text")
+                    .HasColumnName("question4");
+
+                entity.Property(e => e.Question5)
+                    .HasColumnType("text")
+                    .HasColumnName("question5");
+
+                entity.Property(e => e.VacanyId).HasColumnName("vacanyId");
+
+                entity.HasOne(d => d.Vacany)
+                    .WithMany(p => p.TblQuestions)
+                    .HasForeignKey(d => d.VacanyId)
+                    .HasConstraintName("FK_tbl_question_tbl_vacancy_advert");
             });
 
             modelBuilder.Entity<TblSkill>(entity =>
