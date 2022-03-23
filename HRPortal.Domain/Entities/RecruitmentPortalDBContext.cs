@@ -29,6 +29,8 @@ namespace HRPortal.Domain.Entities
         public virtual DbSet<TblCompetency> TblCompetencies { get; set; }
         public virtual DbSet<TblCvPath> TblCvPaths { get; set; }
         public virtual DbSet<TblQuestion> TblQuestions { get; set; }
+        public virtual DbSet<TblQuestionAnswer> TblQuestionAnswers { get; set; }
+        public virtual DbSet<TblResume> TblResumes { get; set; }
         public virtual DbSet<TblSkill> TblSkills { get; set; }
         public virtual DbSet<TblSummary> TblSummaries { get; set; }
         public virtual DbSet<TblVacancyAdvert> TblVacancyAdverts { get; set; }
@@ -38,7 +40,7 @@ namespace HRPortal.Domain.Entities
 //            if (!optionsBuilder.IsConfigured)
 //            {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-//                optionsBuilder.UseSqlServer("Server=52.137.47.7,49170;Database=RecruitmentPortalDB; User Id=sa; password=Password@2023");
+//                optionsBuilder.UseSqlServer("Server=52.137.47.7,49170;Database= RecruitmentPortalDB;User Id= sa; password=Password@2023");
 //            }
 //        }
 
@@ -311,6 +313,78 @@ namespace HRPortal.Domain.Entities
                     .WithMany(p => p.TblQuestions)
                     .HasForeignKey(d => d.VacanyId)
                     .HasConstraintName("FK_tbl_question_tbl_vacancy_advert");
+            });
+
+            modelBuilder.Entity<TblQuestionAnswer>(entity =>
+            {
+                entity.ToTable("TblQuestionAnswer");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Question1)
+                    .HasMaxLength(50)
+                    .HasColumnName("question1");
+
+                entity.Property(e => e.Question2)
+                    .HasMaxLength(50)
+                    .HasColumnName("question2");
+
+                entity.Property(e => e.Question3)
+                    .HasMaxLength(50)
+                    .HasColumnName("question3");
+
+                entity.Property(e => e.Question4)
+                    .HasMaxLength(50)
+                    .HasColumnName("question4");
+
+                entity.Property(e => e.Question5)
+                    .HasMaxLength(50)
+                    .HasColumnName("question5");
+
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+
+                entity.Property(e => e.VacancyId).HasColumnName("vacancyId");
+            });
+
+            modelBuilder.Entity<TblResume>(entity =>
+            {
+                entity.ToTable("tbl_resume");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Date)
+                    .HasColumnType("datetime")
+                    .HasColumnName("date");
+
+                entity.Property(e => e.Education)
+                    .HasColumnType("text")
+                    .HasColumnName("education");
+
+                entity.Property(e => e.Experiencesummary)
+                    .HasColumnType("text")
+                    .HasColumnName("experiencesummary");
+
+                entity.Property(e => e.Objective)
+                    .HasColumnType("text")
+                    .HasColumnName("objective");
+
+                entity.Property(e => e.Onlinepresence)
+                    .HasColumnType("text")
+                    .HasColumnName("onlinepresence");
+
+                entity.Property(e => e.PersonalInformation).HasColumnType("text");
+
+                entity.Property(e => e.Projectexperience)
+                    .HasColumnType("text")
+                    .HasColumnName("projectexperience");
+
+                entity.Property(e => e.Skill)
+                    .HasColumnType("text")
+                    .HasColumnName("skill");
+
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(50)
+                    .HasColumnName("userId");
             });
 
             modelBuilder.Entity<TblSkill>(entity =>

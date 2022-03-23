@@ -297,5 +297,35 @@ namespace HRPortal.Web.Controllers
             var get = db.TblQuestions.Where(c => c.VacanyId == id).FirstOrDefault();
             return View(get);
         }
+
+        public async Task<IActionResult> CreateCV()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [System.Web.Mvc.ValidateInput(false)]
+        public async Task<IActionResult> CreateCV(string Objective, string Onlinepresence, string Projectexperience,
+            string Skill, string Education, string Experiencesummary, string PersonalInformation)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            TblResume resume = new TblResume()
+            {
+                Date = DateTime.UtcNow,
+                Education = Education,
+                Experiencesummary = Experiencesummary,
+                PersonalInformation = PersonalInformation,
+                Objective = Objective,
+                Onlinepresence = Onlinepresence,
+                Projectexperience = Projectexperience,
+                Skill = Skill,
+                UserId = userId
+            };
+            db.TblResumes.Add(resume);
+            db.SaveChanges();
+            TempData["success"] = "Resume created successfully";
+            return View();
+        }
+
     }
 }
