@@ -300,7 +300,18 @@ namespace HRPortal.Web.Controllers
 
         public async Task<IActionResult> CreateCV()
         {
-            return View();
+            UserDashboardModel userDashboardModel = new UserDashboardModel();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            if (getUser != null)
+            {
+                userDashboardModel.AspNetUser = getUser;
+                return View(userDashboardModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -310,11 +321,11 @@ namespace HRPortal.Web.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             //check if resume is avail for the user 
-            var userResume =await db.TblResumes.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+            var userResume = await db.TblResumes.Where(c => c.UserId == userId).FirstOrDefaultAsync();
             if (userResume != null)
             {
                 TempData["exist"] = "You have added a resume before!!!";
-                return View();
+                return RedirectToAction("CreateCV", "Dashboard");
             }
             else
             {
@@ -334,7 +345,7 @@ namespace HRPortal.Web.Controllers
                 db.TblResumes.Add(resume);
                 db.SaveChanges();
                 TempData["success"] = "Resume created successfully";
-                return View();
+                return RedirectToAction("CreateCV", "Dashboard");
             }
         }
     }
