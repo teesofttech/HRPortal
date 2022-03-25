@@ -31,11 +31,11 @@
                     </ul>
                 </div>
                 @*<div class="ps-3 ps-sm-4">
-                        <h3 class="h5">Ann</h3>
-                        <ul class="list-unstyled fs-sm mb-0">
-                            <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
+                    <h3 class="h5">Ann</h3>
+                    <ul class="list-unstyled fs-sm mb-0">
+                    <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@User.Identity.Name</span></li>
 
-                        </ul>
+                    </ul>
                     </div>*@
             </div>
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
@@ -47,24 +47,21 @@
             <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","Dashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>List Jobs</a></li>
-
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="#"><i class="fi-heart mt-n1 me-2 fs-base"></i>Saved Jobs</a></li>
-
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Available Jobs</a></li>
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("Summary","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
-                
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("CreateCV","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Create Resume</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewCV","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Resume</a></li>
                 <li class="nav-item d-md-none"><a class="nav-link" href="/Identity/Account/Logout"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
         </div>
         @*<div class="collapse d-md-block" id="account-nav">
-                <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
-                    <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="#"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
-                    <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="job-board-account-my-resumes.html"><i class="fi-file mt-n1 me-2 fs-base"></i>My Resumes</a></li>
-                    <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="job-board-account-saved-jobs.html" aria-current="page"><i class="fi-heart mt-n1 me-2 fs-base"></i>Saved Jobs</a></li>
-                    <li class="nav-item mb-md-0"><a class="nav-link" href="job-board-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Notifications</a></li>
-                    <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
-                </ul>
+            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
+            <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="#"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+            <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="job-board-account-my-resumes.html"><i class="fi-file mt-n1 me-2 fs-base"></i>My Resumes</a></li>
+            <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="job-board-account-saved-jobs.html" aria-current="page"><i class="fi-heart mt-n1 me-2 fs-base"></i>Saved Jobs</a></li>
+            <li class="nav-item mb-md-0"><a class="nav-link" href="job-board-account-notifications.html"><i class="fi-bell mt-n1 me-2 fs-base"></i>Notifications</a></li>
+            <li class="nav-item d-md-none"><a class="nav-link" href="#"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+            </ul>
             </div>*@
 
         <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">

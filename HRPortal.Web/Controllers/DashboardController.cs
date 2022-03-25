@@ -305,27 +305,37 @@ namespace HRPortal.Web.Controllers
 
         [HttpPost]
         [System.Web.Mvc.ValidateInput(false)]
-        public async Task<IActionResult> CreateCV(string Objective, string Onlinepresence, string Projectexperience,
-            string Skill, string Education, string Experiencesummary, string PersonalInformation)
+        public async Task<IActionResult> CreateCV(string Objective, string Online, string Projects,
+            string Skills, string Education, string ExecutiveSummary, string personal, string Certification)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            TblResume resume = new TblResume()
+            //check if resume is avail for the user 
+            var userResume =await db.TblResumes.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+            if (userResume != null)
             {
-                Date = DateTime.UtcNow,
-                Education = Education,
-                Experiencesummary = Experiencesummary,
-                PersonalInformation = PersonalInformation,
-                Objective = Objective,
-                Onlinepresence = Onlinepresence,
-                Projectexperience = Projectexperience,
-                Skill = Skill,
-                UserId = userId
-            };
-            db.TblResumes.Add(resume);
-            db.SaveChanges();
-            TempData["success"] = "Resume created successfully";
-            return View();
+                TempData["exist"] = "You have added a resume before!!!";
+                return View();
+            }
+            else
+            {
+                TblResume resume = new TblResume()
+                {
+                    Date = DateTime.UtcNow,
+                    Education = Education,
+                    Experiencesummary = ExecutiveSummary,
+                    PersonalInformation = personal,
+                    Objective = Objective,
+                    Onlinepresence = Online,
+                    Projectexperience = Projects,
+                    Skill = Skills,
+                    UserId = userId,
+                    Certification = Certification
+                };
+                db.TblResumes.Add(resume);
+                db.SaveChanges();
+                TempData["success"] = "Resume created successfully";
+                return View();
+            }
         }
-
     }
 }

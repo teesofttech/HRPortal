@@ -17,5 +17,6 @@ namespace HRPortal.Domain.Entities
         public string Education { get; set; }
         public string Experiencesummary { get; set; }
         public string PersonalInformation { get; set; }
+        public string Certification { get; set; }
     }
 }

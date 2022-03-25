@@ -201,109 +201,7 @@
             </div>
         </div>
         <!-- Sign Up Modal-->
-        <div class="modal fade" id="signup-modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered p-2 my-0 mx-auto" style="max-width: 734px;">
-                <div class="modal-content">
-                    <div class="modal-body p-sm-5">
-                        <button class="btn-close position-absolute top-0 end-0 mt-3 me-3" type="button" data-bs-dismiss="modal"></button>
-                        <ul class="nav nav-pills flex-column flex-sm-row border-bottom pb-4 mt-sm-n2 my-4" role="tablist">
-                            <li class="nav-item me-sm-3 mb-sm-0"><a class="nav-link active" href="#job-seeker" data-bs-toggle="tab" role="tab" aria-controls="job-seeker" aria-selected="true"><i class="fi-user me-2"></i>I am job seeker</a></li>
-                            <li class="nav-item mb-sm-0"><a class="nav-link" href="#employer" data-bs-toggle="tab" role="tab" aria-controls="employer" aria-selected="false"><i class="fi-briefcase me-2"></i>I am employer</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="job-seeker" role="tabpanel">
-                                <h3>Register to add a resume</h3>
-                                <p class="pb-3">Get access to all the functions of the site that will help you find a great job.</p>
-
-                                <form class="needs-validation" novalidate>
-                                    <div class="row gx-2 gx-md-4">
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="js-fn">Full name</label>
-                                            <input class="form-control" type="text" id="js-fn" placeholder="Enter your full name" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="js-email">Emaill address</label>
-                                            <input class="form-control" type="email" id="js-email" placeholder="Enter your email" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="js-password">Password <span class='text-muted'>(min. 8 char)</span></label>
-                                            <div class="password-toggle">
-                                                <input class="form-control" type="password" id="js-password" minlength="8" required>
-                                                <label class="password-toggle-btn" aria-label="Show/hide password">
-                                                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="js-password-confirm">Confirm password</label>
-                                            <div class="password-toggle">
-                                                <input class="form-control" type="password" id="js-password-confirm" minlength="8" required>
-                                                <label class="password-toggle-btn" aria-label="Show/hide password">
-                                                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" id="agree-to-terms" required>
-                                        <label class="form-check-label" for="agree-to-terms">By joining, I agree to the <a href='#'>Terms of use</a> and <a href='#'>Privacy policy</a></label>
-                                    </div>
-                                    <button class="btn btn-primary btn-lg w-100 rounded-pill" type="submit">Sign up</button>
-                                </form>
-                            </div>
-                            <div class="tab-pane fade" id="employer" role="tabpanel">
-                                <h3>Register to post a vacancy</h3>
-                                <p class="pb-3">Get access to all special services for employers on NSIA.</p>
-                                <form class="needs-validation" novalidate>
-                                    <div class="row gx-2 gx-md-4">
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="em-fn">Full name</label>
-                                            <input class="form-control" type="text" id="em-fn" placeholder="Enter your full name" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="em-email">Emaill <span class='text-muted'>(better corporate)</span></label>
-                                            <input class="form-control" type="email" id="em-email" placeholder="Enter email" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="em-company">Company name</label>
-                                            <input class="form-control" type="text" id="em-company" placeholder="Enter company name" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="em-location">Main office location</label>
-                                            <input class="form-control" type="text" id="em-location" placeholder="Country, City, Address" required>
-                                        </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="em-password">Password <span class='text-muted'>(min. 8 char)</span></label>
-                                            <div class="password-toggle">
-                                                <input class="form-control" type="password" id="em-password" minlength="8" required>
-                                                <label class="password-toggle-btn" aria-label="Show/hide password">
-                                                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 mb-4">
-                                            <label class="form-label" for="em-password-confirm">Confirm password</label>
-                                            <div class="password-toggle">
-                                                <input class="form-control" type="password" id="em-password-confirm" minlength="8" required>
-                                                <label class="password-toggle-btn" aria-label="Show/hide password">
-                                                    <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-check mb-4">
-                                        <input class="form-check-input" type="checkbox" id="agree-to-terms2" required>
-                                        <label class="form-check-label" for="agree-to-terms2">By joining, I agree to the <a href='#'>Terms of use</a> and <a href='#'>Privacy policy</a></label>
-                                    </div>
-                                    <button class="btn btn-primary btn-lg w-100 rounded-pill" type="submit">Sign up</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="pt-4 pb-3 pb-sm-0 mt-2">Already have an account? <a href="#signin-modal" data-bs-toggle="modal" data-bs-dismiss="modal">Sign in</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
         <!-- Navbar-->
         <header class="navbar navbar-expand-lg navbar-dark bg-blue fixed-top" data-scroll-header>
             <div class="container">
@@ -466,13 +364,13 @@
                                     </div>
                                     <div>
                                         <div class="card-body mt-n1 pt-0">
-                                            <p class="fs-sm" style="text-align:justify;">
+                                           @* <p class="fs-sm" style="text-align:justify;">
                                                 @item.JobObjectives <br /><br /><a href="/Catalog/JobDetail/@item.Id">Read more...</a>
-                                            </p>
+                                            </p>*@
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="fs-sm">
                                                     <span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3">
-                                                        <i class="fi-cash fs-base text-muted me-1"></i>@item.EndDate.Value.ToLongDateString()  - @item.StartDate.Value.ToLongDateString()
+                                                        <i class="fa-calendar fs-base text-muted me-1"></i>@item.EndDate.Value.ToLongDateString()  - @item.StartDate.Value.ToLongDateString()
                                                     </span>
                                                 </div>
                                                 <button class="btn btn-icon btn-light btn-xs text-primary shadow-sm rounded-circle" type="button" data-bs-toggle="tooltip" title="Add to saved jobs"><i class="fi-heart"></i></button>
