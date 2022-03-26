@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "CreateCV";
     Layout = "~/Views/Shared/_Layout.cshtml";
-     <link href="~/sweetalert2.css" rel="stylesheet" />
+    <link href="~/sweetalert2.css" rel="stylesheet" />
 
     <script src="https://cdn.ckeditor.com/4.18.0/standard-all/ckeditor.js"></script>
 }
@@ -26,7 +26,7 @@
                     <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
                 </div>
                 <div class="ps-3 ps-sm-4">
-                     <h3 class="h5">@Model.AspNetUser.FirstName @Model.AspNetUser.LastName</h3>
+                    <h3 class="h5">@Model.AspNetUser.FirstName @Model.AspNetUser.LastName</h3>
                     <ul class="list-unstyled fs-sm mb-0">
                         <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.Email</span></li>
                         <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.PhoneNumber</span></li>
@@ -55,11 +55,14 @@
                 <li class="nav-item d-md-none"><a class="nav-link" href="/Identity/Account/Logout"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
         </div>
-      
+
         <form asp-controller="Dashboard" asp-action="CreateCV" method="post">
             <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
 
                 <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Create Resume </h2>
+                <p style="text-align:left; font-weight:bold;color:black; ">
+                    A great resume can capture the attention of a recruiter or hiring manager and help you stand out from other applicants.
+                </p>
                 <div class="row mb-2">
                     <div class="col-sm-12 mb-3">
                         <div class="mb-3">
@@ -203,11 +206,11 @@
 else if (TempData["exist"] != null)
 {
     <script type="text/javascript">
-            Swal({
-                type: 'error',
-                title: 'Resume',
-                html: '@TempData["exist"]'
+        Swal({
+            type: 'error',
+            title: 'Resume',
+            html: '@TempData["exist"]'
 
-            })
+        })
     </script>
 }

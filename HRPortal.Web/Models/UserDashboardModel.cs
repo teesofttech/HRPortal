@@ -12,6 +12,8 @@ namespace HRPortal.Web.Models
         public List<TblVacancyAdvert> Vacanies { get; set; }
         public TblVacancyAdvert TblVacancyAdvert { get; set; }
         public TblSummary TblSummary { get; set; }
+        public TblResume Resume { get; set; }
+        public TblManualCvPath Manual { get; set; }
     }
 
     public class UserDashboardModel2

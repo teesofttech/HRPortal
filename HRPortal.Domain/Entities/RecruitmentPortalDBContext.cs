@@ -28,6 +28,7 @@ namespace HRPortal.Domain.Entities
         public virtual DbSet<TblCandidateApplication> TblCandidateApplications { get; set; }
         public virtual DbSet<TblCompetency> TblCompetencies { get; set; }
         public virtual DbSet<TblCvPath> TblCvPaths { get; set; }
+        public virtual DbSet<TblManualCvPath> TblManualCvPaths { get; set; }
         public virtual DbSet<TblQuestion> TblQuestions { get; set; }
         public virtual DbSet<TblQuestionAnswer> TblQuestionAnswers { get; set; }
         public virtual DbSet<TblResume> TblResumes { get; set; }
@@ -277,6 +278,23 @@ namespace HRPortal.Domain.Entities
                 entity.Property(e => e.VacancyId).HasColumnName("vacancyId");
             });
 
+            modelBuilder.Entity<TblManualCvPath>(entity =>
+            {
+                entity.ToTable("tbl_manual_cv_path");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Cvpath)
+                    .HasColumnType("text")
+                    .HasColumnName("cvpath");
+
+                entity.Property(e => e.Pdf)
+                    .HasColumnType("text")
+                    .HasColumnName("pdf");
+
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+            });
+
             modelBuilder.Entity<TblQuestion>(entity =>
             {
                 entity.ToTable("tbl_question");
@@ -351,6 +369,8 @@ namespace HRPortal.Domain.Entities
                 entity.ToTable("tbl_resume");
 
                 entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Certification).HasColumnType("text");
 
                 entity.Property(e => e.Date)
                     .HasColumnType("datetime")

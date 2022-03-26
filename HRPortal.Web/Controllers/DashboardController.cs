@@ -2,6 +2,7 @@
 using GemBox.Document;
 using HRPortal.Domain.Entities;
 using HRPortal.Web.Models;
+using HtmlAgilityPack;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,6 +15,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using Xceed.Words.NET;
 
 namespace HRPortal.Web.Controllers
@@ -344,8 +346,96 @@ namespace HRPortal.Web.Controllers
                 };
                 db.TblResumes.Add(resume);
                 db.SaveChanges();
+
+                //create the cv on the fly 
+
+                ComponentInfo.SetLicense("DN-2020Dec21-1ssglziNs2d2QcHZXrjIL6TFUebyheESFOwULzxjITFdIVG1A86Q7YJoRsIqH1UgT4N4xgXgUjG934hcq8luzGNl/gg==A");
+
+                //string path = Path.Combine(this.Environment.WebRootPath, "cv/") + applicationVM.TblCvPath.Cvpath;
+                //convert the docx to pdf on the fly
+                var path = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/temp.docx");
+                var document = DocumentModel.Load(path);
+
+                // Execute find and replace operations.
+
+
+                HtmlDocument htmlDoc = new HtmlDocument();
+                htmlDoc.LoadHtml(personal);
+                string pp = htmlDoc.DocumentNode.InnerText;
+
+                HtmlDocument htmlSummary = new HtmlDocument();
+                htmlSummary.LoadHtml(ExecutiveSummary);
+                string summary = htmlSummary.DocumentNode.InnerText;
+
+                HtmlDocument SkillsSummary = new HtmlDocument();
+                SkillsSummary.LoadHtml(Skills);
+                string _skills = SkillsSummary.DocumentNode.InnerText;
+
+                HtmlDocument experienceContent = new HtmlDocument();
+                experienceContent.LoadHtml(Projects);
+                string _expereicen = experienceContent.DocumentNode.InnerText;
+
+                HtmlDocument certificationContent = new HtmlDocument();
+                certificationContent.LoadHtml(Certification);
+                string _certification = certificationContent.DocumentNode.InnerText;
+
+                HtmlDocument educationContent = new HtmlDocument();
+                educationContent.LoadHtml(Education);
+                string _education = educationContent.DocumentNode.InnerText;
+
+                HtmlDocument onlineContent = new HtmlDocument();
+                onlineContent.LoadHtml(Online);
+                string _online = onlineContent.DocumentNode.InnerText;
+
+
+                document.Content.Replace("{{PersonalInformation}}", pp);
+                document.Content.Replace("{{Summary}}", summary);
+                document.Content.Replace("{{Skills}}", _skills);
+                document.Content.Replace("{{Experience}}", _expereicen);
+                document.Content.Replace("{{Certification}}", _certification);
+                document.Content.Replace("{{Education}}", _education);
+                document.Content.Replace("{{Online}}", _online);
+
+                //   Html.Raw(HttpUtility.HtmlDecode(ViewData["HTMLData"].ToString()));
+
+                // Save document in specified file format.
+                using var stream = new MemoryStream();
+                string savepath = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + userId + ".pdf";
+                string savepathWord = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + userId + ".docx";
+                document.Save(savepath, GemBox.Document.SaveOptions.PdfDefault);
+                document.Save(savepathWord, GemBox.Document.SaveOptions.DocxDefault);
+
+                TblManualCvPath cvPath = new TblManualCvPath();
+                cvPath.UserId = userId;
+                cvPath.Pdf = userId + ".pdf";
+                cvPath.Cvpath = userId + ".docx";
+                db.TblManualCvPaths.Add(cvPath);
+                db.SaveChanges();
+
                 TempData["success"] = "Resume created successfully";
                 return RedirectToAction("CreateCV", "Dashboard");
+            }
+        }
+
+        public async Task<IActionResult> ViewCV()
+        {
+            UserDashboardModel userDashboardModel = new UserDashboardModel();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userResume = await db.TblResumes.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            if (getUser != null && userResume == null)
+            {
+                userDashboardModel.AspNetUser = getUser;
+                TempData["exist"] = "You are yet to create a resume on our platform!!!";
+                return RedirectToAction("CreateCV", "Dashboard");
+            }
+            else
+            {
+                var manualCv = await db.TblManualCvPaths.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+                userDashboardModel.AspNetUser = getUser;
+                userDashboardModel.Manual = manualCv;
+                userDashboardModel.Resume = userResume;
+                return View(userDashboardModel);
             }
         }
     }

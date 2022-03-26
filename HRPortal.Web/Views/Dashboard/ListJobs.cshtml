@@ -74,10 +74,10 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center mb-3"><img class="me-2" src="~/assets/logo2.png" width="24" alt="IT Pro TV"><span class="fs-sm text-dark opacity-80 px-1">@item.JobCode</span><span class="badge bg-faded-info rounded-pill fs-sm ms-auto">New</span></div>
                                 <h3 class="h6 card-title mb-2"><a class="text-nav stretched-link text-decoration-none" href="@Url.Action("JobDetail","Dashboard")/@item.Id">@item.JobTitle</a></h3>
-                                <p class="fs-sm mb-0" style="text-align:justify;">@item.JobObjectives</p>
+                                @*<p class="fs-sm mb-0" style="text-align:justify;">@item.JobObjectives</p>*@
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
-                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>TBD</span></div>
+                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()</span></div>
                                 <button class="btn btn-icon btn-light btn-xs text-primary rounded-circle shadow-sm content-overlay" type="button" data-bs-toggle="tooltip" title="Remove from saved jobs"><i class="fi-heart-filled"></i></button>
                             </div>
                         </div>

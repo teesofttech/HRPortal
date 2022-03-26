@@ -22,7 +22,7 @@ namespace HRPortal.Web.Controllers
 
         public IActionResult Index()
         {
-            return View(db.TblVacancyAdverts.Where(c => c.Status == "Open").OrderByDescending(c => c.Datecreated).Take(4).ToList());
+            return View(db.TblVacancyAdverts.Where(c => c.Status == "Open").OrderByDescending(c => c.Datecreated).Take(10).ToList());
         }
 
         public IActionResult Privacy()

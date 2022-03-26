@@ -1,7 +1,20 @@
-﻿@model HRPortal.Web.Models.UserDashboardModel2
+﻿@model HRPortal.Web.Models.UserDashboardModel
 @{
     ViewData["Title"] = "Applied";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    <style>
+        #canvas_container {
+            width: 1200px;
+            height: 800px;
+            overflow: auto;
+        }
+
+        #canvas_container {
+            background: #333;
+            text-align: center;
+            border: solid 3px;
+        }
+    </style>
 }
 
 <div class="container content-overlay mt-5 mb-md-4 py-5">
@@ -48,9 +61,9 @@
 
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","Dashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Available Jobs</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("Applied","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Applied","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
                 <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("CreateCV","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Create Resume</a></li>
-                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewCV","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Resume</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("ViewCV","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Resume</a></li>
                 <li class="nav-item d-md-none"><a class="nav-link" href="/Identity/Account/Logout"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
             </ul>
         </div>
@@ -65,30 +78,108 @@
             </div>*@
 
         <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
-            <h1 class="h3 mb-0">Applied Jobs</h1><a class="fw-bold text-decoration-none" href="#"><i class="fi-x fs-xs me-2"></i><span class="align-middle"></span></a>
+            <h1 class="h3 mb-0">View Generated Resume</h1><a class="fw-bold text-decoration-none" href="#"><i class="fi-x fs-xs me-2"></i><span class="align-middle"></span></a>
+            <a href="@Url.Action("DownloadCv","Dashboard")/@Model.AspNetUser.Id">Click here to download a copy</a>
         </div>
 
-        <div class="row g-2 g-md-4">
-            @if (Model.jobDetailViewModels.Count() > 0)
-            {
-                foreach (var item in Model.jobDetailViewModels)
-                {
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card bg-secondary card-hover h-100">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-3"><img class="me-2" src="~/assets/logo2.png" width="24" alt="IT Pro TV"><span class="fs-sm text-dark opacity-80 px-1">@item.JobCode</span><span class="badge bg-faded-info rounded-pill fs-sm ms-auto">Applied</span></div>
-                                <h3 class="h6 card-title mb-2"><a class="text-nav stretched-link text-decoration-none" href="@Url.Action("ViewApplied","Dashboard")/@item.vacancyId">@item.JobTitle</a></h3>
-                        @*        <p class="fs-sm mb-0" style="text-align:justify;">@item.JobObjectives</p>*@
-                            </div>
-                            <div class="card-footer d-flex align-items-center justify-content-between border-0 pt-0">
-                                <div class="fs-sm"><span class="text-nowrap me-3"><i class="fi-map-pin text-muted me-1"> </i>@item.Location</span><span class="text-nowrap me-3"><i class="fs-base text-muted me-1"></i>@item.DateofAdvert</span></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js">
+        </script>
+        <div id="my_pdf_viewer">
+            <div id="canvas_container">
+                <canvas id="pdf_renderer"></canvas>
+            </div>
 
-                            </div>
-                        </div>
-                    </div>
-                }
+            <div id="navigation_controls">
+                <button id="go_previous">Previous</button>
+                <input id="current_page" value="1" type="number" />
+                <button id="go_next">Next</button>
+            </div>
+
+            <div id="zoom_controls">
+                <button id="zoom_in">+</button>
+                <button id="zoom_out">-</button>
+            </div>
+        </div>
+        <script>
+            var myState = {
+                pdf: null,
+                currentPage: 1,
+                zoom: 1
             }
-        </div>
+
+             pdfjsLib.getDocument('../cv_pdf/@Model.Manual.Pdf').then((pdf) => {
+
+                myState.pdf = pdf;
+                render();
+
+            });
+
+            function render() {
+                myState.pdf.getPage(myState.currentPage).then((page) => {
+
+                    var canvas = document.getElementById("pdf_renderer");
+                    var ctx = canvas.getContext('2d');
+
+                    var viewport = page.getViewport(myState.zoom);
+
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    page.render({
+                        canvasContext: ctx,
+                        viewport: viewport
+                    });
+                });
+            }
+
+            document.getElementById('go_previous').addEventListener('click', (e) => {
+                if (myState.pdf == null || myState.currentPage == 1)
+                    return;
+                myState.currentPage -= 1;
+                document.getElementById("current_page").value = myState.currentPage;
+                render();
+            });
+
+            document.getElementById('go_next').addEventListener('click', (e) => {
+                if (myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)
+                    return;
+                myState.currentPage += 1;
+                document.getElementById("current_page").value = myState.currentPage;
+                render();
+            });
+
+            document.getElementById('current_page').addEventListener('keypress', (e) => {
+                if (myState.pdf == null) return;
+
+                // Get key code
+                var code = (e.keyCode ? e.keyCode : e.which);
+
+                // If key code matches that of the Enter key
+                if (code == 13) {
+                    var desiredPage =
+                        document.getElementById('current_page').valueAsNumber;
+
+                    if (desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
+                        myState.currentPage = desiredPage;
+                        document.getElementById("current_page").value = desiredPage;
+                        render();
+                    }
+                }
+            });
+
+            document.getElementById('zoom_in').addEventListener('click', (e) => {
+                if (myState.pdf == null) return;
+                myState.zoom += 0.5;
+                render();
+            });
+
+            document.getElementById('zoom_out').addEventListener('click', (e) => {
+                if (myState.pdf == null) return;
+                myState.zoom -= 0.5;
+                render();
+            });
+        </script>
+
     </div>
 </div>
 
