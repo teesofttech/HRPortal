@@ -120,64 +120,96 @@ namespace HRPortal.Web.Controllers
 
         public async Task<IActionResult> ListJobs()
         {
-            UserDashboardModel userDashboardModel = new UserDashboardModel();
-            var getVacanies = await db.TblVacancyAdverts.Where(c => c.Status == "Open").OrderByDescending(c => c.Datecreated).ToListAsync();
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
-            if (getUser != null)
+            try
             {
-                userDashboardModel.AspNetUser = getUser;
-                userDashboardModel.Vacanies = getVacanies;
-                return View(userDashboardModel);
+                UserDashboardModel userDashboardModel = new UserDashboardModel();
+                var getVacanies = await db.TblVacancyAdverts.Where(c => c.Status == "Open").OrderByDescending(c => c.Datecreated).ToListAsync();
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+                if (getUser != null)
+                {
+                    userDashboardModel.AspNetUser = getUser;
+                    userDashboardModel.Vacanies = getVacanies;
+                    return View(userDashboardModel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
         }
 
         public async Task<IActionResult> JobDetail(int id)
         {
-            UserDashboardModel userDashboardModel = new UserDashboardModel();
-            var getVacanies = await db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefaultAsync();
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
-            if (getUser != null)
+            try
             {
-                userDashboardModel.AspNetUser = getUser;
-                userDashboardModel.TblVacancyAdvert = getVacanies;
-                userDashboardModel.TblSummary = await db.TblSummaries.FirstOrDefaultAsync();
-                return View(userDashboardModel);
+                UserDashboardModel userDashboardModel = new UserDashboardModel();
+                var getVacanies = await db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefaultAsync();
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+                if (getUser != null)
+                {
+                    userDashboardModel.AspNetUser = getUser;
+                    userDashboardModel.TblVacancyAdvert = getVacanies;
+                    userDashboardModel.TblSummary = await db.TblSummaries.FirstOrDefaultAsync();
+                    return View(userDashboardModel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
         }
 
         public async Task<IActionResult> ViewApplied(int id)
         {
-            UserDashboardModel userDashboardModel = new UserDashboardModel();
-            var getVacanies = await db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefaultAsync();
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
-            if (getUser != null)
+            try
             {
-                userDashboardModel.AspNetUser = getUser;
-                userDashboardModel.TblVacancyAdvert = getVacanies;
-                userDashboardModel.TblSummary = await db.TblSummaries.FirstOrDefaultAsync();
-                return View(userDashboardModel);
+                UserDashboardModel userDashboardModel = new UserDashboardModel();
+                var getVacanies = await db.TblVacancyAdverts.Where(c => c.Id == id).FirstOrDefaultAsync();
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+                if (getUser != null)
+                {
+                    userDashboardModel.AspNetUser = getUser;
+                    userDashboardModel.TblVacancyAdvert = getVacanies;
+                    userDashboardModel.TblSummary = await db.TblSummaries.FirstOrDefaultAsync();
+                    return View(userDashboardModel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
         }
         public async Task<IActionResult> Apply(int id)
         {
-            DocumentViewModel documentViewModel = new DocumentViewModel();
-            documentViewModel.vacancyId = id;
-            return View(documentViewModel);
+            try
+            {
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var check = db.TblResumes.Where(c => c.UserId == userId).FirstOrDefault();
+
+                DocumentViewModel documentViewModel = new DocumentViewModel();
+                documentViewModel.vacancyId = id;
+                documentViewModel.Resume = check;
+                return View(documentViewModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
         }
 
 
@@ -260,47 +292,40 @@ namespace HRPortal.Web.Controllers
             }
         }
 
-        public async Task<IActionResult> Applied()
+        public async Task<IActionResult> UseGeneratedCV(int id)
         {
-            //@model HRPortal.Web.Models.UserDashboardModel
-            UserDashboardModel2 userDashboardModel = new UserDashboardModel2();
-
-            List<JobViewModelList> jobDetailViewModels = new List<JobViewModelList>();
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var get = await db.TblApplications.Where(c => c.UserId == userId).ToListAsync();
-            foreach (var item in get)
+            var getResume = db.TblResumes.Where(c => c.UserId == userId).FirstOrDefault();
+
+            int vaca = Convert.ToInt32(id);
+            var getcheck = db.TblApplications.Where(c => c.UserId == userId && c.VacancyId == vaca).FirstOrDefault();
+            if (getcheck == null)
             {
-                var getJob = await db.TblVacancyAdverts.Where(c => c.Id == item.VacancyId).FirstOrDefaultAsync();
+                TblApplication tblApplication = new TblApplication();
+                tblApplication.PersonalInformation = getResume.PersonalInformation;
+                tblApplication.Education = getResume.Education;
+                tblApplication.Experiencesummary = getResume.Experiencesummary;
+                tblApplication.Objective = getResume.Objective;
+                tblApplication.Onlinepresence = getResume.Onlinepresence;
+                tblApplication.Projectexperience = getResume.Projectexperience;
+                tblApplication.Skill = getResume.Skill;
+                tblApplication.UserId = userId;
+                tblApplication.Date = DateTime.UtcNow;
+                tblApplication.VacancyId = Convert.ToInt32(id);
+                db.TblApplications.Add(tblApplication);
+                db.SaveChanges();
 
-                JobViewModelList jobDetailViewModel = new JobViewModelList();
-                jobDetailViewModel.Id = item.Id;
-                jobDetailViewModel.JobObjectives = getJob.JobObjectives;
-                jobDetailViewModel.userId = item.UserId;
-                jobDetailViewModel.vacancyId = Convert.ToString(item.VacancyId);
-                jobDetailViewModel.JobCode = getJob.JobCode;
-                jobDetailViewModel.JobTitle = getJob.JobTitle;
-                jobDetailViewModel.Location = getJob.Location;
-                jobDetailViewModel.SubmittedDate = item.Date.Value.ToLongDateString();
-                jobDetailViewModels.Add(jobDetailViewModel);
+                TempData["success"] = "Application submitted successfully";
+                return RedirectToAction("Completed", "Dashboard");
             }
-            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
-            if (getUser != null)
+            else
             {
-                userDashboardModel.AspNetUser = getUser;
-
+                TempData["error"] = "Error occurred while submitting the Application";
+                return RedirectToAction("Error", "Dashboard");
             }
-
-            userDashboardModel.jobDetailViewModels = jobDetailViewModels;
-            return View(userDashboardModel);
         }
 
-        public async Task<IActionResult> Question(int id)
-        {
-            var get = db.TblQuestions.Where(c => c.VacanyId == id).FirstOrDefault();
-            return View(get);
-        }
-
-        public async Task<IActionResult> CreateCV()
+        public async Task<IActionResult> Completed()
         {
             UserDashboardModel userDashboardModel = new UserDashboardModel();
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -316,153 +341,299 @@ namespace HRPortal.Web.Controllers
             }
         }
 
+        public async Task<IActionResult> Error()
+        {
+            UserDashboardModel userDashboardModel = new UserDashboardModel();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+            if (getUser != null)
+            {
+                userDashboardModel.AspNetUser = getUser;
+                return View(userDashboardModel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+        public async Task<IActionResult> Applied()
+        {
+            //@model HRPortal.Web.Models.UserDashboardModel
+            try
+            {
+                UserDashboardModel2 userDashboardModel = new UserDashboardModel2();
+
+                List<JobViewModelList> jobDetailViewModels = new List<JobViewModelList>();
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var get = await db.TblApplications.Where(c => c.UserId == userId).ToListAsync();
+                foreach (var item in get)
+                {
+                    var getJob = await db.TblVacancyAdverts.Where(c => c.Id == item.VacancyId).FirstOrDefaultAsync();
+
+                    JobViewModelList jobDetailViewModel = new JobViewModelList();
+                    jobDetailViewModel.Id = item.Id;
+                    jobDetailViewModel.JobObjectives = getJob.JobObjectives;
+                    jobDetailViewModel.userId = item.UserId;
+                    jobDetailViewModel.vacancyId = Convert.ToString(item.VacancyId);
+                    jobDetailViewModel.JobCode = getJob.JobCode;
+                    jobDetailViewModel.JobTitle = getJob.JobTitle;
+                    jobDetailViewModel.Location = getJob.Location;
+                    jobDetailViewModel.SubmittedDate = item.Date.Value.ToLongDateString();
+                    jobDetailViewModels.Add(jobDetailViewModel);
+                }
+                var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+                if (getUser != null)
+                {
+                    userDashboardModel.AspNetUser = getUser;
+
+                }
+
+                userDashboardModel.jobDetailViewModels = jobDetailViewModels;
+                return View(userDashboardModel);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+        }
+
+
+        public async Task<IActionResult> Question(int id)
+        {
+            try
+            {
+                var get = db.TblQuestions.Where(c => c.VacanyId == id).FirstOrDefault();
+                return View(get);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+        }
+
+        public async Task<IActionResult> CreateCV()
+        {
+            try
+            {
+                UserDashboardModel userDashboardModel = new UserDashboardModel();
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+                if (getUser != null)
+                {
+                    userDashboardModel.AspNetUser = getUser;
+                    return View(userDashboardModel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+        }
+
         [HttpPost]
         [System.Web.Mvc.ValidateInput(false)]
         public async Task<IActionResult> CreateCV(string Objective, string Online, string Projects,
             string Skills, string Education, string ExecutiveSummary, string personal, string Certification)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            //check if resume is avail for the user 
-            var userResume = await db.TblResumes.Where(c => c.UserId == userId).FirstOrDefaultAsync();
-            if (userResume != null)
+            try
             {
-                TempData["exist"] = "You have added a resume before!!!";
-                return RedirectToAction("CreateCV", "Dashboard");
-            }
-            else
-            {
-                TblResume resume = new TblResume()
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                //check if resume is avail for the user 
+                var userResume = await db.TblResumes.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+                if (userResume != null)
                 {
-                    Date = DateTime.UtcNow,
-                    Education = Education,
-                    Experiencesummary = ExecutiveSummary,
-                    PersonalInformation = personal,
-                    Objective = Objective,
-                    Onlinepresence = Online,
-                    Projectexperience = Projects,
-                    Skill = Skills,
-                    UserId = userId,
-                    Certification = Certification
-                };
-                db.TblResumes.Add(resume);
-                db.SaveChanges();
+                    TempData["exist"] = "You have added a resume before!!!";
+                    return RedirectToAction("CreateCV", "Dashboard");
+                }
+                else
+                {
+                    TblResume resume = new TblResume()
+                    {
+                        Date = DateTime.UtcNow,
+                        Education = Education,
+                        Experiencesummary = ExecutiveSummary,
+                        PersonalInformation = personal,
+                        Objective = Objective,
+                        Onlinepresence = Online,
+                        Projectexperience = Projects,
+                        Skill = Skills,
+                        UserId = userId,
+                        Certification = Certification
+                    };
+                    db.TblResumes.Add(resume);
+                    db.SaveChanges();
 
-                //create the cv on the fly 
+                    //create the cv on the fly 
 
-                ComponentInfo.SetLicense("DN-2020Dec21-1ssglziNs2d2QcHZXrjIL6TFUebyheESFOwULzxjITFdIVG1A86Q7YJoRsIqH1UgT4N4xgXgUjG934hcq8luzGNl/gg==A");
+                    ComponentInfo.SetLicense("DN-2020Dec21-1ssglziNs2d2QcHZXrjIL6TFUebyheESFOwULzxjITFdIVG1A86Q7YJoRsIqH1UgT4N4xgXgUjG934hcq8luzGNl/gg==A");
 
-                //string path = Path.Combine(this.Environment.WebRootPath, "cv/") + applicationVM.TblCvPath.Cvpath;
-                //convert the docx to pdf on the fly
-                var path = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/temp.docx");
-                var document = DocumentModel.Load(path);
+                    //string path = Path.Combine(this.Environment.WebRootPath, "cv/") + applicationVM.TblCvPath.Cvpath;
+                    //convert the docx to pdf on the fly
+                    var path = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/temp.docx");
+                    var document = DocumentModel.Load(path);
 
-                // Execute find and replace operations.
-
-
-                HtmlDocument htmlDoc = new HtmlDocument();
-                htmlDoc.LoadHtml(personal);
-                string pp = htmlDoc.DocumentNode.InnerText;
-
-                HtmlDocument htmlSummary = new HtmlDocument();
-                htmlSummary.LoadHtml(ExecutiveSummary);
-                string summary = htmlSummary.DocumentNode.InnerText;
-
-                HtmlDocument SkillsSummary = new HtmlDocument();
-                SkillsSummary.LoadHtml(Skills);
-                string _skills = SkillsSummary.DocumentNode.InnerText;
-
-                HtmlDocument experienceContent = new HtmlDocument();
-                experienceContent.LoadHtml(Projects);
-                string _expereicen = experienceContent.DocumentNode.InnerText;
-
-                HtmlDocument certificationContent = new HtmlDocument();
-                certificationContent.LoadHtml(Certification);
-                string _certification = certificationContent.DocumentNode.InnerText;
-
-                HtmlDocument educationContent = new HtmlDocument();
-                educationContent.LoadHtml(Education);
-                string _education = educationContent.DocumentNode.InnerText;
-
-                HtmlDocument onlineContent = new HtmlDocument();
-                onlineContent.LoadHtml(Online);
-                string _online = onlineContent.DocumentNode.InnerText;
+                    // Execute find and replace operations.
 
 
-                document.Content.Replace("{{PersonalInformation}}", pp);
-                document.Content.Replace("{{Summary}}", summary);
-                document.Content.Replace("{{Skills}}", _skills);
-                document.Content.Replace("{{Experience}}", _expereicen);
-                document.Content.Replace("{{Certification}}", _certification);
-                document.Content.Replace("{{Education}}", _education);
-                document.Content.Replace("{{Online}}", _online);
+                    HtmlDocument htmlDoc = new HtmlDocument();
+                    htmlDoc.LoadHtml(personal);
+                    string pp = htmlDoc.DocumentNode.InnerText;
 
-                //   Html.Raw(HttpUtility.HtmlDecode(ViewData["HTMLData"].ToString()));
+                    HtmlDocument htmlSummary = new HtmlDocument();
+                    htmlSummary.LoadHtml(ExecutiveSummary);
+                    string summary = htmlSummary.DocumentNode.InnerText;
 
-                // Save document in specified file format.
-                using var stream = new MemoryStream();
-                string savepath = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + userId + ".pdf";
-                string savepathWord = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + userId + ".docx";
-                document.Save(savepath, GemBox.Document.SaveOptions.PdfDefault);
-                document.Save(savepathWord, GemBox.Document.SaveOptions.DocxDefault);
+                    HtmlDocument SkillsSummary = new HtmlDocument();
+                    SkillsSummary.LoadHtml(Skills);
+                    string _skills = SkillsSummary.DocumentNode.InnerText;
 
-                TblManualCvPath cvPath = new TblManualCvPath();
-                cvPath.UserId = userId;
-                cvPath.Pdf = userId + ".pdf";
-                cvPath.Cvpath = userId + ".docx";
-                db.TblManualCvPaths.Add(cvPath);
-                db.SaveChanges();
+                    HtmlDocument experienceContent = new HtmlDocument();
+                    experienceContent.LoadHtml(Projects);
+                    string _expereicen = experienceContent.DocumentNode.InnerText;
 
-                TempData["success"] = "Resume created successfully";
-                return RedirectToAction("CreateCV", "Dashboard");
+                    HtmlDocument certificationContent = new HtmlDocument();
+                    certificationContent.LoadHtml(Certification);
+                    string _certification = certificationContent.DocumentNode.InnerText;
+
+                    HtmlDocument educationContent = new HtmlDocument();
+                    educationContent.LoadHtml(Education);
+                    string _education = educationContent.DocumentNode.InnerText;
+
+                    HtmlDocument onlineContent = new HtmlDocument();
+                    onlineContent.LoadHtml(Online);
+                    string _online = onlineContent.DocumentNode.InnerText;
+
+
+                    document.Content.Replace("{{PersonalInformation}}", pp);
+                    document.Content.Replace("{{Summary}}", summary);
+                    document.Content.Replace("{{Skills}}", _skills);
+                    document.Content.Replace("{{Experience}}", _expereicen);
+                    document.Content.Replace("{{Certification}}", _certification);
+                    document.Content.Replace("{{Education}}", _education);
+                    document.Content.Replace("{{Online}}", _online);
+
+                    //   Html.Raw(HttpUtility.HtmlDecode(ViewData["HTMLData"].ToString()));
+
+                    // Save document in specified file format.
+                    using var stream = new MemoryStream();
+                    string savepath = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + userId + ".pdf";
+                    string savepathWord = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + userId + ".docx";
+                    document.Save(savepath, GemBox.Document.SaveOptions.PdfDefault);
+                    document.Save(savepathWord, GemBox.Document.SaveOptions.DocxDefault);
+
+                    TblManualCvPath cvPath = new TblManualCvPath();
+                    cvPath.UserId = userId;
+                    cvPath.Pdf = userId + ".pdf";
+                    cvPath.Cvpath = userId + ".docx";
+                    db.TblManualCvPaths.Add(cvPath);
+                    db.SaveChanges();
+
+                    TempData["success"] = "Resume created successfully";
+                    return RedirectToAction("CreateCV", "Dashboard");
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Dashboard");
             }
         }
 
         public async Task<IActionResult> ViewCV()
         {
-            UserDashboardModel userDashboardModel = new UserDashboardModel();
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var userResume = await db.TblResumes.Where(c => c.UserId == userId).FirstOrDefaultAsync();
-            var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
-            if (getUser != null && userResume == null)
+            try
             {
-                userDashboardModel.AspNetUser = getUser;
-                TempData["exist"] = "You are yet to create a resume on our platform!!!";
-                return RedirectToAction("CreateCV", "Dashboard");
+                UserDashboardModel userDashboardModel = new UserDashboardModel();
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var userResume = await db.TblResumes.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+                var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+                if (getUser != null && userResume == null)
+                {
+                    userDashboardModel.AspNetUser = getUser;
+                    TempData["exist"] = "You are yet to create a resume on our platform!!!";
+                    return RedirectToAction("CreateCV", "Dashboard");
+                }
+                else
+                {
+                    var manualCv = await db.TblManualCvPaths.Where(c => c.UserId == userId).FirstOrDefaultAsync();
+                    userDashboardModel.AspNetUser = getUser;
+                    userDashboardModel.Manual = manualCv;
+                    userDashboardModel.Resume = userResume;
+                    return View(userDashboardModel);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var manualCv = await db.TblManualCvPaths.Where(c => c.UserId == userId).FirstOrDefaultAsync();
-                userDashboardModel.AspNetUser = getUser;
-                userDashboardModel.Manual = manualCv;
-                userDashboardModel.Resume = userResume;
-                return View(userDashboardModel);
+                return RedirectToAction("Index", "Dashboard");
             }
         }
 
         public async Task<IActionResult> DownloadCv(string id)
         {
-            var manualCv = await db.TblManualCvPaths.Where(c => c.UserId == id).FirstOrDefaultAsync();
-            ComponentInfo.SetLicense("DN-2020Dec21-1ssglziNs2d2QcHZXrjIL6TFUebyheESFOwULzxjITFdIVG1A86Q7YJoRsIqH1UgT4N4xgXgUjG934hcq8luzGNl/gg==A");
-            var getUser = await db.AspNetUsers.Where(c => c.Id == id).FirstOrDefaultAsync();
-            //string path = Path.Combine(this.Environment.WebRootPath, "cv/") + applicationVM.TblCvPath.Cvpath;
-            //convert the docx to pdf on the fly
-            var path = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + manualCv.Cvpath;
-            var document = DocumentModel.Load(path);
+            try
+            {
+                var manualCv = await db.TblManualCvPaths.Where(c => c.UserId == id).FirstOrDefaultAsync();
+                ComponentInfo.SetLicense("DN-2020Dec21-1ssglziNs2d2QcHZXrjIL6TFUebyheESFOwULzxjITFdIVG1A86Q7YJoRsIqH1UgT4N4xgXgUjG934hcq8luzGNl/gg==A");
+                var getUser = await db.AspNetUsers.Where(c => c.Id == id).FirstOrDefaultAsync();
+                //string path = Path.Combine(this.Environment.WebRootPath, "cv/") + applicationVM.TblCvPath.Cvpath;
+                //convert the docx to pdf on the fly
+                var path = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + manualCv.Cvpath;
+                var document = DocumentModel.Load(path);
 
-            // Execute find and replace operations.
-            //document.Content.Replace("{{Number}}", this.Invoice.Number.ToString("0000"));
-            //document.Content.Replace("{{Date}}", this.Invoice.Date.ToString("d MMM yyyy HH:mm"));
-            //document.Content.Replace("{{Company}}", this.Invoice.Company);
-            //document.Content.Replace("{{Address}}", this.Invoice.Address);
-            //document.Content.Replace("{{Name}}", this.Invoice.Name);
+                // Execute find and replace operations.
+                //document.Content.Replace("{{Number}}", this.Invoice.Number.ToString("0000"));
+                //document.Content.Replace("{{Date}}", this.Invoice.Date.ToString("d MMM yyyy HH:mm"));
+                //document.Content.Replace("{{Company}}", this.Invoice.Company);
+                //document.Content.Replace("{{Address}}", this.Invoice.Address);
+                //document.Content.Replace("{{Name}}", this.Invoice.Name);
 
-            // Save document in specified file format.
-            using var stream = new MemoryStream();
-            document.Save(stream, GemBox.Document.SaveOptions.PdfDefault);
+                // Save document in specified file format.
+                using var stream = new MemoryStream();
+                document.Save(stream, GemBox.Document.SaveOptions.PdfDefault);
 
-            // Download file.
-            return File(stream.ToArray(), "application/octet-stream", getUser.FirstName + "_CV.pdf");
-
+                // Download file.
+                return File(stream.ToArray(), "application/octet-stream", getUser.FirstName + "_CV.pdf");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
         }
+
+        public async Task<IActionResult> ChangePassword()
+        {
+            try
+            {
+                UserDashboardModel userDashboardModel = new UserDashboardModel();
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var getUser = await db.AspNetUsers.Where(c => c.Id == userId).FirstOrDefaultAsync();
+                if (getUser != null)
+                {
+                    userDashboardModel.AspNetUser = getUser;
+                    return View(userDashboardModel);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> ChangePassword(string newPassword)
+        //{
+        //    UserDashboardModel userDashboardModel = new UserDashboardModel();
+        //    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+        //    return View();
+        //}
     }
 }

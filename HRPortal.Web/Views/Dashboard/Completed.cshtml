@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Http;
+@model HRPortal.Web.Models.UserDashboardModel
+@{
+    ViewData["Title"] = "Completed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/sweetalert2.css" rel="stylesheet" />
+
+}
+<div class="container content-overlay mt-5 mb-md-4 py-5">
+    <!-- Breadcrumb-->
+    <nav class="mb-3 mb-md-4 pt-md-3" aria-label="Breadcrumb">
+        <ol class="breadcrumb breadcrumb-light">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Complted</li>
+        </ol>
+    </nav>
+    <!-- Page card like wrapper-->
+    <div class="bg-light shadow-sm rounded-3 p-4 p-md-5 mb-2">
+        <!-- Account header-->
+        <div class="d-flex align-items-start justify-content-between pb-4 mb-2">
+            <div class="d-flex align-items-start">
+                <div class="position-relative flex-shrink-0">
+                    <img class="rounded-circle" src="~/img/avatars/37.png" width="100" alt="Annette Black">
+                    <button class="btn btn-icon btn-light btn-xs rounded-circle shadow-sm position-absolute end-0 bottom-0" type="button" data-bs-toggle="tooltip" title="Change image"><i class="fi-pencil fs-xs"></i></button>
+                </div>
+                <div class="ps-3 ps-sm-4">
+                    <h3 class="h5">@Model.AspNetUser.FirstName @Model.AspNetUser.LastName</h3>
+                    <ul class="list-unstyled fs-sm mb-0">
+                        <li class="d-flex text-nav text-break"><i class="fi-mail opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.Email</span></li>
+                        <li class="d-flex text-nav text-break"><i class="fi-phone opacity-60 mt-1 me-2"></i><span>@Model.AspNetUser.PhoneNumber</span></li>
+                    </ul>
+                </div>
+            </div>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark nav-link p-0 d-none d-md-block"><i class="fi-logout mt-n1 me-2"></i> Click here to Logout</button>
+            </form>
+        </div>
+        <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
+
+        <div class="collapse d-md-block" id="account-nav">
+
+            <ul class="nav nav-pills flex-column flex-md-row pt-3 pt-md-0 pb-md-4 border-bottom-md">
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Index","Dashboard")" aria-current="page"><i class="fi-settings mt-n1 me-2 fs-base"></i>Profile Settings</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ListJobs","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Available Jobs</a></li>
+
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link " href="@Url.Action("Applied","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>All Applied</a></li>
+
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link active" href="@Url.Action("CreateCV","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>Create Resume</a></li>
+                <li class="nav-item mb-md-0 me-md-2 pe-md-1"><a class="nav-link" href="@Url.Action("ViewCV","Dashboard")"><i class="fi-file mt-n1 me-2 fs-base"></i>View Resume</a></li>
+
+                <li class="nav-item d-md-none"><a class="nav-link" href="/Identity/Account/Logout"><i class="fi-logout mt-n1 me-2 fs-base"></i>Sign Out</a></li>
+            </ul>
+        </div>
+
+
+        <section class="card card-body border-0 shadow-sm p-4 mb-4" id="basic-info">
+
+            <h2 class="h4 text-dark mb-4"><i class="fi-info-circle text-primary fs-5 mt-n1 me-2"></i>Job Application Status </h2>
+            <p style="text-align:left; font-weight:bold;color:green; ">
+                @TempData["success"];
+            </p>
+
+        </section>
+
+    </div>
+</div>

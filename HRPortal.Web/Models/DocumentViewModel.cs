@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HRPortal.Domain.Entities;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace HRPortal.Web.Models
@@ -16,6 +17,7 @@ namespace HRPortal.Web.Models
         /// </value>
         /// prop
         public int vacancyId { get; set; }
+        public TblResume Resume { get; set; }
         public IList<string> Objective { get; set; }
         //public IList<string> Objectives { get; set; }
         //public IList<string> Objectives { get; set; }

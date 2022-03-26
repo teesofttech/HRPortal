@@ -4,6 +4,7 @@
 		<TargetFramework>net5.0</TargetFramework>
 		<UserSecretsId>aspnet-HRPortal.Web-33577CD6-DB61-4473-ABD0-E013B2BA61F6</UserSecretsId>
 		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+		<AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
 	</PropertyGroup>
 
 	<ItemGroup>

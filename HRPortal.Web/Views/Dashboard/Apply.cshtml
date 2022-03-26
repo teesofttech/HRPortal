@@ -158,7 +158,14 @@
                         </button>
 
                         <a href="~/cv/TestCV.docx" class="btn btn-success rounded-pill">Download Template</a>
-                        <a href="@Url.Action("CreateCV","Dashboard")" class="btn btn-info rounded-pill">Create CV</a>
+                        @if (Model.Resume == null)
+                        {
+                            <a href="@Url.Action("CreateCV","Dashboard")" class="btn btn-info rounded-pill">Create CV</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("UseGeneratedCV","Dashboard")/@TempData["vacancyId"]" class="btn btn-info rounded-pill">Use Generated Resume</a>
+                        }
                     </form>
                 </div>
 
