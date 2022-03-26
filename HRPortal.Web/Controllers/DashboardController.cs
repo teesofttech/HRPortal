@@ -438,5 +438,31 @@ namespace HRPortal.Web.Controllers
                 return View(userDashboardModel);
             }
         }
+
+        public async Task<IActionResult> DownloadCv(string id)
+        {
+            var manualCv = await db.TblManualCvPaths.Where(c => c.UserId == id).FirstOrDefaultAsync();
+            ComponentInfo.SetLicense("DN-2020Dec21-1ssglziNs2d2QcHZXrjIL6TFUebyheESFOwULzxjITFdIVG1A86Q7YJoRsIqH1UgT4N4xgXgUjG934hcq8luzGNl/gg==A");
+            var getUser = await db.AspNetUsers.Where(c => c.Id == id).FirstOrDefaultAsync();
+            //string path = Path.Combine(this.Environment.WebRootPath, "cv/") + applicationVM.TblCvPath.Cvpath;
+            //convert the docx to pdf on the fly
+            var path = Path.Combine(this._hostingEnvironment.WebRootPath, "cv_pdf/") + manualCv.Cvpath;
+            var document = DocumentModel.Load(path);
+
+            // Execute find and replace operations.
+            //document.Content.Replace("{{Number}}", this.Invoice.Number.ToString("0000"));
+            //document.Content.Replace("{{Date}}", this.Invoice.Date.ToString("d MMM yyyy HH:mm"));
+            //document.Content.Replace("{{Company}}", this.Invoice.Company);
+            //document.Content.Replace("{{Address}}", this.Invoice.Address);
+            //document.Content.Replace("{{Name}}", this.Invoice.Name);
+
+            // Save document in specified file format.
+            using var stream = new MemoryStream();
+            document.Save(stream, GemBox.Document.SaveOptions.PdfDefault);
+
+            // Download file.
+            return File(stream.ToArray(), "application/octet-stream", getUser.FirstName + "_CV.pdf");
+
+        }
     }
 }
