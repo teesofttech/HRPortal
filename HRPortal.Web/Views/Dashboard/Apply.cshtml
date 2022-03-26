@@ -116,7 +116,9 @@
     <script src="~/assets/plugins/js/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
 
+
 }
+
 
 <section class="bg-dark pt-5">
     <div class="container py-5">
@@ -164,7 +166,7 @@
                         }
                         else
                         {
-                            <a href="@Url.Action("UseGeneratedCV","Dashboard")/@TempData["vacancyId"]" class="btn btn-info rounded-pill">Use Generated Resume</a>
+                            <a id="urlapply" class="btn btn-info rounded-pill">Use Generated Resume</a>
                         }
                     </form>
                 </div>
@@ -419,6 +421,18 @@
                 console.log(xhr);
             }
         });
+
+    });
+</script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+
+          var url = $(location).attr('href');
+           var parts = url.split("/");
+           var last  = parts[parts.length-1];
+
+           document.getElementById("urlapply").href = "https://careers.nsiainsurance.com/Dashboard/UseGeneratedCV/"+last;
 
     });
 </script>
