@@ -11,6 +11,29 @@ namespace HRPortal.Web.Helper
     {
 
     }
+    public static class RandomGenerator
+    {
+        private static Random random = new Random();
+        public static string GetCharNumber(int maxSize)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, maxSize)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+
+        }
+        public static string GetChar(int maxSize)
+        {
+            const string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            return new string(Enumerable.Repeat(chars, maxSize)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        public static string GetNumber(int maxSize)
+        {
+            const string chars = "1234567890";
+            return new string(Enumerable.Repeat(chars, maxSize)
+      .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+    }
 
     public class ReCaptcha
     {
