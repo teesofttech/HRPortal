@@ -4,6 +4,8 @@ using HRPortal.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -63,7 +65,27 @@ namespace HRPortal.Web.Controllers
                 IdentityResult passwordChangeResult = await _userManager.ResetPasswordAsync(get, resetToken, password);
                 if (passwordChangeResult.Succeeded)
                 {
-                    TempData["success"] = "Successful";
+                    var apiKey = "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";
+                    var client = new SendGridClient(apiKey);
+                    var from = new EmailAddress("No-Reply@nsiainsurance.com", "NSIA INSURANCE");
+                    string fullname = get.FirstName + " " + get.LastName;
+                    var to = new EmailAddress(get.Email, fullname);
+                    var subject = "Password Reset";
+                    string message = "We received your password reset request. Please use the below password to login. <br/> Email: " + email + " <br/> Password: " + password + " <br/> Thank you.";
+                    var msg = MailHelper.CreateSingleEmail(from, to, subject, "", message);
+                    var responses = await client.SendEmailAsync(msg);
+                    //if (responses.IsSuccessStatusCode)
+                    //{
+                    //    TempData["success"] = "Email sent successfully";
+                    //    return RedirectToAction("ViewApplication", "HRDashboard", new { id = userId, id2 = appicationId });
+                    //}
+                    //else
+                    //{
+                    //    TempData["error"] = "Error occurred";
+                    //    return RedirectToAction("ViewApplication", "HRDashboard", new { id = userId, id2 = appicationId });
+                    //}
+
+                    TempData["success"] = "Email sent successfully";
                     return View();
                 }
                 else
