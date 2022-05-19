@@ -139,7 +139,7 @@
             <div class="col-lg-11 col-xl-10">
                 <!-- Page title-->
                 <div class="text-center pb-4 mb-3">
-                    <h1 class="h2 mb-4">Create online resume</h1>
+                    <h1 class="h2 mb-4">Create online an resume</h1>
                     <p class="mb-4">Save time by uploading a resume to prefill some of the fields below. Please, use PDF format.</p>
                     <form asp-controller="Dashboard" asp-action="Apply" enctype="multipart/form-data">
                         <input type="hidden" value="@Model.vacancyId" name="vacancyId" id="vacancyId" />
@@ -159,14 +159,14 @@
                             <i class="fi-upload me-2"></i>Upload existing resume
                         </button>
 
-                        <a href="~/cv/TestCV.docx" class="btn btn-success rounded-pill">Download Template</a>
+                        <a href="~/cv/TestCV.docx" class="btn  rounded-pill" style="background-color:#001E60; border-color:#001E60;color:#fff !important;">Download Template</a>
                         @if (Model.Resume == null)
                         {
-                            <a href="@Url.Action("CreateCV","Dashboard")" class="btn btn-info rounded-pill">Create CV</a>
+                            <a href="@Url.Action("CreateCV","Dashboard")" class="btn rounded-pill" style="background-color:#7F7F7F; border-color:#7F7F7F;color:#fff !important;">Create CV</a>
                         }
                         else
                         {
-                            <a id="urlapply" class="btn btn-info rounded-pill">Use Generated Resume</a>
+                            <a id="urlapply" class="btn rounded-pill" style="background-color:#7F7F7F; border-color:#7F7F7F;color:#fff !important;">Use Generated Resume</a>
                         }
                     </form>
                 </div>

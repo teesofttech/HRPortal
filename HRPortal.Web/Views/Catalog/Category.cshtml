@@ -300,7 +300,7 @@
                             <a class="nav-link " href="/Identity/Account/Login" role="button">Account</a>
 
                         </li>
-                      
+
                         <li class="nav-item d-lg-none"><a class="nav-link" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a></li>
                     </ul>
                 </div>
@@ -315,9 +315,9 @@
                 <h1 class="text-light pt-1 pt-md-3 mb-4">Find jobs</h1>
                 <!-- Search form-->
                 @*<form class="form-group form-group-light d-block rounded-lg-pill mb-4">
-                        <div class="row align-items-center g-0 ms-n2">
+                    <div class="row align-items-center g-0 ms-n2">
 
-                        </div>
+                    </div>
                     </form>*@
 
             </div>
@@ -340,10 +340,10 @@
                             @*<div class="d-flex align-items-center">
                                 <label class="fs-sm me-2 pe-1 text-nowrap" for="sorting"><i class="fi-arrows-sort mt-n1 me-2"></i>Sort by:</label>
                                 <select class="form-select form-select-sm" id="sorting">
-                                    <option>Newest</option>
-                                    <option>Popular</option>
+                                <option>Newest</option>
+                                <option>Popular</option>
                                 </select>
-                            </div>*@
+                                </div>*@
                             <div class="text-muted fs-sm text-nowrap"><i class="fi-briefcase fs-base mt-n1 me-2"></i>@Model.Vacancies.Count jobs</div>
                         </div>
 
@@ -373,7 +373,7 @@
                                             <span class="text-nowrap me-3">
                                                 <i class="fi-map-pin text-muted me-1"> </i>@item.Location
                                             </span><span class="text-nowrap me-3">
-                                                <i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()
+                                               Date Created <i class="fi-cash fs-base text-muted me-1"></i>@item.Datecreated.Value.ToLongDateString()
                                             </span>
                                         </div>
                                     </div>
@@ -407,9 +407,9 @@
                                             <span class="input-group-text text-muted"><i class="fi-mail text-muted"></i></span>
                                             <input class="form-control" type="text" placeholder="Your email">
                                         </div>
-                                        <button class="btn btn-primary rounded-pill" type="button">Subscribe</button>
+                                        <button class="btn btn-primary rounded-pill" type="button" id="btnSubscribe">Subscribe</button>
                                     </form>
-                                    
+
 
                                 </div>
                             </div>
@@ -424,19 +424,33 @@
     <footer class="footer bg-blue pt-5">
         <div class="container pb-2">
             <div class="row align-items-center pb-4">
-
-
             </div>
             <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://insurnce.com/" target="_blank" rel="noopener">NSIA INSURANCE LIMITED</a></p>
         </div>
     </footer>
-    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Back to top button-->
+    <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
     <script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/vendor/simplebar/dist/simplebar.min.js"></script>
     <script src="~/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
     <!-- Main theme script-->
     <script src="~/js/theme.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //btnSubscribe
+            $("#btnSubscribe").on("click", function() {
+                Swal({
+                    type: 'success',
+                    title: 'Newsletter',
+                    html: 'You are now subscribed.'
+
+                });
+
+            });
+
+        });
+    </script>
 </body>
 
 </html>

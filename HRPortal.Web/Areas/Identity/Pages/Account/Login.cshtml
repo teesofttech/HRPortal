@@ -139,12 +139,16 @@
 
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="@Url.Action("Index","Dashboard")"><i class="fi-user me-2"></i>Welcome @User.Identity.Name !!!</a>
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                    <a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="@Url.Action("Index","Dashboard")"><i class="fi-user me-2"></i>Welcome @User.Identity.Name !!!</a>
 
                 }
                 else
                 {
-                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
+                    <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                    <a class="btn btn-link btn-light btn-sm d-none d-lg-block order-lg-3" href="/Identity/Account/Login"><i class="fi-user me-2"></i>Sign in</a>
 
                 }
 
@@ -153,7 +157,7 @@
                     <ul class="navbar-nav navbar-nav-scroll" style="max-height: 35rem;">
 
                         <li class="nav-item ">
-                            <a class="nav-link " href="@Url.Action("Index", "Home")" >Home</a>
+                            <a class="nav-link " href="@Url.Action("Index", "Home")">Home</a>
 
                         </li>
                         <li class="nav-item">
@@ -194,7 +198,12 @@
                     <!-- Page title-->
                     <div class="text-center pb-4 mb-3">
                         <h1 class="h2 mb-4">Login to your account </h1>
-                        <p class="mb-4">Login to your account on NSIA Human Recruitment portal.</p>
+                        <p class="mb-4">
+
+                            Login to your account on the NSIA Insurance Human Capital Recruitment Portal
+
+
+                        </p>
 
                     </div>
                     <!-- Steps-->
@@ -212,15 +221,15 @@
                                     <input class="form-control form-control-lg" asp-for="Input.Password" type="password" id="pr-sn" placeholder="Enter your password" required>
                                 </div>
                                 <p style="float:right;"> <a href="/Home/ForgotPassword" style="float:right;">Forgot Password</a></p>
-                               
+
                                 <div class="g-recaptcha" data-sitekey="6Ld0PWsdAAAAABba61cF5p4NwZbP1G6ItoBa3M6C"></div>
                                 <script src='https://www.google.com/recaptcha/api.js'></script>
-                                
+
                                 <div>
                                     <br /><br /><br />
                                     <button type="submit" class="btn btn-primary btn-lg rounded-pill ms-sm-auto">Login<i class="fi-chevron-right fs-sm ms-2"></i></button>
 
-                                    <a href="/Identity/Account/Register" style="float:right;" class="btn btn-info btn-lg rounded-pill ms-sm-auto">Click to Register<i class="fi-chevron-right fs-sm ms-2"></i></a>
+                                    <a href="/Identity/Account/Register" style="float:right;" class="btn btn-lg rounded-pill ms-sm-auto" style="background-color:#001E60; border-color:#001E60;color:#fff !important;">Click to Register<i class="fi-chevron-right fs-sm ms-2"></i></a>
                                 </div>
 
 
@@ -240,7 +249,8 @@
             <p class="fs-sm text-center text-sm-start mb-4"><span class="text-light opacity-50">&copy; All rights reserved. Made by </span><a class="nav-link-light fw-bold" href="https://nsiainsurance.com" target="_blank" rel="noopener">NSIA INSURANCE LIMITED</a></p>
         </div>
     </footer>
-    <!-- Back to top button--><a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
+    <!-- Back to top button-->
+    <a class="btn-scroll-top" href="#top" data-scroll><span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span><i class="btn-scroll-top-icon fi-chevron-up">   </i></a>
     <!-- Vendor scrits: js libraries and plugins-->
     <script src="~/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/vendor/simplebar/dist/simplebar.min.js"></script>

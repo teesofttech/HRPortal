@@ -36,9 +36,9 @@
             </form>
         </div>
         <!-- Account menu--><a class="btn btn-outline-primary btn-lg rounded-pill w-100 d-md-none" href="#account-nav" data-bs-toggle="collapse"><i class="fi-align-justify me-2"></i>Account Menu</a>
-                            <div class="collapse d-md-block" id="account-nav">
-                                <partial name="_nav" />
-                            </div>
+        <div class="collapse d-md-block" id="account-nav">
+            <partial name="_nav" />
+        </div>
         <!-- Page title-->
         <div class="d-flex align-items-center justify-content-between py-4 mt-3 mb-2">
             <h1 class="h3 mb-0"></h1>
@@ -102,7 +102,7 @@
                                     <span class="input-group-text text-muted"><i class="fi-mail text-muted"></i></span>
                                     <input class="form-control" type="text" placeholder="Your email">
                                 </div>
-                                <button class="btn btn-primary rounded-pill" type="button">Subscribe</button>
+                                <button class="btn btn-primary rounded-pill" type="button" id="btnSubscribe">Subscribe</button>
                             </form>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="agree">
@@ -129,3 +129,21 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        //btnSubscribe
+        $("#btnSubscribe").on("click", function() {
+            Swal({
+                type: 'success',
+                title: 'Newsletter',
+                html: 'You are now subscribed.'
+
+            });
+
+        });
+
+    });
+</script>
